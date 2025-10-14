@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings nameChannel="Верхний канал" logPath="C:\Log">
+  <securety user="User" rusName="Оператор" def="Пользователи доступные в программе">
+    <user userName="Admin" rusName="Администратор" def="Инженерный пользователь" pass="fr2018">
+      <priv privName="ChangeChamberScript" rusName="Изм.камеры" def="Привилегия на изменение параметров камер" />
+      <priv privName="ChangeChamberSectionScript" rusName="Изм.термосекций" def="Привилегия на изменение параметров термосекциий" />
+      <priv privName="ChangeLoaderScript" rusName="Изм.загрузчика" def="Привилегия на изменение параметров загрузчиков" />
+      <priv privName="ChangeBurningScript" rusName="Изм.горелки" def="Привилегия на изменение параметров горелок" />
+      <priv privName="ChangeRrgScript" rusName="Изм.РРГ" def="Привилегия на изменение параметров РРГ" />
+      <priv privName="ChangeFlapScript" rusName="Изм.клапаов" def="Привилегия на изменение параметров клапанов" />
+      <priv privName="ChangeBubblerScript" rusName="Изм.барботера" def="Привилегия на изменение параметров барботера" />
+      <priv privName="GoStepScript" rusName="Переход на шаг скрипта" def="Привилегия на переход интервала скрипта" />
+      <priv privName="ChangeScript" rusName="Изм.скрипта" def="Привилегия на изменение списка интервалов скрипта" />
+      <priv privName="ChangeConditionalScript" rusName="Изм.скрипта условных переходов" def="Привилегия на изменение списка интервалов условного перехода" />
+      <priv privName="ChangePumpScript" rusName="Состояния насоса" def="Привилегия на изменение состойния насоса" />
+      <priv privName="MegaBoss" rusName="МЕГАБОС" def="Привилегия изменять привилегии" />
+      <priv privName="ChangePid" rusName="Изм.ПИД" def="Привилегия на изменение параметров ПИД-регулятора" />
+    </user>
+    <user userName="User" rusName="Оператор" def="Технологический пользователь" pass="">
+    </user>
+  </securety>
+  <dev name="ComPort" num="1" rusName="СОМ-порт" def="Номер COM-порта">
+    <EditFild name="Port" rusName="Порт" value="1" def="Наименование COM-порта" readОnly="true" />
+    <EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
+    <EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
+    <EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
+    <EditFild name="Stopbits" rusName="Stopbits" value="One" def="Stop bits" readОnly="true" />
+    <EditFild name="Handshake" rusName="Handshake" value="None" def="Handshake" readОnly="true" />
+    <EditFild name="CR" rusName="CR" value="\r" def="CR" readОnly="true" />
+    <EditFild name="LF" rusName="LF" value="\n" def="LF" readОnly="true" />
+  </dev>
+  <dev name="Controllers" num="1" rusName="Группа контроллеров" def="Контроллеры">
+    <dev name="Controller" num="0" rusName="IDAS 7018" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 7018" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="24" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="1" rusName="TM 7042" def="Контроллер нагревателя Термосекция №1(Газ)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="10" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="2" rusName="TM 7042" def="Контроллер нагревателя Термосекция №2(Центр)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="11" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="3" rusName="TM 7042" def="Контроллер нагревателя Термосекция №3(Загр.)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="12" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="4" rusName="TM 7042" def="Контроллер нагревателя термокамеры">
+      <EditFild name="name" rusName="Имя" value="TM 7042" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="13" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="5" rusName="TM 7041" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="TM 7041" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="14" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87017" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="17" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="7" rusName="IDAS 87024" def="Контроллер ЦАП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87024" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="29" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="8" rusName="IDAS 87057" def="Контроллер цифровой(выход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87057" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="3" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="9" rusName="IDAS 87053" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87053" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="65" def="Подадрес" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="rrg" num="1" rusName="РРГ" def="Регулятор расхода газа">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="raiseSpeed" rusName="Рост" value="3" def="Скорость возрастания расхода газа[(л/с)/c]" readОnly="true" />
+      <EditFild name="downSpeed" rusName="Убывание" value="6" def="Скорость убывания расхода газа[(л/с)/c]" readОnly="true" />
+    </dev>
+    <dev name="flap" num="1" rusName="Клапан" def="Клапан">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+        <EditFild name="normalState" rusName="Состояние" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="11" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="cap" num="1" rusName="ЦАП" def="Цифро-аналоговый преобразователь РРГ">
+      <EditFild name="contrNum" rusName="№ контр." value="7" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="0" def="Порт" readОnly="false" />
+      <table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="val" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
+        <field valueX="0" valueY="0" check="True" />
+        <field valueX="18" valueY="5" check="True" />
+      </table>
+    </dev>
+    <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь РРГ">
+      <EditFild name="contrNum" rusName="№ контр." value="6" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="0" def="Порт" readОnly="false" />
+      <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
+        <field valueX="0" valueY="0" check="True" />
+        <field valueX="10" valueY="18" check="True" />
+      </table>
+    </dev>
+  </dev>
+  <dev name="rrg" num="2" rusName="РРГ" def="Регулятор расхода газа">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="raiseSpeed" rusName="Рост" value="3" def="Скорость возрастания расхода газа[(л/с)/c]" readОnly="true" />
+      <EditFild name="downSpeed" rusName="Убывание" value="3" def="Скорость убывания расхода газа[(л/с)/c]" readОnly="true" />
+    </dev>
+    <dev name="flap" num="1" rusName="Клапан" def="Клапан">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+        <EditFild name="normalState" rusName="Состояние" value="Open" def="Клапан нормально открытый" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="12" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="cap" num="1" rusName="ЦАП" def="Цифро-аналоговый преобразователь РРГ">
+      <EditFild name="contrNum" rusName="№ контр." value="7" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="1" def="Порт" readОnly="false" />
+      <table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="val" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
+        <field valueX="0" valueY="0" check="True" />
+        <field valueX="18" valueY="5" check="True" />
+      </table>
+    </dev>
+    <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь РРГ">
+      <EditFild name="contrNum" rusName="№ контр." value="6" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="1" def="Порт" readОnly="false" />
+      <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
+        <field valueX="0" valueY="0" check="True" />
+        <field valueX="10" valueY="18" check="True" />
+      </table>
+    </dev>
+    <dev name="vacuumetr" num="1" rusName="Вакууметр">
+      <dev name="properties" rusName="Свойства">
+        <EditFild name="condition" rusName="Условие" value="More" def="more, less, equally, moreOrEqually, lessOrEqually" readОnly="false" />
+        <EditFild name="thresholdPress" rusName="Пор.знач." value="2" def="Условие срабатывания цифрового порта" readОnly="false" />
+      </dev>
+      <dev name="acp" num="1" rusName="АЦП Вакууметра" def="Аналогово-цифровой преобразователь вакуума">
+        <EditFild name="contrNum" rusName="№ контр." value="6" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="2" def="АЦП" readОnly="false" />
+        <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения" rusNameX="U[В]" rusNameY="Vac[Па]" defX="Значение напряжения в вольтах" defY="Значение вакуума [Па]">
+          <field valueX="0" valueY="0" check="True" />
+          <field valueX="1.3" valueY="173" check="True" />
+          <field valueX="9.9" valueY="1330" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="10" valueY="100000" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+      </dev>
+      <dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="13" def="Out" readОnly="false" />
+      </dev>
+      <dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД РРГ" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД РРГ" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД РРГ" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления расхода газа РРГ" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+    </dev>
+  </dev>
+  <dev name="flap" num="1" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="1" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="2" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="2" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="3" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="3" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="4" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="4" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="5" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="5" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="6" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="6" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="7" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="7" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="flap" num="8" rusName="Клапан" def="Клапан">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="8" def="Out" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="chamber" num="1" rusName="Термокамера" def="Термокамера">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="crashTemp" rusName="Т аварии" value="1200" def="Аварийная температура" readОnly="false" />
+    </dev>
+    <dev name="section" num="1" rusName="Термосекция(Газ)" def="Секция термокамеры">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры нагревателя ">
+        <EditFild name="contrNum" rusName="№ контр." value="1" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" readОnly="true" />
+        <EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальная температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxKey" rusName="Макс.код" value="4090" def="Максимальная температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
+        <EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+      </dev>
+      <dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="34" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении разницы от среднего выдаётся статус авария" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся статус авария" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="0" def="АЦП" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="td" num="2" rusName="Контрольная Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип Термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="12" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении которого выдаётся ошибка" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="3" def="АЦП" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="15" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="15" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
+        <table name="CorrectionTemp" num="1" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+        <table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+      </dev>
+    </dev>
+    <dev name="section" num="2" rusName="Термосекция(Центр)" def="Секция термокамеры">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры нагревателя">
+        <EditFild name="contrNum" rusName="№ контр." value="2" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" />
+        <EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxKey" rusName="Макс.код" value="4090" def="Максимальный температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
+        <EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+      </dev>
+      <dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип Термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="78" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении которого выдаётся ошибка" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="1" def="АЦП" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="td" num="2" rusName="Контрольная Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип Термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="56" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении которого выдаётся ошибка" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="4" def="Порт" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="15" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="50" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
+        <table name="CorrectionTemp" num="1" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+        <table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+      </dev>
+    </dev>
+    <dev name="section" num="3" rusName="Термосекция(Загр.)" def="Секция термокамеры">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры нагревателя">
+        <EditFild name="contrNum" rusName="№ контр." value="3" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" />
+        <EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxKey" rusName="Макс.код" value="4090" def="Максимальный температура в секции термокамеры(в кодах)" readОnly="true" />
+        <EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
+        <EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+      </dev>
+      <dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип Термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="92" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении которого выдаётся ошибка" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="2" def="АЦП" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="td" num="1" rusName="Контрольная Терм." def="Термодатчик">
+        <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+          <EditFild name="Type" rusName="Тип" value="ТПР_B" def="Тип Термодатчика" />
+          <EditFild name="Aver" rusName="Усредн." value="30" def="Колличество точек для усреднения" />
+          <EditFild name="Path" rusName="Путь к файлу" value="91" def="Путь к файлу таблицы" />
+          <EditFild name="ErrorDT" rusName="Ошибка Т" value="50" def="Значение температуры при превышении которого выдаётся ошибка" />
+          <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+        </dev>
+        <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
+          <EditFild name="contrNum" rusName="№ контр." value="0" def="Порядковый номер контроллера" readОnly="false" />
+          <EditFild name="port" rusName="Порт" value="5" def="АЦП" readОnly="false" />
+          <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+            <field valueX="0" valueY="0" check="True" />
+            <field valueX="5" valueY="300" check="True" />
+          </table>
+        </dev>
+      </dev>
+      <dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
+        <EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
+        <EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+        <EditFild name="Di" rusName="Ди" value="15" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+        <EditFild name="MaxImpact" rusName="Макс.Возд." value="15" def="Максимальное воздействие" readОnly="false" />
+      </dev>
+      <dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
+        <table name="CorrectionTemp" num="1" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+        <table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
+          <field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="1500" valueY="1500" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+      </dev>
+    </dev>
+    <dev name="heater" num="1" rusName="Реле нагревателя" def="Цифорвой выход">
+      <EditFild name="contrNum" rusName="№ контр." value="4" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="0" def="Out" readОnly="false" />
+    </dev>
+    <dev name="status" rusName="Статусы">
+      <dev name="water" num="1" rusName="Д воды на охлаждение термокамеры" def="Цифорвой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="5" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="0" def="In" readОnly="false" />
+      </dev>
+      <dev name="gateOpen" num="1" rusName="Датчик открытой заслонки" def="Цифорвой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="0" def="In" readОnly="false" />
+      </dev>
+      <dev name="gateClose" num="1" rusName="Датчик закрытой" def="Цифорвой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="1" def="In" readОnly="false" />
+      </dev>
+    </dev>
+  </dev>
+  <dev name="loader" num="1" rusName="Загрузчик" def="Загрузчик">
+    <dev name="status" rusName="Статусы">
+      <dev name="dio" num="1" rusName="Заслонка открыта" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="0" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="2" rusName="Заслонка закрыта" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="1" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="3" rusName="Загружен ОК" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="2" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="4" rusName="Выгружен ОК" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="3" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="5" rusName="Авария загрузки" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="4" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="6" rusName="Авария выгрузки" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="5" def="In" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="dio" num="1" rusName="Загрузка платформы" def="Цифровой выход">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="13" def="Порт" readОnly="false" />
+    </dev>
+    <dev name="dio" num="2" rusName="Выгрузка платформы" def="Цифровой выход">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="13" def="Порт" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="pumpSystem" num="1" rusName="Система создания вакуума" def="Система создания вакуума">
+    <dev name="vacuumPump" num="1" rusName="Насос Рутса" def="Вакуумный насос">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+        <EditFild name="minPressure" rusName="Мин. давление" value="10" def="Минимальное давление для включения насоса" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="15" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="roughingPump" num="2" rusName="Форвакуумный насос" def="Форвакуумный насос">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+        <EditFild name="minPressure" rusName="Мин. давление" value="-10" def="Минимальное давление для включения насоса" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="14" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="vacuumetr" num="1" rusName="Вакууметр">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+        <EditFild name="condition" rusName="Условие" value="More" def="more, less, equally, moreOrEqually, lessOrEqually" readОnly="false" />
+        <EditFild name="thresholdPress" rusName="Пор.знач." value="2" def="Условие срабатывания цифрового порта" readОnly="false" />
+      </dev>
+      <dev name="acp" num="1" rusName="АЦП Вакууметра" def="Аналогово-цифровой преобразователь вакуума">
+        <EditFild name="contrNum" rusName="№ контр." value="6" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="3" def="АЦП" readОnly="false" />
+        <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения" rusNameX="U[В]" rusNameY="Vac[Па]" defX="Значение напряжения в вольтах" defY="Значение вакуума [Па]">
+          <field valueX="0" valueY="0" check="True" />
+          <field valueX="1.3" valueY="173" check="True" />
+          <field valueX="9.9" valueY="1330" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+          <field valueX="10" valueY="100000" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+        </table>
+      </dev>
+    </dev>
+  </dev>
+  <dev name="bubbler" num="1" rusName="Барбот." def="барботер">
+    <dev name="properties" num="1" rusName="Параметры" def="Параметры">
+      <EditFild name="normalState" rusName="Состояние" value="Close" def="Барботер отключен" readОnly="true" />
+    </dev>
+    <dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
+      <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+      <EditFild name="port" rusName="Порт" value="0" def="Out" readОnly="false" />
+    </dev>
+    <dev name="td" num="1" rusName="Контрольная Терм." def="Термодатчик">
+      <dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
+        <EditFild name="Type" rusName="Тип" value="TABLE" def="Тип Термодатчика" />
+        <EditFild name="Aver" rusName="Усредн." value="29" def="Колличество точек для усреднения" />
+        <EditFild name="Path" rusName="Путь к файлу" value="91" def="Путь к файлу таблицы" />
+        <EditFild name="ErrorDT" rusName="Ошибка Т" value="10" def="Значение температуры при превышении которого выдаётся ошибка" />
+        <EditFild name="MaxErrorCnt" rusName="Количество ошибок" value="10" def="Количество ошибок температуры при превышении которого выдаётся ошибка" />
+      </dev>
+      <dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь вакуума">
+        <EditFild name="contrNum" rusName="№ контр." value="6" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="6" def="АЦП" readОnly="false" />
+        <table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
+          <field valueX="0" valueY="0" check="True" />
+          <field valueX="5" valueY="300" check="True" />
+        </table>
+      </dev>
+    </dev>
+  </dev>
+  <dev name="shutter" num="1" rusName="Затвор" def="Система затвора">
+    <dev name="flap" num="1" rusName="Клапан" def="Клапан">
+      <dev name="params" num="1" rusName="параметры" def="параметры">
+        <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально закрытый" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="10" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="flap" num="2" rusName="Клапан" def="Клапан">
+      <dev name="params" num="1" rusName="параметры" def="параметры">
+        <EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально открытый" readОnly="true" />
+      </dev>
+      <dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+        <EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="9" def="Out" readОnly="false" />
+      </dev>
+    </dev>
+    <dev name="status" rusName="Статусы">
+      <dev name="dio" num="1" rusName="Затвор открыт" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="6" def="In" readОnly="false" />
+      </dev>
+      <dev name="dio" num="2" rusName="Затвор закрыт" def="Цифровой вход">
+        <EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+        <EditFild name="port" rusName="Порт" value="7" def="In" readОnly="false" />
+      </dev>
+    </dev>
+  </dev>
+</settings>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ChartApplication.ControlChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChartApplication"
+             mc:Ignorable="d"              
+             xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"                         
+             >
+    <DockPanel>
+        <WindowsFormsHost VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <dvc:Chart x:Name="chart" Dock="Fill">
+                <dvc:Chart.ChartAreas >
+                    <dvc:ChartArea Name="Default">
+                    </dvc:ChartArea>
+                </dvc:Chart.ChartAreas>
+
+                <dvc:Chart.Series>
+                    <dvc:Series x:Name="points0" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Blue" ChartType="Point"/>
+                    <dvc:Series x:Name="points1" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Red" ChartType="Point" />
+                    <dvc:Series x:Name="points2" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Black" ChartType="Point"/>
+
+                    <dvc:Series x:Name="line0" XValueType="DateTime"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Blue" ChartType="FastLine" />
+                    <dvc:Series x:Name="line1" XValueType="DateTime"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Red" ChartType="FastLine" />
+                    <dvc:Series x:Name="line2" XValueType="DateTime"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Black" ChartType="FastLine"/>
+                    
+                    <!--<dvc:Series x:Name="points0" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Blue" ChartType="Point" XValueType="DateTime"/>
+                    <dvc:Series x:Name="points1" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Red" ChartType="Point" XValueType="DateTime"/>
+                    <dvc:Series x:Name="points2" Enabled="False" BorderWidth="3" ChartArea="Default" Color="Black" ChartType="Point" XValueType="DateTime"/>
+
+                    <dvc:Series x:Name="line0"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Blue" ChartType="FastLine" XValueType="DateTime"/>
+                    <dvc:Series x:Name="line1"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Red" ChartType="FastLine" XValueType="DateTime"/>
+                    <dvc:Series x:Name="line2"  Enabled="False" BorderWidth="3" ChartArea="Default" Color="Black" ChartType="FastLine" XValueType="DateTime"/>-->
+                </dvc:Chart.Series>
+            </dvc:Chart>
+        </WindowsFormsHost>
+    </DockPanel>
+</UserControl>

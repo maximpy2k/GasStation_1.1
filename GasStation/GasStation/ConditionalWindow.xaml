@@ -1,0 +1,71 @@
+﻿<Window x:Class="GasStation.ConditionalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="{Binding Path = Title}" Height="300" Width="585.441"
+        x:Name="MyW"
+        >
+
+    <Grid >
+        <Grid.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Добавить" Command="{Binding Path=CmdAddBranch}" />
+            <MenuItem Header="Удалить" Command="{Binding Path=CmdRemoveBranch}" />
+        </ContextMenu>
+        </Grid.ContextMenu>
+
+        <ListView x:Name="Lst" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  DataContext="{Binding}" 
+                  ItemsSource="{Binding Path=Conditional.StateScripts}"
+                  SelectedItem="{Binding Path=CurrState}"
+                  SelectedIndex="{Binding CurrentStateIdx}">
+
+        <ListView.View>
+            <GridView>
+                    <GridViewColumn Header="Устройство">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Width="120" Text="{Binding Path=Device,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"
+                                          ItemsSource="{Binding ElementName=MyW, Path=DataContext.ListDevice}" 
+                                          IsEnabled="{Binding Path=EnabledChangedScript}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Значение">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                                <TextBox Width="60" Text="{Binding Path=CurState, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:F03}}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header ="Границы интервала +-">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                                <TextBox Width="60" Text="{Binding Path=ValueAbs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:F03}}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Задержка">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                                <TextBox Width="80" Text="{Binding Path=Timer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Переход на интервал">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                                <ComboBox Width="120"  Text="{Binding Path=NameStep,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding ElementName=MyW, Path=DataContext.NameSteps}" 
+                                          IsEnabled="{Binding Path=EnabledChangedScript}"
+                                          />
+                            </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            </GridView>
+        </ListView.View>
+    </ListView>
+    </Grid>
+</Window>

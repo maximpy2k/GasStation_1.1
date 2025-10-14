@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="SoursePrj.UserControl_Pipe_Water"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SoursePrj"
+             mc:Ignorable="d" 
+             d:DesignHeight="7" d:DesignWidth="336">
+    <Grid>
+        <Rectangle Height="7" Margin="0" VerticalAlignment="Bottom" RadiusX="1" RadiusY="1" Stroke="Black" StrokeThickness="0.1">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFADB5CB" Offset="0"/>
+                    <GradientStop Color="#FF0045F9" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+    </Grid>
+</UserControl>

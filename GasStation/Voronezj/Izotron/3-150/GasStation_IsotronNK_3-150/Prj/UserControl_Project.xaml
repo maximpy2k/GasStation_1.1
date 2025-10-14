@@ -1,0 +1,353 @@
+﻿<UserControl x:Class="GasStation_IsotronNK_3_150.UserControl_Project"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"          
+             xmlns:conv="clr-namespace:GasStation.ViewModels.Converters;assembly=GasStation"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <conv:ClassConverterRegime x:Key="ConvRegime"/>
+        <conv:ClassConverterStepParams x:Key="ConvStepParams"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary Source="/GasStation;component/Styles/HierarchicalDataTemplate/ConstDictionary.xaml"/>
+        </Grid.Resources>
+        <ListView x:Name="Lst" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" 
+                                ItemsSource="{Binding Path=ClsScript.Steps}" 
+                                SelectedItem="{Binding Path=ClsScript.CurrStep}" Background="#FFAFBEAF" SelectionChanged="Lst_SelectionChanged">
+            <ListView.SelectedIndex>
+                <Binding Path="SelectedIdx" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+            </ListView.SelectedIndex>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить"  Command="{Binding Path=CmdAddStep}"/>
+                    <MenuItem Header="Удалить" Command="{Binding Path=CmdRemoveStep}"/>
+                    <MenuItem Header="Перейти" Command="{Binding Path=CmdGoToStep}"/>
+                    <MenuItem Header="Копировать" Command="{Binding Path=CmdCopyStep}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер шага">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="70" Text="{Binding Path= StepParams.NumStep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Название шага">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="188" Text="{Binding Path='StepParams.NameStep', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Тип интервала" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Width="100" ItemsSource="{Binding Source={StaticResource ConvStepParams}, Path=Items}" 
+                                                                  Text="{Binding Path = 'StepParams.TypeStep', Mode=TwoWay, Converter={StaticResource ConvStepParams}}">
+                                    <ComboBox.Resources>
+                                        <Style TargetType="ComboBox">
+                                            <Style.Triggers>
+                                                <Trigger Property="Text" Value="Аварийный">
+                                                    <Setter Property="Background" >
+                                                        <Setter.Value>
+                                                            <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                                                <GradientStop Color="Red" Offset="0"/>
+                                                                <GradientStop Color="White" Offset="1"/>
+                                                            </RadialGradientBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                                <Trigger Property="Text" Value="Нормальный">
+                                                    <Setter Property="Background" >
+                                                        <Setter.Value>
+                                                            <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                                                <GradientStop Color="White" Offset="1"/>
+                                                                <GradientStop Color="#FF3BAA1A" Offset="0"/>
+                                                            </RadialGradientBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Время шага">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="30" Text="{Binding Path=StepParams.TimeStepH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_1"/>
+                                    <TextBlock Width="5" Text=":"/>
+                                    <TextBox Width="30" Text="{Binding Path=StepParams.TimeStepM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_2"/>
+                                    <TextBlock Width="5" Text=":"/>
+                                    <TextBox Width="30" Text="{Binding Path=StepParams.TimeStepS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_3"/>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Камера">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBox Width="40"  Margin="2" ToolTip="Температура [град,С]" 
+                                                                     Text="{Binding Path=Chambers[0].SetupTemp, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_4">
+                                        <TextBox.ContextMenu>
+                                            <ContextMenu>
+
+                                                <MenuItem Header="Параметры камеры" 
+                                                                              Command="{Binding Path=CmdMenuChamberParams}" 
+                                                                              CommandParameter="{Binding Path=Chambers[0]}"/>
+
+                                            </ContextMenu>
+                                        </TextBox.ContextMenu>
+                                    </TextBox>
+                                    <CheckBox IsChecked="{Binding Path=Chambers[0].Heat}" 
+                                              Height="18.125" Margin="0,0,0,0" 
+                                              Width="18.125"
+                                              Style="{DynamicResource CheckBoxFlapStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Усл. переход">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="120" Content="Условия перехода"
+                                                                CommandParameter="{Binding}"                                                                
+                                                                Command="{Binding ElementName=Lst, Path=DataContext.CmdGoBranch}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Вак.насос" >
+                        <GridViewColumn.CellTemplate  >
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=PumpSys[0].UseVacuumPump}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Форвак.насос" >
+                        <GridViewColumn.CellTemplate  >
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=PumpSys[0].UseRoughingPump}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="РРГ 1" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="40"  Margin="2" ToolTip="Заданный расход газа[л/ч]" IsReadOnly="{Binding Path=Rrgs[0].ReadOnly,Mode=OneWay}"
+                                                                     Text="{Binding Path=Rrgs[0].SetupValue, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_5">
+                                        <TextBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Параметры" 
+                                                          Command="{Binding CmdRrgStepParams}" 
+                                                          CommandParameter="{Binding Path=Rrgs[0]}"/>
+                                            </ContextMenu>
+                                        </TextBox.ContextMenu>
+                                    </TextBox>
+                                    <CheckBox IsChecked="{Binding Path=Rrgs[0].Flap.FlapView}"  
+                                              IsEnabled="{Binding Path=ClsScript.Consts.ConstRrgs[0].IsFlap}" 
+                                              Height="18.125" Margin="0,0,0,0" Style="{DynamicResource CheckBoxFlapStyle}" Width="18.125"/>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="РРГ 2">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="40"  Margin="2" ToolTip="Заданный расход газа[л/ч]" IsReadOnly="{Binding Path=Rrgs[1].ReadOnly,Mode=OneWay}"
+                                                                     
+                                                                 
+                                                                     Text="{Binding Path=Rrgs[1].SetupValue,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput_6">
+                                        <TextBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Параметры" 
+                                                                              Command="{Binding Path=CmdRrgStepParams}" 
+                                                                              CommandParameter="{Binding Path=Rrgs[1]}"/>
+                                            </ContextMenu>
+                                        </TextBox.ContextMenu>
+                                    </TextBox>
+                                    <CheckBox IsChecked="{Binding Path=Rrgs[1].Flap.FlapView}"
+                                              Width="18.125"
+                                              IsEnabled="{Binding Path=ClsScript.Consts.ConstRrgs[1].IsFlap}"  Height="18.125" Margin="0,0,0,0" 
+                                              Style="{DynamicResource CheckBoxFlapStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Затвор">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding Path=Shutters[0].Flaps[0].FlapView}"                                              
+                                              Height="18.125" Margin="1" 
+                                              Width="18.125"
+                                              Style="{DynamicResource CheckBoxFlapStyle}"/>
+                                    <CheckBox IsChecked="{Binding Path=Shutters[0].Flaps[1].FlapView}"                                              
+                                              Height="18.125" Margin="1" 
+                                              Width="18.125" VerticalAlignment="Center"
+                                              Style="{DynamicResource CheckBoxFlapStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Клап.1" >
+                        <GridViewColumn.CellTemplate  >
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[0].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125" VerticalAlignment="Center"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.2">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[1].FlapState}"
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.3">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[2].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.4">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[3].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.5">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[4].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.6">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[5].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.7">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[6].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.8">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[7].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.9">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[8].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0"
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Клап.10">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Flaps[9].FlapState}" 
+                                          Height="18.125" Margin="5,0,0,0" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Барботер 1">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Bubblers[0].UseBubbler}" 
+                                          Height="18.125" 
+                                          Width="18.125"
+                                          Style="{DynamicResource CheckBoxFlapStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Загрузчик">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox x:Name="checkBox" IsChecked="{Binding Path=Loaders[0].DestLoad}" Content="CheckBox" Height="24" Margin="0,0,0,1" Style="{DynamicResource CheckBoxLoad}" VerticalAlignment="Bottom" Width="24"/>
+                                    <TextBox Width="30" Text="{Binding Path=Loaders[0].SetupSpeed}" Margin="1,0,0,1" PreviewTextInput="TextBox_PreviewTextInput_7"/>
+                                    <CheckBox x:Name="CheckBoxUnload" 
+                                                                      IsChecked="{Binding Path=Loaders[0].DestUnload}" Content="CheckBox" Height="24" Margin="1,0,0,0" Style="{DynamicResource CheckBoxLoad}" VerticalAlignment="Bottom" Width="24" RenderTransformOrigin="0.5,0.5">
+                                        <CheckBox.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform Angle="180"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </CheckBox.RenderTransform>
+                                        <CheckBox.ContextMenu>
+                                            <ContextMenu>
+                                                <CheckBox />
+                                            </ContextMenu>
+                                        </CheckBox.ContextMenu>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

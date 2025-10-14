@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="SoursePrj.UserControls.UserControl_Bubbler"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SoursePrj.UserControls"
+             mc:Ignorable="d" Width="200" Height="85">
+    <UserControl.Resources>
+        <Style x:Key="CheckBox" TargetType="{x:Type CheckBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="rectangle" RadiusY="10" RadiusX="10" Stroke="Black" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                                <Rectangle.Fill>
+                                    <RadialGradientBrush RadiusX="2.196">
+                                        <GradientStop Color="#FF1F1F1F" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock x:Name="textBlock" Margin="4,-2.667,0,1.334" TextWrapping="Wrap" Text="Закрыт" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusY="0.606" RadiusX="2.663" GradientOrigin="-0.481,0.522">
+                                            <GradientStop Color="#FF2C2C2C" Offset="1"/>
+                                            <GradientStop Color="White" Offset="0.142"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Text" TargetName="textBlock" Value="Выкл"/>
+                                <Setter Property="Grid.ColumnSpan" TargetName="textBlock" Value="1"/>
+                                <Setter Property="Margin" TargetName="textBlock" Value="3.668,-2.833,0.332,1.5"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusX="2.196">
+                                            <GradientStop Color="#FF00CB12" Offset="1"/>
+                                            <GradientStop Color="White"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Text" TargetName="textBlock" Value="Вкл"/>
+                                <Setter Property="Margin" TargetName="textBlock" Value="11.657,-2.5,0,1.167"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="200" Height="85">
+
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Настройки" Click="MenuItemOpenParams_Click"></MenuItem>
+                <MenuItem Header="Расширенная информация" Click="MenuItemOpenView_Click" Visibility="{Binding Path=BubblerConst.EnableTd}"></MenuItem>
+
+
+            </ContextMenu>
+
+
+        </Grid.ContextMenu>
+        <Rectangle Stroke="Black" VerticalAlignment="Top" Fill="#FFD8D295" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" Width="195" Height="85" Margin="0,0,0,0"/>
+        <Image x:Name="image" Margin="6,-2,0,3" Source="/SoursePrj;component/Images/Barboter.png" HorizontalAlignment="Left" Width="54"/>
+        <GroupBox Grid.Column="0" Header="Темп" Margin="65,0,0,6" BorderBrush="Black" FontWeight="Bold" Height="54" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="58" FontSize="16"
+                  Visibility="{Binding Path=BubblerConst.EnableTd}">
+            <GroupBox.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF9A5933" Offset="1"/>
+                </LinearGradientBrush>
+            </GroupBox.Foreground>
+            <GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.52,-0.337">
+                    <GradientStop Color="#FF00A3E8" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </GroupBox.Background>
+            <TextBox FontWeight="Bold" Background="{x:Null}" BorderBrush="Black" FontSize="18"
+                     IsReadOnly="{Binding ReadOnly}"
+                     Text="{Binding Path=BubblerView.CurrentTd, StringFormat={}{0:F1}}" PreviewTextInput="TextBox_SetTemp_Copy_PreviewTextInput"/>
+        </GroupBox>
+        <CheckBox IsChecked="{Binding Path=UseBubbler}" Height="20" Margin="0,0,12.669,12.331" Style="{DynamicResource CheckBox}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="55" d:LayoutOverrides="HorizontalAlignment"
+                  Visibility="{Binding Path=BubblerConst.EnableSw}"/>
+        <Label x:Name="label"  Content="{Binding Path=BubblerNum}" Margin="67.694,-3.694,10,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" d:LayoutOverrides="VerticalAlignment"/>
+    </Grid>
+</UserControl>

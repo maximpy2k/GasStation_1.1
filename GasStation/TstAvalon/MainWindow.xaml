@@ -1,0 +1,60 @@
+﻿<Window x:Class="TstAvalon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:local="clr-namespace:TstAvalon"
+        mc:Ignorable="d"
+        Title="MainModule" Height="393" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*"/>
+
+        </Grid.ColumnDefinitions>
+        <ad:DockingManager Grid.Row="1" Grid.Column="1">
+            <ad:LayoutRoot>
+                <ad:LayoutPanel>
+                    <ad:LayoutAnchorablePaneGroup Orientation="Vertical"  DockMinWidth="200" >
+                        <ad:LayoutAnchorablePane>
+                            <ad:LayoutAnchorable  Title="Скрипт"/>
+                                <ad:LayoutAnchorable  Title="Задержка"/>
+                        </ad:LayoutAnchorablePane>
+                        <ad:LayoutAnchorablePane >
+                            <ad:LayoutAnchorable  Title="Источник питания"/>
+                            <ad:LayoutAnchorable  Title="КТХ"/>
+                        </ad:LayoutAnchorablePane>
+
+                    </ad:LayoutAnchorablePaneGroup>
+                    <ad:LayoutAnchorablePaneGroup Orientation="Vertical"  DockMinWidth="200" >
+
+                        <ad:LayoutAnchorablePane >
+                            <ad:LayoutAnchorable  Title="КТХ"/>
+                        </ad:LayoutAnchorablePane>
+
+                    </ad:LayoutAnchorablePaneGroup>
+                </ad:LayoutPanel>
+            </ad:LayoutRoot>
+        </ad:DockingManager>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="161*"/>
+                <RowDefinition Height="143*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Устройства"  Grid.Row="0" HorizontalAlignment="Center" Margin="34,0" Width="61"/>
+            <ListBox Grid.Row="1" Margin="5,5,5,10"/>
+            <GroupBox Grid.Row="2" Header="Управление" Grid.RowSpan="2" Margin="4">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Запуск" Margin="3" Command="{Binding CmdStartScript}"/>
+                    <Button Content="Остановка" Margin="3"/>
+                    <Button Content="Пауза" Margin="3"/>
+                    <Button Content="Следующий шаг" Margin="3"/>
+                    <Button Content="Предыдущий шаг" Margin="3"/>
+
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="GasStation.ModalWindows.View.WindowsParams.WindowFreqGeneratorParams"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GasStation.ModalWindows.View.WindowsParams"
+        mc:Ignorable="d"
+        Title="Настройки ШИМ-генератора" Height="258.841" Width="375.914">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label FontSize="22" Content="ШИМ-генератор №" Margin="5"></Label>
+            <Label FontSize="22" DataContext="{Binding}" Content="{Binding Path=Num}" Margin="5"></Label>
+        </StackPanel>
+        <CheckBox Content="Включить"
+                  IsEnabled="{Binding EnabledChangedScript}"
+                  IsChecked="{Binding  Path=StartupSwitch}"/>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Height="20"  Width="200" Margin="2" Text="ШИМ 1 длительность импульса"/>
+            <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=ImpulsDuration1}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Height="20"  Width="200" Margin="2" Text="ШИМ 1 Пауза между импульсами"/>
+            <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=ImpulsDelay1}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Height="20"  Width="200" Margin="2" Text="ШИМ 2 длительность импульса"/>
+            <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=ImpulsDuration2}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Height="20"  Width="200" Margin="2" Text="ШИМ 2 Пауза между импульсами"/>
+            <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=ImpulsDelay2}"/>
+        </StackPanel>
+       <CheckBox Content="Разрешение пользователю изменять свойства"  IsChecked="{Binding Path=UsePriv}" IsEnabled="{Binding Path=EnabledChangedScript}"/>
+
+    </StackPanel>
+</Window>

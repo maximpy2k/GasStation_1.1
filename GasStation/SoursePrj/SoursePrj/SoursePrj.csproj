@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC6204FA-72CC-4F32-A64E-685A6AA0A70F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoursePrj</RootNamespace>
+    <AssemblyName>SoursePrj</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ModalWindows\Converter\ClassConverterRegime.cs" />
+    <Compile Include="UserControls\GasBallon\UserControl_Free.xaml.cs">
+      <DependentUpon>UserControl_Free.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_N2O.xaml.cs">
+      <DependentUpon>UserControl_N2O.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_NH3.xaml.cs">
+      <DependentUpon>UserControl_NH3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_PH3.xaml.cs">
+      <DependentUpon>UserControl_PH3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_SiH2Cl2.xaml.cs">
+      <DependentUpon>UserControl_SiH2Cl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_SiH2Cl2_Green.xaml.cs">
+      <DependentUpon>UserControl_SiH2Cl2_Green.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_SiH4.xaml.cs">
+      <DependentUpon>UserControl_SiH4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_H2_N2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_H2_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_H2_O2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_H2_O2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_O2_N2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_O2_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2_N2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_SiH2Cl2_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlProject.xaml.cs">
+      <DependentUpon>UserControlProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlRrg.xaml.cs">
+      <DependentUpon>UserControlRrg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlChamber.xaml.cs">
+      <DependentUpon>UserControlChamber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlHydrogenBurner.xaml.cs">
+      <DependentUpon>UserControlHydrogenBurner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_Ar.xaml.cs">
+      <DependentUpon>UserControl_Ar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_Ar.xaml.cs">
+      <DependentUpon>UserControl_Pipe_Ar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_N2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_H2.xaml.cs">
+      <DependentUpon>UserControl_H2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_N2.xaml.cs">
+      <DependentUpon>UserControl_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_O2.xaml.cs">
+      <DependentUpon>UserControl_O2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_HCl.xaml.cs">
+      <DependentUpon>UserControl_HCl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_H2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_H2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_O2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_O2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_Ar_N2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_Ar_N2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_Ar_N2_O2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_Ar_N2_O2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_HCl.xaml.cs">
+      <DependentUpon>UserControl_Pipe_HCl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_N2_HCl.xaml.cs">
+      <DependentUpon>UserControl_Pipe_N2_HCl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_Water.xaml.cs">
+      <DependentUpon>UserControl_Pipe_Water.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_Free.xaml.cs">
+      <DependentUpon>UserControl_Pipe_Free.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GasBallon\UserControl_Water.xaml.cs">
+      <DependentUpon>UserControl_Water.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Bubbler_FullControl.xaml.cs">
+      <DependentUpon>UserControl_Bubbler_FullControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_BubblerMirror_FullControl.xaml.cs">
+      <DependentUpon>UserControl_BubblerMirror_FullControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Bubbler_NoControl.xaml.cs">
+      <DependentUpon>UserControl_Bubbler_NoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Bubbler.xaml.cs">
+      <DependentUpon>UserControl_Bubbler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_FrequencyGenerator.xaml.cs">
+      <DependentUpon>UserControl_FrequencyGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_GateControl.xaml.cs">
+      <DependentUpon>UserControl_GateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_LoaderControlWithoutSpeed.xaml.cs">
+      <DependentUpon>UserControl_LoaderControlWithoutSpeed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_NameChannel.xaml.cs">
+      <DependentUpon>UserControl_NameChannel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Power.xaml.cs">
+      <DependentUpon>UserControl_Power.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Scrubber.xaml.cs">
+      <DependentUpon>UserControl_Scrubber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_SmallChamber.xaml.cs">
+      <DependentUpon>UserControl_SmallChamber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_VacuumPump.xaml.cs">
+      <DependentUpon>UserControl_VacuumPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_RoughingPump.xaml.cs">
+      <DependentUpon>UserControl_RoughingPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_LoaderDisc.xaml.cs">
+      <DependentUpon>UserControl_LoaderDisc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_LoaderControl.xaml.cs">
+      <DependentUpon>UserControl_LoaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Flap.xaml.cs">
+      <DependentUpon>UserControl_Flap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_StendControll.xaml.cs">
+      <DependentUpon>UserControl_StendControll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_StepParams.xaml.cs">
+      <DependentUpon>UserControl_StepParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_VacuumGauge.xaml.cs">
+      <DependentUpon>UserControl_VacuumGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Брянск\UserControl_Bryansk.xaml.cs">
+      <DependentUpon>UserControl_Bryansk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Gate.xaml.cs">
+      <DependentUpon>UserControl_Gate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Drossel.xaml.cs">
+      <DependentUpon>UserControl_Drossel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Брянск\Изотрон\UserControl_IzotronBryanskNK.xaml.cs">
+      <DependentUpon>UserControl_IzotronBryanskNK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Брянск\Изотрон\UserControl_IzotronBryanskSK.xaml.cs">
+      <DependentUpon>UserControl_IzotronBryanskSK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Брянск\Изотрон\UserControl_IzotronBryanskVK.xaml.cs">
+      <DependentUpon>UserControl_IzotronBryanskVK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Брянск\Камера\UserControl_Chamber.xaml.cs">
+      <DependentUpon>UserControl_Chamber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\UserControl_Izotron_NK_1.xaml.cs">
+      <DependentUpon>UserControl_Izotron_NK_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\3-150\UserControl_Izotron_NK_3-150.xaml.cs">
+      <DependentUpon>UserControl_Izotron_NK_3-150.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\UserControl_Izotron_VK.xaml.cs">
+      <DependentUpon>UserControl_Izotron_VK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_NH3.xaml.cs">
+      <DependentUpon>UserControl_Pipe_NH3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2.xaml.cs">
+      <DependentUpon>UserControl_Pipe_SiH2Cl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\UserControl_Izotron_NK.xaml.cs">
+      <DependentUpon>UserControl_Izotron_NK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\UserControl_Izotron_SK.xaml.cs">
+      <DependentUpon>UserControl_Izotron_SK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pipes\UserControl_PipeAir.xaml.cs">
+      <DependentUpon>UserControl_PipeAir.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_Shutter.xaml.cs">
+      <DependentUpon>UserControl_Shutter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Изотрон\UserControl_Izotron_VK_1.xaml.cs">
+      <DependentUpon>UserControl_Izotron_VK_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Воронеж\Оксид\UserControl_Voronezj.xaml.cs">
+      <DependentUpon>UserControl_Voronezj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Зеленоград\UserControl_Zelenograd_Diffusion.xaml.cs">
+      <DependentUpon>UserControl_Zelenograd_Diffusion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Зеленоград\UserControl_Zelenograd_Pirogen.xaml.cs">
+      <DependentUpon>UserControl_Zelenograd_Pirogen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Орел\Установка\UserControl_InstOrel.xaml.cs">
+      <DependentUpon>UserControl_InstOrel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Орел\Установка\UserControl_InstOrel_NitridSiSK.xaml.cs">
+      <DependentUpon>UserControl_InstOrel_NitridSiSK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Орел\Установка\UserControl_InstOrel_PoliSiVK.xaml.cs">
+      <DependentUpon>UserControl_InstOrel_PoliSiVK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Орел\Установка\UserControl_InstOrel_SiO2NK.xaml.cs">
+      <DependentUpon>UserControl_InstOrel_SiO2NK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskNK.xaml.cs">
+      <DependentUpon>UserControl_IzotronUlyanovskNK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskSK.xaml.cs">
+      <DependentUpon>UserControl_IzotronUlyanovskSK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskVK.xaml.cs">
+      <DependentUpon>UserControl_IzotronUlyanovskVK.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UserControls\GasBallon\UserControl_Free.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_N2O.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_NH3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_PH3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_SiH2Cl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_SiH2Cl2_Green.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_SiH4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_H2_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_H2_O2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_O2_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlRrg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlChamber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlHydrogenBurner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_Ar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_Ar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_H2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_O2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_HCl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_H2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_O2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_Ar_N2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_Ar_N2_O2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_HCl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_N2_HCl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_Water.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_Free.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GasBallon\UserControl_Water.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_Bubbler_FullControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_BubblerMirror_FullControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_Bubbler_NoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_Bubbler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_FrequencyGenerator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_GateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_LoaderControlWithoutSpeed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_NameChannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_Power.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_Scrubber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_SmallChamber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_VacuumPump.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_RoughingPump.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_LoaderDisc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_LoaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_Flap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_StendControll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_StepParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_VacuumGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Брянск\UserControl_Bryansk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_Gate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_Drossel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Брянск\Изотрон\UserControl_IzotronBryanskNK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Брянск\Изотрон\UserControl_IzotronBryanskSK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Брянск\Изотрон\UserControl_IzotronBryanskVK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Брянск\Камера\UserControl_Chamber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\UserControl_Izotron_NK_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\3-150\UserControl_Izotron_NK_3-150.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\UserControl_Izotron_VK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_NH3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\UserControl_Izotron_NK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\UserControl_Izotron_SK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pipes\UserControl_PipeAir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_Shutter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Изотрон\UserControl_Izotron_VK_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Воронеж\Оксид\UserControl_Voronezj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Зеленоград\UserControl_Zelenograd_Diffusion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Зеленоград\UserControl_Zelenograd_Pirogen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Орел\Установка\UserControl_InstOrel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Орел\Установка\UserControl_InstOrel_NitridSiSK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Орел\Установка\UserControl_InstOrel_PoliSiVK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Орел\Установка\UserControl_InstOrel_SiO2NK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskNK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskSK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ульяновск\Изотрон\UserControl_IzotronUlyanovskVK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Ar.png" />
+    <Resource Include="Images\CrossCancel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DropWater.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Fire.png" />
+    <Resource Include="Images\H2.png" />
+    <Resource Include="Images\N2.png" />
+    <Resource Include="Images\O2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ChartApplication\ChartApplication.csproj">
+      <Project>{ca5a612d-0d4e-44b9-aae0-3a3c5ac0f8f7}</Project>
+      <Name>ChartApplication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GasStation\GasStation.csproj">
+      <Project>{c33bd77a-8306-4964-8714-aa30b097eb8d}</Project>
+      <Name>GasStation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HCl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClapWater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Left.png" />
+    <Resource Include="Images\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NH2.png" />
+    <Resource Include="Images\SiH2Cl2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Fun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NasosBase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NasosLopast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Fun_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NasosBase1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Barboter_Mirror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackValve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackValve_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BackValve_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Free.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Barboter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarboterFull.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

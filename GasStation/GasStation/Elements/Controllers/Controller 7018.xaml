@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="GasStation.Elements.Controllers.Controller_7018"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GasStation.Elements.Controllers"
+             xmlns:converters="clr-namespace:GasStation.ViewModels.Converters"
+             mc:Ignorable="d" 
+             Height="186" Width="113">
+    <UserControl.Resources>
+        <converters:ClassConverterColor x:Key="colorConverter"/>
+    </UserControl.Resources>
+    <Border Background="{Binding Path=Avalible, Converter={StaticResource colorConverter}}" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+
+        <StackPanel Margin="3">
+            <StackPanel Orientation="Horizontal" Height="18">
+                <TextBlock Text="ICPDAS 7018" FontSize="10" Margin="2" Foreground="Black" FontWeight="Bold"/>
+                <TextBlock x:Name="ContrNum" Text="" FontSize="10" Margin="2" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Border Background="CornflowerBlue" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+                <Grid Height="150">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Канал 0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False" FontSize="10"/>
+                    <TextBox   Grid.Row="0" Grid.Column="1"  Margin="2,3,3,0" IsEnabled="False"
+                               Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" FontSize="8"/>
+                    <TextBox   Grid.Row="0" Grid.Column="2"  Margin="2,3,3,0" Text="{Binding Path=AcpValues[0]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Канал 1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="1" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="1" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[1]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Канал 2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="2" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="2" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[2]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Канал 3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="3" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="3" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[3]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Канал 4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="4" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="4" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[4]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Канал 5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="5" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="5" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[5]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Канал 6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="6" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="6" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[6]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Канал 7" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"/>
+                    <TextBox   Grid.Row="7" Grid.Column="1" Margin="2,3,3,0" Text="{Binding Razmernost, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Controller_7018}}}" IsEnabled="False" FontSize="8"/>
+                    <TextBox   Grid.Row="7" Grid.Column="2" Margin="2,3,3,0" Text="{Binding Path=AcpValues[7]}" IsEnabled="False" FontSize="8"/>
+
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+
+</UserControl>

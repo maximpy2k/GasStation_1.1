@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="GasStation.UserControls.UserControlsView.PidRegulator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GasStation.UserControls.UserControlsView"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <Color x:Key="Color1">#FFBABABA</Color>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <GroupBox Header="Коэф. ПИД" Grid.Row="0" Grid.Column="1" Margin="2,0" Grid.ColumnSpan="2">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <!--<Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Kpz"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='Kpz',StringFormat={}{0:f2}}"/>-->
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Kp"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='Kp',StringFormat={}{0:f2}}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Td"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='Td',StringFormat={}{0:f2}}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Ti"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='Ti',StringFormat={}{0:f2}}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Di"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='Di',StringFormat={}{0:f2}}" />
+
+
+                <Label Grid.Row="4" Grid.Column="0" Margin="2" Content="Imp"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding XmlConst}"
+                         Text="{Binding Path='MaxImpact',StringFormat={}{0:f2}}" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Ошибки" Grid.Row="0" Grid.Column="4" Margin="2,0" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="E"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding}"
+                         Text="{Binding E,StringFormat={}{0:f2}, Mode=OneWay}"/>
+
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Eprop"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding}"
+                         Text="{Binding Eprop,StringFormat={}{0:f2}}"/>
+
+
+                <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Eint"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding}"
+                         Text="{Binding Eint,StringFormat={}{0:f2}}"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Edif"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding }"
+                         Text="{Binding Edif,StringFormat={}{0:f2}}"/>
+
+
+                <Label Grid.Row="4" Grid.Column="0" Margin="2" Content="SumErr"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding }"
+                         Text="{Binding SumErr,StringFormat={}{0:f2}, Mode=OneWay}"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Margin="2" Content="Delta"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding }"
+                         Text="{Binding Path=DeltaValue,StringFormat={}{0:f2}, Mode=OneWay}"/>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Управлене" Grid.Row="0" Grid.Column="0" Margin="0,0,4,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Зад. Велич."/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="2"
+                         DataContext="{Binding }"
+                         Text="{Binding Path = SetupValue,StringFormat={}{0:f2}}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Набл. Велич."/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="2" 
+                         DataContext="{Binding }"
+                         Text="{Binding Path = CurrValue,StringFormat={}{0:f2}}"/>
+
+                <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+
+                    <ProgressBar Width="70" Height="20" DataContext="{Binding}" Minimum="0" Maximum="{Binding Path=XmlConst.MaxImpact}" Value="{Binding Path=DeltaMinus,Mode=OneWay}" RenderTransformOrigin="0.5,0.5" Margin="0,5" >
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+
+                    </ProgressBar>
+                    <ProgressBar Width="70"  Height="20" DataContext="{Binding}" Minimum="0" Maximum="{Binding Path=XmlConst.MaxImpact}" Value="{Binding Path=DeltaPlus,Mode=OneWay}"/>
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+
+    </StackPanel>
+</UserControl>

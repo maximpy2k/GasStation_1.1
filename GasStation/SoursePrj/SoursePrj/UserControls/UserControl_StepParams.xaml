@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="SoursePrj.UserControls.UserControl_StepParams"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:GasStation.ViewModels.Converters;assembly=GasStation"
+             xmlns:local="clr-namespace:SoursePrj"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" Width="484.811" Height="250">
+    <UserControl.Resources>
+        <conv:ClassConverterStepParams x:Key="ConverterStepParams"></conv:ClassConverterStepParams>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Margin="0" Stroke="Black" RadiusX="5" RadiusY="5" Grid.RowSpan="8" OpacityMask="Black" Grid.ColumnSpan="2">
+            <Rectangle.Resources>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=textBox_Type}" Value="Аварийный">
+                            <Setter Property="Fill" Value="Red"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text, ElementName=textBox_Type}" Value="Нормальный">
+                            <Setter Property="Fill" Value="#FFD8D295"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text, ElementName=textBox_Type}" Value="">
+                            <Setter Property="Fill" Value="#FFD8D295"/>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Resources>
+        </Rectangle>
+        <Label x:Name="Label_Chan" Content="Название канала" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="labelUser" Content="Текущий пользователь" FontSize="16" Grid.Row="1" FontWeight="Bold"/>
+        <Label x:Name="label" Content="Название Техпроцесса" FontSize="16" Grid.Row="2" FontWeight="Bold"/>
+        <Label x:Name="label_Status" Content="Состояние системы" Margin="0" Grid.Row="3" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_Copy" Content="Название интервала" Grid.Row="4" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_Type" Content="Тип интервала" Grid.Row="5" FontSize="16" FontWeight="Bold"/>
+
+        <Label x:Name="label_Copy1" Content="Время до выгрузки" Margin="0" Grid.Row="6" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_Copy2" Content="Время до окончания интервала" Margin="0" Grid.Row="7" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxCh" IsReadOnly="True" Text="{Binding Path=Consts.ChannelConsts.NameChannel,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="0" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="textBoxUser" IsReadOnly="True" DataContext="{Binding Path=Consts.XmlConst, Mode=OneWay}" 
+                 Text="{Binding XPath=settings/securety/@rusName, Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="1" TextChanged="textBoxUser_TextChanged" FontSize="16" FontWeight="Bold"/>
+
+        <TextBox x:Name="textBox" IsReadOnly="True" Text="{Binding Path=FileName,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="textBox_Status" IsReadOnly="True" Text="{Binding Path=StatusSystem,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="3" FontSize="16" FontWeight="Bold">
+            <TextBox.Resources>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="Отключено">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="Red" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="Text" Value="Подключено">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="White" Offset="1"/>
+                                        <GradientStop Color="#FF3BAA1A" Offset="0"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox IsReadOnly="True" Text="{Binding Path=CurrentStepName,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="4" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="textBox_Type" IsReadOnly="True" Text="{Binding Path=CurrentStepType,Mode=OneWay,Converter={StaticResource ConverterStepParams}}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="5" FontSize="16" FontWeight="Bold"/>
+        <TextBox IsReadOnly="True" Text="{Binding Path=ClsDataTime.RemainingTimeScript,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap"  Grid.Row="6" FontSize="16" FontWeight="Bold"/>
+        <TextBox IsReadOnly="True" Text="{Binding Path=ClsDataTime.RemainingTimeStep,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="7" FontSize="16" FontWeight="Bold"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="GasStation.ModalWindows.View.WindowRrgPidView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GasStation.ModalWindows.View"
+        xmlns:userControlsView="clr-namespace:GasStation.UserControls.UserControlsView"
+        xmlns:chartApplication="clr-namespace:ChartApplication;assembly=ChartApplication"
+        mc:Ignorable="d"
+        Title="Расширенная информация РРГ" Height="438.55" Width="705.06" >
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <userControlsView:PidRegulator DataContext="{Binding Path='RrgView.DataRrg.DataPid'}" />
+
+        </StackPanel>
+        <chartApplication:ControlChart x:Name="chart1"                            
+                            Line0="{Binding Path=RrgView.SeriesSetStream}"
+                            Line1="{Binding Path=RrgView.SeriesReadStream}"
+                            Line2="{Binding Path=RrgView.SeriesCalcStream}"/>
+    </StackPanel>
+</Window>

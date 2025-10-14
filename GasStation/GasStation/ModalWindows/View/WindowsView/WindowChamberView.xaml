@@ -1,0 +1,80 @@
+﻿<Window x:Class="GasStation.ModalWindows.View.WindowChamberView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:elem="clr-namespace:GasStation.UserControls.UserControlsView"
+        xmlns:graph="clr-namespace:ChartApplication;assembly=ChartApplication"
+        xmlns:converter="clr-namespace:SoursePrj.ModalWindows.Converter"
+        mc:Ignorable="d"
+        Title="Расширенная информация термокамеры" Height="500" Width="842" Closing="Window_Closing">
+    
+    <Window.Resources>
+        <converter:ClassConverterVisibilityToBool x:Key="ConvVisible"/>        
+    </Window.Resources>
+    <TabControl x:Name="tabData" TabStripPlacement="Bottom">
+        <TabItem Header="{Binding Path=ChamberConst.ThermoSectionConst[0].RusName}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+              
+                <StackPanel Grid.Column="0" Margin="5" >
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[0].ThermoSectionView.DataChamber.ClassPidOut'}" Visibility="{Binding Path='UsePid',Converter={StaticResource ConvVisible}}" 
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[0].ThermoSectionView.DataChamber.ClassPidIn'}"
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                </StackPanel>
+
+                <graph:ControlChart x:Name="chart0" Grid.Column="1"                            
+                            Line0="{Binding Path=ChamberSections[0].ThermoSectionView.SeriesTdOut}"
+                            Line1="{Binding Path=ChamberSections[0].ThermoSectionView.SeriesTdIn}"
+                            Line2="{Binding Path=ChamberSections[0].ThermoSectionView.SeriesCurrSetTemp}"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="{Binding Path=ChamberConst.ThermoSectionConst[1].RusName}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Column="0" Margin="5">
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[1].ThermoSectionView.DataChamber.ClassPidOut'}"
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[1].ThermoSectionView.DataChamber.ClassPidIn'}"
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                </StackPanel>
+                <graph:ControlChart Grid.Column="1" x:Name="chart1"
+                            
+                            Line0="{Binding Path=ChamberSections[1].ThermoSectionView.SeriesTdOut}"
+                            Line1="{Binding Path=ChamberSections[1].ThermoSectionView.SeriesTdIn}"
+                            Line2="{Binding Path=ChamberSections[1].ThermoSectionView.SeriesCurrSetTemp}"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="{Binding Path=ChamberConst.ThermoSectionConst[2].RusName}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Column="0" Margin="5">
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[2].ThermoSectionView.DataChamber.ClassPidOut'}"
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                    <elem:PidRegulator DataContext="{Binding Path='ChamberSections[2].ThermoSectionView.DataChamber.ClassPidIn'}"
+                                       IsEnabled="{Binding ElementName=tabData, Path=DataContext.EnabledChangedScript}"/>
+                </StackPanel>
+                <graph:ControlChart Grid.Column="1"  x:Name="chart2"
+                            
+                            Line0="{Binding Path=ChamberSections[2].ThermoSectionView.SeriesTdOut}"
+                            Line1="{Binding Path=ChamberSections[2].ThermoSectionView.SeriesTdIn}"
+                            Line2="{Binding Path=ChamberSections[2].ThermoSectionView.SeriesCurrSetTemp}"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

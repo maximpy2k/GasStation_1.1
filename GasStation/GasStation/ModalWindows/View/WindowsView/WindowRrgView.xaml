@@ -1,0 +1,21 @@
+﻿<Window x:Class="GasStation.ModalWindows.View.WindowRrgView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GasStation.ModalWindows.View"
+        xmlns:graph="clr-namespace:ChartApplication;assembly=ChartApplication"
+        xmlns:userControlsView="clr-namespace:GasStation.UserControls.UserControlsView"
+        xmlns:converter="clr-namespace:SoursePrj.ModalWindows.Converter"
+        mc:Ignorable="d"
+        Title="Расширенная информация РРГ" Height="438.55" Width="705.06" Closing="Window_Closing">
+    <Window.Resources>
+        <converter:ClassConverterVisibilityToBool x:Key="ConvVisibility"/>
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <graph:ControlChart x:Name="chart1"                            
+                            Line0="{Binding Path=RrgView.SeriesSetStream}"
+                            Line1="{Binding Path=RrgView.SeriesReadStream}"
+                            Line2="{Binding Path=RrgView.SeriesCalcStream}"/>
+    </StackPanel>
+</Window>

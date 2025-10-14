@@ -1,0 +1,31 @@
+<script>
+  <step>
+    <params time="0" numStep="1" nameStep="Ожидание" typeStep="Normal" />
+    <conditional />
+    <dev name="cham" num="1" setupTemp="25" heat="False" usePriv="True">
+      <dev name="section" num="1" useSetThermo="False" usePid="True" typeReg="MaximumSpeed" usePriv="True" />
+      <dev name="section" num="2" useSetThermo="True" usePid="False" typeReg="MaximumSpeed" usePriv="True" />
+      <dev name="section" num="3" useSetThermo="True" usePid="False" typeReg="MaximumSpeed" usePriv="True" />
+    </dev>
+    <dev name="flap" num="1" flapState="False" usePriv="True" />
+    <dev name="flap" num="2" flapState="False" usePriv="True" />
+    <dev name="flap" num="3" flapState="False" usePriv="True" />
+    <dev name="flap" num="4" flapState="False" usePriv="True" />
+    <dev name="flap" num="5" flapState="False" usePriv="True" />
+    <dev name="rrg" num="1" setupValue="0" typeReg="MaximumSpeed" timeRaise="20" usePriv="True">
+      <dev name="flap" num="1" flapState="False" usePriv="True" />
+    </dev>
+    <dev name="rrg" num="2" setupValue="0" typeReg="TimeInterval" timeRaise="20" usePriv="True">
+      <dev name="flap" num="1" flapState="False" usePriv="True" />
+    </dev>
+    <dev name="rrg" num="3" setupValue="0" typeReg="DefaultSpeed" timeRaise="20" usePriv="True">
+      <dev name="flap" num="1" flapState="False" usePriv="True" />
+    </dev>
+    <dev name="rrg" num="4" setupValue="0" typeReg="MaximumSpeed" timeRaise="20" usePriv="True">
+      <dev name="flap" num="1" flapState="False" usePriv="True" />
+    </dev>
+    <dev name="bubbler" num="1" UseBubbler="False" usePriv="True" />
+    <dev name="bubbler" num="2" UseBubbler="False" usePriv="True" />
+    <dev name="loader" num="1" setupSpeed="" destLoader="" usePriv="True" />
+  </step>
+</script>

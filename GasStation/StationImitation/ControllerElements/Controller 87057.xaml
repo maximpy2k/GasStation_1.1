@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="StationImitation.ControllerElements.Controller_87057"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GasStation.Elements.Controllers"
+             mc:Ignorable="d" 
+             Height="240" Width="140">
+
+
+
+    <Border Background="AntiqueWhite" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+
+        <StackPanel Margin="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="ICPDAS 87057 DO" FontSize="14" Margin="5" Foreground="Black"/>
+                <TextBlock Name="ContrNum" Text="" FontSize="14" Margin="5" Foreground="Black"/>
+            </StackPanel>
+            <Border Background="CornflowerBlue" BorderBrush="Black" BorderThickness="3" CornerRadius="10" Height="195">
+                <Grid Height="auto">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[0]}" IsEnabled="False"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[8]}" IsEnabled="False"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[1]}" IsEnabled="False"/>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="9" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[9]}" IsEnabled="False"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[2]}" IsEnabled="False"/>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[10]}" IsEnabled="False"/>
+
+                    <TextBlock  Grid.Row="3" Grid.Column="0" Text="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[3]}" IsEnabled="False"/>
+                    <TextBlock  Grid.Row="3" Grid.Column="3" Text="11" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[11]}" IsEnabled="False"/>
+
+                    <TextBlock  Grid.Row="4" Grid.Column="0" Text="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[4]}" IsEnabled="False"/>
+                    <TextBlock  Grid.Row="4" Grid.Column="3" Text="12" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[12]}" IsEnabled="False"/>
+
+                    <TextBlock  Grid.Row="5" Grid.Column="0" Text="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[5]}" IsEnabled="False"/>
+                    <TextBlock  Grid.Row="5" Grid.Column="3" Text="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[13]}" IsEnabled="False"/>
+
+                    <TextBlock  Grid.Row="6" Grid.Column="0" Text="6" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[6]}" IsEnabled="False"/>
+                    <TextBlock  Grid.Row="6" Grid.Column="3" Text="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[14]}" IsEnabled="False"/>
+
+                    <TextBlock  Grid.Row="7" Grid.Column="0" Text="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[7]}" IsEnabled="False"/>
+                    <TextBlock  Grid.Row="7" Grid.Column="3" Text="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"/>
+                    <CheckBox Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3" 
+                              IsChecked="{Binding Path=DioValues[15]}" IsEnabled="False"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>

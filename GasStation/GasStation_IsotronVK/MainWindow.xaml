@@ -1,0 +1,275 @@
+﻿<Window x:Class="GasStation_Isotron.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GasStation_Isotron"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:contr="clr-namespace:GasStation.Elements.Controllers;assembly=GasStation"
+        xmlns:model="clr-namespace:GasStation.ViewModels;assembly=GasStation"
+        xmlns:graph1="clr-namespace:ChartApplication;assembly=ChartApplication"
+        xmlns:conv="clr-namespace:GasStation.ViewModels.Converters;assembly=GasStation"
+        xmlns:newelem="clr-namespace:SoursePrj;assembly=SoursePrj"
+        xmlns:userControls="clr-namespace:SoursePrj.UserControls;assembly=SoursePrj"
+        xmlns:prj="clr-namespace:SoursePrj.UserControls;assembly=SoursePrj"
+        mc:Ignorable="d"
+        Title="Изотрон ВК. (Версия 12.1 от 19.07.2021)" Height="987" Width="1373.5" Closing="Window_Closing">
+    <Window.Resources>
+        <model:MainWindowViewModel x:Key="viewMod1"/>
+
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource viewMod1}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition MinHeight="285"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                <GradientStop Color="#FFAFBEAF" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Menu  DataContext="{Binding Source={StaticResource ResourceKey=viewMod1}}" Background="#FFBFCBBF">
+            <MenuItem Header="Проект">
+                <MenuItem Header="Создать проект"   IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdNewProject}"/>
+                <MenuItem Header="Открыть проект"   IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdOpenScript}"/>
+                <MenuItem Header="Сохранить проект" IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdSaveScript}"/>
+
+                <MenuItem Header="Подключение" Command="{Binding Path=CmdStartScript}" 
+                                                           IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}"/>
+                <MenuItem Header="Отключение" Command="{Binding Path=CmdStopScript}" 
+                                                           IsEnabled="{Binding Path=ClsScript.IsViewScriptStop}"/>
+
+                <MenuItem Header="Сохранить константы" Command="{Binding Path=CmdSaveConst}" IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}"/>
+            </MenuItem>
+            <MenuItem Header="Пользователь">
+                <MenuItem Command="{Binding CmdChangeUser}" CommandParameter="User" Header="{Binding Path=ClsScript.Consts.SecuretyConst.Users[1].RusName}"/>
+                <MenuItem Command="{Binding CmdChangeUser}" CommandParameter="Admin" Header="{Binding Path=ClsScript.Consts.SecuretyConst.Users[0].RusName}"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="0" TabStripPlacement="Bottom" DockPanel.Dock="Top" Margin="0,28,0,0">
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                    <GradientStop Color="#FFAFBEAF" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+
+            <TabItem x:Name="SchemaTab">
+                <TabItem.Header>
+                    <TextBlock Text="Схема" FontSize="14.667"/>
+                </TabItem.Header>
+                <Grid Background="#FFAFBEAF">
+                    <Slider Grid.Row="0" Name="SliderScale" Minimum="0.5" Maximum="1.5" Value="0.8" Grid.ColumnSpan="2" d:LayoutOverrides="TopMargin, BottomMargin" Margin="0,0,0.334,0" >
+                        <Slider.Background>
+                            <RadialGradientBrush RadiusX="0.659" RadiusY="29.228" GradientOrigin="0.515,28.136">
+                                <GradientStop Color="#FFC2CEC2" Offset="0.619"/>
+                                <GradientStop Color="#FFAFBEAF" Offset="0.941"/>
+                            </RadialGradientBrush>
+                        </Slider.Background>
+                    </Slider>
+
+                    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" d:LayoutOverrides="TopMargin, BottomMargin" Background="#FFAFBEAF" Margin="-28,0,0,0">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                            <Grid.LayoutTransform>
+                                <ScaleTransform ScaleY="{Binding Value, ElementName=SliderScale}" ScaleX="{Binding Value, ElementName=SliderScale}"/>
+                            </Grid.LayoutTransform>
+                            <newelem:UserControl_IzotronVK
+                                                            DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-65,-63,0,0" Background="#FFAFBEAF" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Width, Height" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <newelem:UserControl_IzotronVK.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </newelem:UserControl_IzotronVK.RenderTransform>
+                            </newelem:UserControl_IzotronVK>
+
+                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" HorizontalAlignment="Center" Height="235" Margin="550,330,0,0" VerticalAlignment="Center" Width="450"/>
+
+                        </Grid>
+                    </ScrollViewer>
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="GraphTab">
+                <TabItem.Header>
+                    <TextBlock Text="График" FontSize="14.667"/>
+                </TabItem.Header>
+                <DockPanel Background="#FFB3C1B3">
+                    <ComboBox DockPanel.Dock="Top" Grid.Row="0" Grid.Column="1"  FontSize="20"
+                                          ItemsSource="{Binding Path=ClsScript.Consts.AvalibleDevicesGraph}"
+                                          SelectedItem="{Binding Path=ClsScript.SelectedGraph}"/>
+                    <graph1:ControlChart Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                         PointsMas="{Binding Path=ClsScript.MasGraph}"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+        <GridSplitter Grid.Row="1" ShowsPreview="False" Height="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Background="#FFCFD8C1"/>
+        <TabControl  Grid.Row="2" x:Name="Down" TabStripPlacement="Bottom" DockPanel.Dock="Bottom" Margin="5,10,5,0">
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                    <GradientStop Color="#FFAFBEAF" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Управление установкой" FontSize="14.667"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <userControls:UserControl_StendControll DataContext="{StaticResource viewMod1}" Margin="0,0,0,16"/>
+                </TabItem.Content>
+            </TabItem>
+
+
+            <TabItem x:Name="ProjectTab">
+                <TabItem.Header>
+                    <TextBlock Text="Проект" FontSize="14.667"/>
+                </TabItem.Header>
+                <!--<prj:UserControl_Project DataContext="{StaticResource viewMod1}"/>-->
+                <prj:UserControlProject DataContext="{StaticResource viewMod1}"/>
+            </TabItem>
+
+
+
+            <TabItem x:Name="CtrTab" >
+                <TabItem.Header>
+                    <TextBlock Text="Контроллеры" FontSize="14.667"/>
+                </TabItem.Header>
+                <contr:UserControlControllers DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}"/>
+            </TabItem>
+
+            <TabItem x:Name="SettingsTab">
+                <TabItem.Header>
+                    <TextBlock Text="Настройки" FontSize="14.667"/>
+                </TabItem.Header>
+                <TreeView DataContext="{Binding Source= {StaticResource viewMod1}, Path=ClsScript.Consts.XmlConst}" ItemsSource="{Binding XPath='settings/*'}" ItemTemplate="{DynamicResource ConstNodeTemplate}" Background="#FFB0BFB0" >
+                    <TreeView.Resources>
+                        <ResourceDictionary Source="/GasStation;component/Styles/HierarchicalDataTemplate/ConstDictionary.xaml"/>
+                    </TreeView.Resources>
+                </TreeView>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+    <!--<DockPanel DataContext="{StaticResource viewMod1}">
+        <Menu DockPanel.Dock="Top" DataContext="{Binding Source={StaticResource ResourceKey=viewMod1}}" Background="#FFBFCBBF">
+            <MenuItem Header="Проект">
+                <MenuItem Header="Создать проект"   IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdNewProject}"/>
+                <MenuItem Header="Открыть проект"   IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdOpenScript}"/>
+                <MenuItem Header="Сохранить проект" IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}" Command="{Binding Path=CmdSaveScript}"/>
+
+                <MenuItem Header="Подключение" Command="{Binding Path=CmdStartScript}" 
+                                                           IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}"/>
+                <MenuItem Header="Отключение" Command="{Binding Path=CmdStopScript}" 
+                                                           IsEnabled="{Binding Path=ClsScript.IsViewScriptStop}"/>
+
+                <MenuItem Header="Сохранить константы" Command="{Binding Path=CmdSaveConst}" IsEnabled="{Binding Path=ClsScript.IsViewScriptStart}"/>
+                <MenuItem Header="Тест" Command="{Binding Path=CmdTest}"/>
+            </MenuItem>
+            <MenuItem Header="Окно">
+                <MenuItem Header="Окно проекта"     Click="MenuShowPrjWin_Click"/>
+                <MenuItem Header="Окно схемы"       Click="MenuShowSchemaWin_Click"/>
+                <MenuItem Header="Окно настроек"    Click="MenuShowSettWin_Click"/>
+                <MenuItem Header="Окно графиков"    Click="MenuShowGraphWin_Click" />
+                <MenuItem Header="Окно контроллеров" Click="MenuShowCtrlWin_Click"/>
+                <MenuItem Header="Окно управления" Click="MenuShowControlPanel_Click"/>
+            </MenuItem>
+            <MenuItem Header="Пользователь">
+                <MenuItem Command="{Binding CmdChangeUser}" CommandParameter="User" Header="{Binding Path=ClsScript.Consts.SecuretyConst.Users[1].RusName}"/>
+                <MenuItem Command="{Binding CmdChangeUser}" CommandParameter="Admin" Header="{Binding Path=ClsScript.Consts.SecuretyConst.Users[0].RusName}"/>
+            </MenuItem>
+        </Menu>
+        <ad:DockingManager>
+            <ad:DockingManager.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                    <GradientStop Color="#FFAFBEAF" Offset="1"/>
+                </LinearGradientBrush>
+            </ad:DockingManager.Background>
+            <ad:LayoutRoot >
+                <ad:LayoutPanel Orientation="Vertical">
+                    <ad:LayoutAnchorablePane DockHeight="2.5*">
+                        <ad:LayoutAnchorable x:Name="SchemaTab" Title="Схема">
+                            <Grid Background="#FFAFBEAF">
+                                <Slider Grid.Row="0" Name="SliderScale" Minimum="0.5" Maximum="1.5" Value="0.8" Grid.ColumnSpan="2" d:LayoutOverrides="TopMargin, BottomMargin" Margin="0,0,0.334,0" >
+                                    <Slider.Background>
+                                        <RadialGradientBrush RadiusX="0.659" RadiusY="29.228" GradientOrigin="0.515,28.136">
+                                            <GradientStop Color="#FFC2CEC2" Offset="0.619"/>
+                                            <GradientStop Color="White" Offset="0.941"/>
+                                        </RadialGradientBrush>
+                                    </Slider.Background>
+                                </Slider>
+
+                                <ScrollViewer  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                                        <Grid.LayoutTransform>
+                                            <ScaleTransform ScaleY="{Binding Value, ElementName=SliderScale}" ScaleX="{Binding Value, ElementName=SliderScale}"/>
+                                        </Grid.LayoutTransform>
+                                        <newelem:UserControl_IzotronVK
+                                                            DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-10,0,4.25,0" Background="#FFAFBEAF"/>
+
+                                        <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" HorizontalAlignment="Left" Height="235" Margin="706,487,0,0" VerticalAlignment="Top" Width="450"/>
+
+                                    </Grid>
+                                </ScrollViewer>
+
+
+                            </Grid>
+                        </ad:LayoutAnchorable>
+                        <ad:LayoutAnchorable x:Name="GraphTab" Title="График">
+
+                            <DockPanel Background="#FFB3C1B3">
+                                <ComboBox DockPanel.Dock="Top" Grid.Row="0" Grid.Column="1"  FontSize="20"
+                                          ItemsSource="{Binding Path=ClsScript.Consts.AvalibleDevicesGraph}"
+                                          SelectedItem="{Binding Path=ClsScript.SelectedGraph}"/>
+                                <graph1:ControlChart Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                         PointsMas="{Binding Path=ClsScript.MasGraph}"/>
+                            </DockPanel>
+                        </ad:LayoutAnchorable>
+                    </ad:LayoutAnchorablePane>
+
+                    <ad:LayoutAnchorablePaneGroup DockHeight="*">
+                        <ad:LayoutAnchorablePane>
+                            <ad:LayoutAnchorable x:Name="ControlPanel" IsActive="True" Title="Управление установкой">
+                                <userControls:UserControl_StendControll DataContext="{StaticResource viewMod1}"/>
+                            </ad:LayoutAnchorable>
+
+                            <ad:LayoutAnchorable x:Name="ProjectTab" Title="Проект">
+                                <prj:UserControlProject DataContext="{StaticResource viewMod1}"/>
+                            </ad:LayoutAnchorable>
+
+
+
+                            <ad:LayoutAnchorable x:Name="CtrTab" Title="Контроллеры">
+
+                                <contr:UserControlControllers DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}"/>
+                                
+                                    
+                            </ad:LayoutAnchorable>
+
+                            <ad:LayoutAnchorable x:Name="SettingsTab" Title="Настройки" >
+                                <TreeView DataContext="{Binding Source= {StaticResource viewMod1}, Path=ClsScript.Consts.XmlConst}" ItemsSource="{Binding XPath='settings/*'}" ItemTemplate="{DynamicResource ConstNodeTemplate}" Background="#FFB0BFB0" >
+                                    <TreeView.Resources>
+                                        <ResourceDictionary Source="/GasStation;component/Styles/HierarchicalDataTemplate/ConstDictionary.xaml"/>
+                                    </TreeView.Resources>
+                                </TreeView>
+                            </ad:LayoutAnchorable>
+
+                        </ad:LayoutAnchorablePane>
+                    </ad:LayoutAnchorablePaneGroup>
+                </ad:LayoutPanel>
+            </ad:LayoutRoot>
+        </ad:DockingManager>
+    </DockPanel>-->
+</Window>
+
+

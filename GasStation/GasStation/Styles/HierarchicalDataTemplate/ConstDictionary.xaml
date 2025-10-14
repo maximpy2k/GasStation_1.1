@@ -1,0 +1,303 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:commands ="clr-namespace:GasStation.ModalWindows.Commands">
+
+    <HierarchicalDataTemplate x:Key="ConstNodeTemplate" ItemsSource="{Binding XPath=./*}">
+        <HierarchicalDataTemplate.Resources>
+            <commands:CommandOpenTable x:Key="cmdOpen"/>
+            <ContextMenu x:Key="TableMenu">
+                <MenuItem Header="Таблица" Command="{Binding Source={StaticResource cmdOpen}}" CommandParameter="{Binding}"/>
+            </ContextMenu>
+        </HierarchicalDataTemplate.Resources>
+        <StackPanel Orientation="Vertical">
+            <StackPanel x:Name="node"  Orientation="Horizontal" Visibility="Collapsed">
+                <TextBlock x:Name="node_txt"/>
+                <TextBlock Text="  "/>
+                <TextBlock x:Name="node_num"/>
+            </StackPanel>
+            <StackPanel x:Name="par1"  Orientation="Horizontal" Visibility="Collapsed">
+                <TextBlock x:Name="par1_txt"  Width="70"/>
+                <TextBox   x:Name="par1_val" Width="80"/>
+            </StackPanel>
+
+            <Grid x:Name="grid" Visibility="Collapsed" Width="120" Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBox   Grid.Row="1" Grid.Column="0" x:Name="field11_val" Width="80" Margin="3"/>
+                <TextBox   Grid.Row="1" Grid.Column="1" x:Name="field12_val" Width="80" Margin="3"/>
+            </Grid>
+        </StackPanel>
+
+        <HierarchicalDataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Name}" Value="securety">
+                <Setter TargetName="node" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="node_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="node_txt" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="node_num" Property="Text" Value="{Binding XPath=@num}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Name}" Value="user">
+                <Setter TargetName="node" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="node_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="node_txt" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="node_num" Property="Text" Value="{Binding XPath=@userName}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Name}" Value="priv">
+                <Setter TargetName="node" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="node_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="node_txt" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="node_num" Property="Text" Value="{Binding XPath=@num}"/>
+            </DataTrigger>
+            
+            <DataTrigger Binding="{Binding Path=Name}" Value="dev">
+                <Setter TargetName="node" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="node_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="node_txt" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="node_num" Property="Text" Value="{Binding XPath=@num}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Name}" Value="table">
+                <Setter TargetName="node" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="node_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="node_txt" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="node_num" Property="Text" Value="{Binding XPath=@num}"/>
+                <Setter TargetName="node" Property="ContextMenu" Value="{StaticResource TableMenu}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Name}" Value="EditFild">
+                <Setter TargetName="par1" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="par1_txt" Property="Text" Value="{Binding XPath=@rusName}"/>
+                <Setter TargetName="par1_val" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="par1_val" Property="Text" Value="{Binding XPath=@value, Mode=TwoWay}"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Name}" Value="field">
+                <Setter TargetName="grid" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="field11_val" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="field11_val" Property="Text" Value="{Binding XPath=@valueX}"/>
+                
+                <Setter TargetName="field12_val" Property="ToolTip" Value="{Binding XPath=@def}"/>
+                <Setter TargetName="field12_val" Property="Text" Value="{Binding XPath=@valueY}"/>
+            </DataTrigger>
+            
+        </HierarchicalDataTemplate.Triggers>
+        
+    </HierarchicalDataTemplate>
+
+    <Style x:Key="CheckBoxFlapStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Rectangle x:Name="rectangle" Stroke="Black" Margin="0" StrokeThickness="0.1" RadiusX="0.2" RadiusY="0.2" Opacity="0.8">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush RadiusY="0.981" RadiusX="1.006">
+                                    <GradientStop Color="Black" Offset="1"/>
+                                    <GradientStop Color="White"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="False"/>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Fill" TargetName="rectangle">
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusY="1.121" RadiusX="1.161">
+                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFA5EC5E"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="StrokeThickness" TargetName="rectangle" Value="0.5"/>
+                            <Setter Property="RadiusX" TargetName="rectangle" Value="0.2"/>
+                            <Setter Property="RadiusY" TargetName="rectangle" Value="0.2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+   
+    <Style x:Key="CheckBoxLoad" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
+                        <Image x:Name="image" Margin="1" Source="/SoursePrj;component/Images/Right.png"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True"/>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Opacity" TargetName="image" Value="0.4"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CheckBoxGateOpen" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid x:Name="grid" Margin="0" Width="44" Height="20">
+                        <Rectangle x:Name="rectangle" Stroke="Black" Margin="0" StrokeThickness="0.1" RadiusX="0.2" RadiusY="0.2" Opacity="0.8">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush RadiusY="0.981" RadiusX="1.006">
+                                    <GradientStop Color="Black" Offset="1"/>
+                                    <GradientStop Color="White"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="10,3.666,0,-0.001" VerticalAlignment="Top"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Fill" TargetName="rectangle">
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusY="1.121" RadiusX="1.161">
+                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFA5EC5E"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="StrokeThickness" TargetName="rectangle" Value="0.5"/>
+                            <Setter Property="RadiusX" TargetName="rectangle" Value="0.2"/>
+                            <Setter Property="RadiusY" TargetName="rectangle" Value="0.2"/>
+                            <Setter Property="FontSize" TargetName="label" Value="10"/>
+                            <Setter Property="FontWeight" TargetName="label" Value="Bold"/>
+                            <Setter Property="Width" TargetName="label" Value="52.667"/>
+                            <Setter Property="Height" TargetName="label" Value="24.46"/>
+                            <Setter Property="Margin" TargetName="label" Value="-4.334,-2.627,-4.333,-1.833"/>
+                            <Setter Property="Content" TargetName="label" Value="Открыта"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Height" TargetName="label" Value="24.002"/>
+                            <Setter Property="Content" TargetName="label" Value="Открыть"/>
+                            <Setter Property="FontSize" TargetName="label" Value="10"/>
+                            <Setter Property="FontWeight" TargetName="label" Value="Bold"/>
+                            <Setter Property="Width" TargetName="label" Value="52"/>
+                            <Setter Property="Margin" TargetName="label" Value="-4.333,-2.669,-3.667,-1.333"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CheckBoxGateClose" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid x:Name="grid" Margin="0" Width="46" Height="20">
+                        <Rectangle x:Name="rectangle" Stroke="Black" Margin="2,0,0,0" StrokeThickness="0.1" RadiusX="0.2" RadiusY="0.2" Opacity="0.8" Width="46">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush RadiusY="0.981" RadiusX="1.006">
+                                    <GradientStop Color="Black" Offset="1"/>
+                                    <GradientStop Color="White"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="10,3.666,0,-0.001" VerticalAlignment="Top"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Fill" TargetName="rectangle">
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusY="1.121" RadiusX="1.161">
+                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFA5EC5E"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="StrokeThickness" TargetName="rectangle" Value="0.5"/>
+                            <Setter Property="RadiusX" TargetName="rectangle" Value="0.2"/>
+                            <Setter Property="RadiusY" TargetName="rectangle" Value="0.2"/>
+                            <Setter Property="FontSize" TargetName="label" Value="10"/>
+                            <Setter Property="FontWeight" TargetName="label" Value="Bold"/>
+                            <Setter Property="Height" TargetName="label" Value="24.46"/>
+                            <Setter Property="Content" TargetName="label" Value="Закрыта"/>
+                            <Setter Property="Width" TargetName="rectangle" Value="Auto"/>
+                            <Setter Property="Margin" TargetName="rectangle" Value="2,0,0,0"/>
+                            <Setter Property="Width" TargetName="label" Value="57.667"/>
+                            <Setter Property="Margin" TargetName="label" Value="-1.666,-2.46,-10.001,-2"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Height" TargetName="label" Value="24.002"/>
+                            <Setter Property="Content" TargetName="label" Value="Закрыть"/>
+                            <Setter Property="FontSize" TargetName="label" Value="10"/>
+                            <Setter Property="FontWeight" TargetName="label" Value="Bold"/>
+                            <Setter Property="Width" TargetName="rectangle" Value="Auto"/>
+                            <Setter Property="Margin" TargetName="rectangle" Value="2,0,0,0"/>
+                            <Setter Property="Width" TargetName="label" Value="52.833"/>
+                            <Setter Property="Margin" TargetName="label" Value="-1.666,-2.503,-5.167,-1.499"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CheckBoxUnLoad" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
+                        <Image x:Name="image" Margin="1" Source="/SoursePrj;component/Images/Right.png"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True"/>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Opacity" TargetName="image" Value="0.4"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="IntervalType" TargetType="ComboBox">
+        <Style.Triggers>
+            <Trigger Property="Text" Value="Аварийный">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                            <GradientStop Color="Red" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Text" Value="Нормальный">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="#FF3BAA1A" Offset="0"/>
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

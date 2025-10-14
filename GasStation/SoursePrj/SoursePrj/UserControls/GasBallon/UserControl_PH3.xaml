@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="SoursePrj.UserControl_PH3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SoursePrj"
+             mc:Ignorable="d" 
+             d:DesignHeight="134.05" d:DesignWidth="33.802">
+    <Grid>
+        <Image x:Name="image" HorizontalAlignment="Right" Height="134.05" Margin="0" VerticalAlignment="Bottom" Width="33.802" Source="/SoursePrj;component/Images/H2.png"/>
+        <TextBlock x:Name="textBlock1_Copy2" Height="23.042" Margin="-1.017,0,-2.561,29.705" TextWrapping="Wrap" Text="PH3" VerticalAlignment="Bottom" FontSize="18" Foreground="Black" RenderTransformOrigin="0.494,0.561" FontWeight="Bold">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.594"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform Y="0.154"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <Path Data="M135.15603,369.25095 L138.81213,369.96967 142.9507,370.639 146.71167,370.91907 151.74651,371.19914 155.99276,371.0311 160.05703,370.69502 164.03031,369.99522 167.82209,369.01547 167.86253,376.12837 164.37544,376.71943 160.28163,377.18817 156.34408,377.43816 151.53151,377.50041 148.12521,377.43791 143.87404,377.26546 139.4162,376.92802 135.18753,376.48482 z" Height="9.468" Margin="0,53.413,0,0" Stretch="Fill" VerticalAlignment="Top" Fill="Black" Width="33.802"/>
+
+    </Grid>
+</UserControl>

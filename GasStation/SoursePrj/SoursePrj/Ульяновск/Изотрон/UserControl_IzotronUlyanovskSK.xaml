@@ -1,0 +1,1337 @@
+﻿<UserControl x:Class="SoursePrj.Ульяновск.Изотрон.UserControl_IzotronUlyanovskSK"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SoursePrj"
+             xmlns:local1="clr-namespace:SoursePrj.UserControls.GasBallon"
+             xmlns:local2="clr-namespace:SoursePrj.UserControls"
+              xmlns:local3="clr-namespace:SoursePrj.UserControls.Pipes"
+             mc:Ignorable="d" 
+             d:DesignHeight="796.833" d:DesignWidth="1371.6">
+    <UserControl.Resources>
+        <Style x:Key="CheckBox_WaterError" TargetType="{x:Type CheckBox}">
+            <Setter Property="IsEnabled" Value="False"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Ellipse x:Name="ellipse" Stroke="Black" StrokeThickness="0.1">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush RadiusY="0.527" RadiusX="0.567">
+                                        <GradientStop Color="#FF1150F4" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Image x:Name="image" Margin="10.373,3.919,10.374,5.081" Source="/SoursePrj;component/Images/DropWater.png" HorizontalAlignment="Stretch"/>
+                            <Image x:Name="image_Copy" Margin="7,2" Source="/SoursePrj;component/Images/CrossCancel.png" HorizontalAlignment="Stretch"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Opacity" TargetName="image_Copy" Value="0"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Margin" TargetName="image" Value="5.54,4.358,5.541,4.644"/>
+                                <Setter Property="HorizontalAlignment" TargetName="image_Copy" Value="Stretch"/>
+                                <Setter Property="Width" TargetName="image_Copy" Value="Auto"/>
+                                <Setter Property="Margin" TargetName="image_Copy" Value="7,2"/>
+                                <Setter Property="Fill" TargetName="ellipse">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusY="0.527" RadiusX="0.567">
+                                            <GradientStop Color="White" Offset="0"/>
+                                            <GradientStop Color="#FFF70000" Offset="1"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Opacity" TargetName="image" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CheckBoxStateLoad" TargetType="{x:Type CheckBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <local:UserControl_LoaderDisc x:Name="userControl_LoaderDisc"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False"/>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="HorizontalAlignment" TargetName="userControl_LoaderDisc" Value="Left"/>
+                                <Setter Property="Width" TargetName="userControl_LoaderDisc" Value="106.636"/>
+                                <Setter Property="Margin" TargetName="userControl_LoaderDisc" Value="-230.849,0,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <local:UserControl_PipeAir Margin="212.315,81.869,0,0" Height="4.982" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="57.987">
+            <local:UserControl_PipeAir.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.8" ScaleX="0.555"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:UserControl_PipeAir.RenderTransform>
+        </local:UserControl_PipeAir>
+
+        <local:UserControl_PipeAir Margin="604.977,249.619,532.96,0" Height="4.982" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <local:UserControl_PipeAir.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.8" ScaleX="0.555"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:UserControl_PipeAir.RenderTransform>
+        </local:UserControl_PipeAir>
+
+        <local:UserControl_Pipe_SiH2Cl2 Margin="155.525,0,652.682,46.784" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="Auto">
+            <local:UserControl_Pipe_SiH2Cl2.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:UserControl_Pipe_SiH2Cl2.RenderTransform>
+        </local:UserControl_Pipe_SiH2Cl2>
+
+        <local:UserControl_Pipe_NH3 Height="6.999" Margin="697,0,0,341.723" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="411.615"/>
+
+        <Grid HorizontalAlignment="Left" Width="1440.6" Height="796.833" VerticalAlignment="Top" Margin="10,-1.5,-79,0">
+            <local:UserControl_Pipe_N2 Margin="126.028,355.014,0,0" HorizontalAlignment="Left" Width="169.483" Height="6.97" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.016"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <local:UserControl_PipeAir Margin="674.174,183.843,716.947,0" Height="8.97" VerticalAlignment="Top"/>
+            <local:UserControl_Pipe_NH3 Margin="129.593,0,0,164.635" Height="6.97" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="552.776"/>
+            <Rectangle Stroke="Black" VerticalAlignment="Top" Fill="#FFD8D295" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" Width="50" Height="30" Margin="221.662,187.072,0,0" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform X="4.034" Y="-3.09"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Path Data="M449.333,391.14063 L450.5017,390.48138 451.9235,390.05983 453.98589,389.87247 455.86079,389.79441 458.15754,389.76318 460.01681,389.76318 461.82922,389.88809 463.48538,390.05983 464.76656,390.32525 465.94586,390.72949 466.82907,391.07443 466.7977,387.71752 465.81338,388.13943 464.71969,388.51349 463.48538,388.81079 C463.48538,388.81079 461.95421,388.95131 461.79797,388.95131 461.66913,388.95131 460.14181,389.10744 459.96994,389.10744 459.79808,389.10744 458.23566,389.12305 458.17316,389.12305 458.11067,389.12305 456.1264,389.15427 455.92329,389.15427 455.72017,389.15427 454.12651,389.09182 453.98589,389.09182 453.84527,389.09182 451.75164,388.77956 451.75164,388.77956 L450.48608,388.35801 449.28301,387.63933 449.28301,391.09005" Height="6.607" Margin="237.169,205.396,0,0" Stretch="Fill" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18.459" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform X="10.926" Y="-9.454"/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+                <Path.Fill>
+                    <RadialGradientBrush RadiusY="0.481" RadiusX="2.664">
+                        <GradientStop Color="#FFE0E9E4"/>
+                        <GradientStop Color="#FF353638" Offset="0.628"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+            </Path>
+            <Rectangle Margin="235.552,202.364,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="2.292" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="12.494" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="270"/>
+                        <TranslateTransform X="20.537" Y="0.335"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="254.941,202.364,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="2.292" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="12.494" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="270"/>
+                        <TranslateTransform X="1.148" Y="-19.054"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label x:Name="label_Copy" Content="500 л/ч" Margin="220.134,179.947,0,0" FontWeight="Bold" HorizontalAlignment="Left" Width="54" Height="23.5" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform X="-6.812" Y="6.812"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Rectangle Stroke="Black" VerticalAlignment="Top" Fill="#FFD8D295" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" Width="50" Height="30" Margin="340.872,404.38,0,0" d:LayoutOverrides="HorizontalAlignment"/>
+            <Path Data="M449.333,391.14063 L450.5017,390.48138 451.9235,390.05983 453.98589,389.87247 455.86079,389.79441 458.15754,389.76318 460.01681,389.76318 461.82922,389.88809 463.48538,390.05983 464.76656,390.32525 465.94586,390.72949 466.82907,391.07443 466.7977,387.71752 465.81338,388.13943 464.71969,388.51349 463.48538,388.81079 C463.48538,388.81079 461.95421,388.95131 461.79797,388.95131 461.66913,388.95131 460.14181,389.10744 459.96994,389.10744 459.79808,389.10744 458.23566,389.12305 458.17316,389.12305 458.11067,389.12305 456.1264,389.15427 455.92329,389.15427 455.72017,389.15427 454.12651,389.09182 453.98589,389.09182 453.84527,389.09182 451.75164,388.77956 451.75164,388.77956 L450.48608,388.35801 449.28301,387.63933 449.28301,391.09005" Height="6.607" Margin="356.379,0,0,367.522" Stretch="Fill" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="18.459">
+                <Path.Fill>
+                    <RadialGradientBrush RadiusY="0.481" RadiusX="2.664">
+                        <GradientStop Color="#FFE0E9E4"/>
+                        <GradientStop Color="#FF353638" Offset="0.628"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+            </Path>
+            <Rectangle Margin="354.762,0,0,364.667" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="2.292" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="12.494" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="374.151,0,0,364.667" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="2.292" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="12.494" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label x:Name="label" Content="720 л/ч" Margin="339.344,397.255,0,376.078" FontWeight="Bold" HorizontalAlignment="Left" Width="54"/>
+            <local:UserControl_Pipe_N2 Margin="478.158,0,586.112,232.613" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <local:UserControl_Pipe_Free Margin="135.777,0,0,283.107" Width="526.734" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left">
+                <local:UserControl_Pipe_Free.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.016"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Free.RenderTransform>
+            </local:UserControl_Pipe_Free>
+            <local3:UserControl_Pipe_SiH2Cl2_N2 Margin="0,369.617,241.712,0" HorizontalAlignment="Right" Width="182.821" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+                <local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+            </local3:UserControl_Pipe_SiH2Cl2_N2>
+            <local:UserControl_Pipe_N2 Margin="292.926,370.253,0,0" Height="6.97" VerticalAlignment="Top" HorizontalAlignment="Left" Width="375.055"/>
+            <local:UserControl_LoaderControl DataContext="{Binding Loaders[0]}" HorizontalAlignment="Right" Margin="0,156.56,12.762,0" Width="115" Height="100" VerticalAlignment="Top"/>
+            <local:UserControlChamber Margin="0,12.668,339.947,0" HorizontalAlignment="Right" d:LayoutOverrides="Height"
+                DataContext="{Binding Chambers[0]}" VerticalAlignment="Top"/>
+            <local:UserControl_N2 HorizontalAlignment="Left" Margin="69.649,291.452,0,371.331" Width="33.802" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_N2.RenderTransform>
+            </local:UserControl_N2>
+            <local1:UserControl_NH3 HorizontalAlignment="Left" Margin="69.649,0,0,100.366" Width="33.802" RenderTransformOrigin="0.5,0.5" Height="134.05" VerticalAlignment="Bottom">
+                <local1:UserControl_NH3.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local1:UserControl_NH3.RenderTransform>
+            </local1:UserControl_NH3>
+            <local1:UserControl_SiH2Cl2 HorizontalAlignment="Left" Margin="69.649,0,0,-18.637" Width="33.802" RenderTransformOrigin="0.5,0.5" Height="134.05" VerticalAlignment="Bottom">
+                <local1:UserControl_SiH2Cl2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local1:UserControl_SiH2Cl2.RenderTransform>
+            </local1:UserControl_SiH2Cl2>
+            <local:UserControl_Pipe_H2 HorizontalAlignment="Left" Height="7" Margin="503.25,0,0,166.5" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_Water Margin="0,333.506,204.087,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="236.88" Height="20" VerticalAlignment="Top">
+                <local:UserControl_Pipe_Water.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Water.RenderTransform>
+            </local:UserControl_Pipe_Water>
+            <local:UserControl_Gate DataContext="{Binding Chambers[0]}" Margin="0,9,146.6,0" HorizontalAlignment="Right" Width="200" Height="265" VerticalAlignment="Top"/>
+            <Rectangle Margin="0,201.892,127.836,0" Stroke="Black" StrokeThickness="0.1" HorizontalAlignment="Right" Width="212.542" Height="9" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusX="1.163">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF4B4444" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <CheckBox x:Name="checkBox" Content="CheckBox" IsChecked="{Binding Loaders[0].LoaderView.StatusLoad}" HorizontalAlignment="Right" Margin="0,169.132,140.356,0" Style="{DynamicResource CheckBoxStateLoad}" Width="106.636" Height="28.145" VerticalAlignment="Top" IsEnabled="False"/>
+            <local:UserControl_Flap Margin="485.129,360.716,0,0"
+                DataContext="{Binding Flaps[10]}" HorizontalAlignment="Left" Width="25.708" Height="25.708" VerticalAlignment="Top"/>
+            <local:UserControl_Pipe_N2 Margin="255.536,260.076,0,0" HorizontalAlignment="Left" Width="262.051" Height="6.97" VerticalAlignment="Top"/>
+            <local:UserControl_Pipe_N2 Margin="228.302,390.134,624.772,0" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <local:UserControlRrg Margin="281.817,219.26,0,0"
+                DataContext="{Binding Rrgs[4]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Top"/>
+            <local:UserControl_Flap Margin="485.129,250.438,0,0"
+                DataContext="{Binding Flaps[11]}" HorizontalAlignment="Left" Width="25.708" Height="25.708" VerticalAlignment="Top"/>
+            <!--<local:UserControl_StepParams HorizontalAlignment="Right" Height="184.302" Margin="0,25.773,20.609,0" VerticalAlignment="Top" Width="400.094"/>-->
+            <local2:UserControl_VacuumPump  DataContext="{Binding PumpSys[0]}" HorizontalAlignment="Left" Margin="18.923,44.491,0,0" VerticalAlignment="Top"/>
+            <local2:UserControl_RoughingPump DataContext="{Binding PumpSys[0]}" HorizontalAlignment="Left" Margin="101.848,44.06,0,0" VerticalAlignment="Top" Width="71.14"/>
+            <local:UserControl_PipeAir Margin="172.988,94.85,0,0" Height="8.97" VerticalAlignment="Top" HorizontalAlignment="Left" Width="502.353"/>
+            <local:UserControl_PipeAir Margin="69.269,95.173,0,0" Height="8.97" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54.817"/>
+            <Rectangle Margin="0,255.762,322.018,0" Stroke="Black" StrokeThickness="0.1" RadiusX="3" RadiusY="3" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="32.333" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusX="2.644" RadiusY="0.496">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_Water Height="7" Margin="0,217.669,316.47,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="352.506"/>
+            <Rectangle Margin="0,216.784,311.269,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9.001" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControlRrg Margin="281.817,311.093,0,397.407"
+                DataContext="{Binding Rrgs[3]}" HorizontalAlignment="Left" Width="166.333"/>
+            <Path Data="M484.333,321.66667" HorizontalAlignment="Left" Height="0.1" Margin="484.333,321.667,0,0" Stretch="Fill" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="0.1">
+                <Path.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+            </Path>
+            <local:UserControl_Pipe_N2 Margin="148.946,314.28,0,0" HorizontalAlignment="Left" Width="216.64" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <local:UserControl_Pipe_N2 Margin="211.922,139.844,0,0" HorizontalAlignment="Left" Width="89.943" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <Rectangle Margin="252.536,258.912,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="517.587,259.037,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="252.124,354.224,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_N2 Margin="255.028,0,0,367.339" HorizontalAlignment="Left" Width="99.984" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.016"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <Rectangle Margin="252.536,0,0,366.029" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_N2 Margin="376.156,0,0,367.211" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="288.218">
+                <local:UserControl_Pipe_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_N2.RenderTransform>
+            </local:UserControl_Pipe_N2>
+            <local1:UserControl_Free HorizontalAlignment="Left" Margin="69.649,0,0,219.2" Width="33.802" RenderTransformOrigin="0.5,0.5" Height="134.05" VerticalAlignment="Bottom">
+                <local1:UserControl_Free.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local1:UserControl_Free.RenderTransform>
+            </local1:UserControl_Free>
+            <local:UserControl_Pipe_Free Margin="253.777,0,0,342.751" Width="270.07" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left">
+                <local:UserControl_Pipe_Free.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.016"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Free.RenderTransform>
+            </local:UserControl_Pipe_Free>
+            <local:UserControl_Flap Margin="470.061,0,0,334.938"
+                DataContext="{Binding Flaps[8]}" Height="25.708" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="25.708"/>
+            <local:UserControlRrg Margin="281.817,0,0,242.105"
+                DataContext="{Binding Rrgs[2]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_Free Margin="224.23,0,0,313.327" HorizontalAlignment="Left" Width="65.484" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                <local:UserControl_Pipe_Free.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Free.RenderTransform>
+            </local:UserControl_Pipe_Free>
+            <Rectangle Margin="252.536,0,0,341.064" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="252.536,0,0,281.782" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_NH3 Margin="597.77,0,663.853,252.705" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_Pipe_NH3.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_NH3.RenderTransform>
+            </local:UserControl_Pipe_NH3>
+            <local:UserControlRrg Margin="281.817,0,0,124.368"
+                DataContext="{Binding Rrgs[1]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_NH3 Margin="255.536,0,0,224.065" HorizontalAlignment="Left" Width="266.962" Height="6.97" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_NH3 Margin="224.23,0,0,195.011" HorizontalAlignment="Left" Width="65.484" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                <local:UserControl_Pipe_NH3.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_NH3.RenderTransform>
+            </local:UserControl_Pipe_NH3>
+            <Rectangle Margin="249.872,93.015,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF545454" Offset="0.278"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Flap Margin="243.983,133.999,0,0"
+                DataContext="{Binding Flaps[13]}" HorizontalAlignment="Left" Width="25.708" Height="25.708" VerticalAlignment="Top"/>
+            <Rectangle Margin="515.583,181.512,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF545454" Offset="0.278"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="661.486,369.113,0,0" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Top" HorizontalAlignment="Left" Width="9">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Flap Margin="176.801,0,0,155.299"
+                DataContext="{Binding Flaps[3]}" Height="25.708" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="25.708"/>
+            <local:UserControl_Flap Margin="176.801,0,0,273.299"
+                DataContext="{Binding Flaps[6]}" Height="25.708" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="25.708"/>
+            <Rectangle Margin="515.583,93.015,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF545454" Offset="0.278"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Flap Margin="470.061,0,0,214.734"
+                DataContext="{Binding Flaps[5]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Flap Margin="601.129,0,0,273.299"
+                DataContext="{Binding Flaps[7]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Flap Margin="601.129,0,0,155.301"
+                DataContext="{Binding Flaps[4]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_Water Height="5.19" Margin="0,0,137.336,57.023" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="104.181"/>
+            <Image x:Name="image" HorizontalAlignment="Right" Height="15.568" Margin="0,0,141.512,55.049" VerticalAlignment="Bottom" Width="12.602" Source="/SoursePrj;component/Images/ClapWater.png"/>
+            <local:UserControl_Pipe_Water Height="22" Margin="0,0,32.82,184.725" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="280.504">
+                <local:UserControl_Pipe_Water.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Water.RenderTransform>
+            </local:UserControl_Pipe_Water>
+            <Rectangle Margin="0,0,160.864,55.299" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_Water Margin="0,0,165.132,330.652" HorizontalAlignment="Right" Width="155.137" Height="7.065" VerticalAlignment="Bottom"/>
+            <Rectangle Margin="0,0,311.591,329.653" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControlRrg Margin="281.817,0,0,6.705"
+                DataContext="{Binding Rrgs[0]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_NH3 Margin="0,365.454,256.304,0" Height="6.97" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="173.81">
+                <local:UserControl_Pipe_NH3.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_NH3.RenderTransform>
+            </local:UserControl_Pipe_NH3>
+            <local:UserControl_Pipe_SiH2Cl2 Margin="255.536,0,0,106.574" HorizontalAlignment="Left" Width="266.962" Height="6.97" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_SiH2Cl2 Margin="224.23,0,0,77.52" HorizontalAlignment="Left" Width="65.484" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                <local:UserControl_Pipe_SiH2Cl2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_SiH2Cl2.RenderTransform>
+            </local:UserControl_Pipe_SiH2Cl2>
+            <local:UserControl_Flap Margin="470.061,0,0,97.243"
+                DataContext="{Binding Flaps[2]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Flap Margin="601.129,0,0,36.507"
+                DataContext="{Binding Flaps[1]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Flap Margin="178.801,0,0,36.507"
+                DataContext="{Binding Flaps[0]}" HorizontalAlignment="Left" Width="25.708" Height="25.706" VerticalAlignment="Bottom"/>
+            <local:UserControl_Flap Margin="601.129,0,0,357.843"
+                DataContext="{Binding Flaps[9]}" HorizontalAlignment="Left" Width="25.708" Height="25.708" VerticalAlignment="Bottom"/>
+            <Rectangle Margin="0,0,160.864,329.653" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="517.587,0,0,342.42" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="683.167,0,0,339.302" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="682.369,0,0,163.693" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="517.587,0,0,223.043" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="252.403,0,0,223.027" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="252.536,0,0,163.693" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="1092.903,0,0,339.302" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FFBF9424"/>
+                        <GradientStop Color="White" Offset="0.926"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local3:UserControl_Pipe_SiH2Cl2_N2 Margin="566.732,0,587.047,187.579" Height="6.97" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                <local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+            </local3:UserControl_Pipe_SiH2Cl2_N2>
+            <Rectangle Margin="661.422,0,0,366.029" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="661.422,0,0,281.782" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
+                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
+                        <GradientStop Color="#FF353638" Offset="0.509"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Pipe_Water Height="7.334" Margin="0,0,25.487,192.058" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="280.504">
+                <local:UserControl_Pipe_Water.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Water.RenderTransform>
+            </local:UserControl_Pipe_Water>
+            <Rectangle Margin="0,0,160.864,55.299" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="0,0,160.864,329.653" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <CheckBox x:Name="checkBox_Copy1"  IsChecked="{Binding Chambers[0].ChamberView.IsWater}" Content="CheckBox" Margin="0,0,149.856,175.098" Style="{DynamicResource CheckBox_WaterError}" HorizontalAlignment="Right" Width="33" Height="33" VerticalAlignment="Bottom"/>
+            <local:UserControl_Pipe_Water Height="7.334" Margin="0,0,64.16,192.058" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="280.504">
+                <local:UserControl_Pipe_Water.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Water.RenderTransform>
+            </local:UserControl_Pipe_Water>
+            <local:UserControl_Pipe_Water Height="7.334" Margin="0,0,101.496,192.058" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="280.504">
+                <local:UserControl_Pipe_Water.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_Pipe_Water.RenderTransform>
+            </local:UserControl_Pipe_Water>
+            <CheckBox x:Name="checkBox_Copy2"  IsChecked="{Binding Chambers[0].ChamberView.IsWater}" Content="CheckBox" Margin="0,0,187.856,175.098" Style="{DynamicResource CheckBox_WaterError}" HorizontalAlignment="Right" Width="33" Height="33" VerticalAlignment="Bottom"/>
+            <CheckBox x:Name="checkBox_Copy3"  IsChecked="{Binding Chambers[0].ChamberView.IsWater}" Content="CheckBox" Margin="0,0,225.856,175.098" Style="{DynamicResource CheckBox_WaterError}" HorizontalAlignment="Right" Width="33" Height="33" VerticalAlignment="Bottom"/>
+            <Rectangle Margin="0,0,199.864,55.299" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="0,0,237.114,55.299" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="0,0,199.864,329.653" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="0,0,237.114,329.653" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                        <GradientStop Color="#FF83BCE0"/>
+                        <GradientStop Color="#FF0E4EF5" Offset="0.391"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Label x:Name="label1_Copy2" Content="Задние фланцы" HorizontalAlignment="Right" Margin="0,0,118.112,114.733" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="95.993" Height="22.46" FontSize="9" FontWeight="Bold">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Label x:Name="label1_Copy3" Content="Передние фланцы" HorizontalAlignment="Right" Margin="0,0,194.112,108.063" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="95.993" Height="22.46" FontSize="9" FontWeight="Bold">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Label x:Name="label1_Copy4" Content="Эл. печь" HorizontalAlignment="Right" Margin="0,0,156.779,132.563" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="95.993" Height="22.46" FontSize="9" FontWeight="Bold">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Rectangle Margin="695.988,178.012,712.279,0" Stroke="Black" StrokeThickness="0.1" RadiusX="3" RadiusY="3" Height="20" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusX="2.644" RadiusY="0.496">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <local:UserControl_Shutter DataContext="{Binding Shutters[0]}" HorizontalAlignment="Left" Height="87.5" VerticalAlignment="Top" Width="130" Margin="537.981,55.999,0,0"/>
+            <local:UserControl_PipeAir Margin="593.672,144.285,679.331,0" Height="4.982" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <local:UserControl_PipeAir.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1.8" ScaleX="0.555"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:UserControl_PipeAir.RenderTransform>
+            </local:UserControl_PipeAir>
+            <Rectangle Margin="670.674,93.015,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF545454" Offset="0.278"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="670.674,181.777,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="360"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF545454" Offset="0.278"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Image x:Name="image1" Margin="1313.5,0,-59.9,3.997" Source="/SoursePrj;component/Images/Water.png" Height="112" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="118"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="26" Margin="1350.5,0,-18.9,38" TextWrapping="Wrap" Text="H2O" VerticalAlignment="Bottom" Width="40" FontSize="18" FontWeight="Bold"/>
+        <local3:UserControl_Pipe_SiH2Cl2_N2 Margin="0,0,253.39,331.612" Height="6.97" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="397.352">
+            <local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local3:UserControl_Pipe_SiH2Cl2_N2.RenderTransform>
+        </local3:UserControl_Pipe_SiH2Cl2_N2>
+        <Rectangle Margin="671.84,0,0,45.838" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.364"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.238"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="715.566,0,0,45.838" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.017"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.374"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="1112.794,0,0,330.882" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.017"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.374"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="527.589,0,0,106.997" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.364"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.238"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="262.922,0,0,106.997" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.364"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.238"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="262.422,0,0,45.838" RenderTransformOrigin="0.5,0.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="9" d:LayoutOverrides="HorizontalAlignment">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.364"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.238"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="715.566,0,0,330.882" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="1.976" RadiusX="1.976">
+                    <GradientStop Color="#FF4D4D4D" Offset="0.017"/>
+                    <GradientStop Color="#FFBD3117" Offset="0.374"/>
+                    <GradientStop Color="#FF902815" Offset="0.974"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <local:UserControl_PipeAir Margin="635.434,311.118,624.426,0" Height="4.982" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <local:UserControl_PipeAir.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.8" ScaleX="0.555"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:UserControl_PipeAir.RenderTransform>
+        </local:UserControl_PipeAir>
+        <Path Data="M540,320 L399.98192,320" HorizontalAlignment="Left" Height="1.435" Margin="456.747,337.884,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="94.836" StrokeDashArray="0.5 0.3" StrokeThickness="10" StrokeStartLineCap="Square">
+            <Path.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Rectangle Margin="0,306.935,643.074,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="13.5" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="13.5" VerticalAlignment="Top">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Path Data="M389.8175,304.9845 L397.4425,295.297" HorizontalAlignment="Left" Height="9.702" Margin="460.698,331.867,0,0" StrokeStartLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="1.5" VerticalAlignment="Top" Width="8.687" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="30"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+            <Path.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Path Data="M389.8175,304.9845 L397.4425,295.297" HorizontalAlignment="Left" Height="9.702" Margin="460.45,336.207,0,0" StrokeStartLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="1.5" VerticalAlignment="Top" Width="8.684" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+            <Path.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Path Data="M540,320 L399.98192,320" HorizontalAlignment="Left" Height="1.435" Margin="531.006,318.583,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="31.42" StrokeDashArray="0.5 0.3" StrokeThickness="10" StrokeStartLineCap="Square" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+            <Path.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Path Data="M540,320 L399.98192,320" HorizontalAlignment="Left" Height="1.436" Margin="545.384,313.32,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="38.658" StrokeDashArray="0.5 0.3" StrokeThickness="10" StrokeStartLineCap="Square">
+            <Path.Fill>
+                <RadialGradientBrush RadiusY="2.103" RadiusX="2.332">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF545454" Offset="0.278"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <local2:UserControl_VacuumGauge Margin="579.02,278.144,0,0" Height="71.577" Width="100.304" VerticalAlignment="Top" DataContext="{Binding PumpSys[0].PumpSysView.VacuumetrView}" HorizontalAlignment="Left"/>
+        <local2:UserControl_VacuumGauge Margin="190.922,0,0,0" Height="71.577" Width="100.304" VerticalAlignment="Top" DataContext="{Binding PumpSys[0].PumpSysView.VacuumetrView}" HorizontalAlignment="Left"/>
+
+    </Grid>
+</UserControl>

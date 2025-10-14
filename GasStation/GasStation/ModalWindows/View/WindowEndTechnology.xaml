@@ -1,0 +1,33 @@
+﻿<Window x:Class="GasStation.ModalWindows.View.WindowEndTechnology"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GasStation.ModalWindows.View"
+        mc:Ignorable="d"
+        Title="Технология закончена" Height="300" Width="300" Background="Red" BorderBrush="White" Foreground="{x:Null}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="#FF890F0F" Offset="1"/>
+                <GradientStop Color="#FFE00202" Offset="0.125"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Button x:Name="button" Content="Ок" HorizontalAlignment="Left" Margin="45,213,0,0" VerticalAlignment="Top" Width="205" FontWeight="Bold" FontSize="18" OpacityMask="Black" Click="button_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB"/>
+                    <GradientStop Color="#FFDDDDDD"/>
+                    <GradientStop Color="Red" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label x:Name="label" Content="  Фатальная ошибка! &#xD;&#xA;       Управление &#xD;&#xA;стендом прекращено!" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="272" Height="153" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

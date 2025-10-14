@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings nameChannel="Верхний канал" logPath="C:\Log">
+  <securety user="User" rusName="Оператор" def="Пользователи доступные в программе">
+    <user userName="Admin" rusName="Администратор" def="Инженерный пользователь" pass="fr2018">
+      <priv privName="ChangeChamberScript" rusName="Изм.камеры" def="Привилегия на изменение параметров камер" />
+      <priv privName="ChangeChamberSectionScript" rusName="Изм.термосекций" def="Привилегия на изменение параметров термосекциий" />
+      <priv privName="ChangeLoaderScript" rusName="Изм.загрузчика" def="Привилегия на изменение параметров загрузчиков" />
+      <priv privName="ChangeBurningScript" rusName="Изм.горелки" def="Привилегия на изменение параметров горелок" />
+      <priv privName="ChangeRrgScript" rusName="Изм.РРГ" def="Привилегия на изменение параметров РРГ" />
+      <priv privName="ChangeFlapScript" rusName="Изм.клапаов" def="Привилегия на изменение параметров клапанов" />
+      <priv privName="ChangeBubblerScript" rusName="Изм.барботера" def="Привилегия на изменение параметров барботера" />
+      <priv privName="GoStepScript" rusName="Переход на шаг скрипта" def="Привилегия на переход интервала скрипта" />
+      <priv privName="ChangeScript" rusName="Изм.скрипта" def="Привилегия на изменение списка интервалов скрипта" />
+      <priv privName="ChangeConditionalScript" rusName="Изм.скрипта условных переходов" def="Привилегия на изменение списка интервалов условного перехода" />
+      <priv privName="ChangePumpScript" rusName="Состояния насоса" def="Привилегия на изменение состойния насоса" />
+      <priv privName="MegaBoss" rusName="МЕГАБОС" def="Привилегия изменять привилегии" />
+      <priv privName="ChangePid" rusName="Изм.ПИД" def="Привилегия на изменение параметров ПИД-регулятора" />
+    </user>
+    <user userName="User" rusName="Оператор" def="Технологический пользователь" pass="">
+    </user>
+  </securety>
+  <dev name="ComPort" num="1" rusName="СОМ-порт" def="Номер COM-порта">
+    <EditFild name="Port" rusName="Порт" value="17" def="Наименование COM-порта" readОnly="true" />
+    <EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
+    <EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
+    <EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
+    <EditFild name="Stopbits" rusName="Stopbits" value="One" def="Stop bits" readОnly="true" />
+    <EditFild name="Handshake" rusName="Handshake" value="None" def="Handshake" readОnly="true" />
+    <EditFild name="CR" rusName="CR" value="\r" def="CR" readОnly="true" />
+    <EditFild name="LF" rusName="LF" value="\n" def="LF" readОnly="true" />
+  </dev>
+  <dev name="ComPort" num="2" rusName="СОМ-порт" def="Номер COM-порта">
+    <EditFild name="Port" rusName="Порт" value="17" def="Наименование COM-порта" readОnly="true" />
+    <EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
+    <EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
+    <EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
+    <EditFild name="Stopbits" rusName="Stopbits" value="One" def="Stop bits" readОnly="true" />
+    <EditFild name="Handshake" rusName="Handshake" value="None" def="Handshake" readОnly="true" />
+    <EditFild name="CR" rusName="CR" value="\r" def="CR" readОnly="true" />
+    <EditFild name="LF" rusName="LF" value="\n" def="LF" readОnly="true" />
+  </dev>
+  <dev name="ComPort" num="3" rusName="СОМ-порт" def="Номер COM-порта">
+    <EditFild name="Port" rusName="Порт" value="17" def="Наименование COM-порта" readОnly="true" />
+    <EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
+    <EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
+    <EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
+    <EditFild name="Stopbits" rusName="Stopbits" value="One" def="Stop bits" readОnly="true" />
+    <EditFild name="Handshake" rusName="Handshake" value="None" def="Handshake" readОnly="true" />
+    <EditFild name="CR" rusName="CR" value="\r" def="CR" readОnly="true" />
+    <EditFild name="LF" rusName="LF" value="\n" def="LF" readОnly="true" />
+  </dev>
+  <dev name="Controllers" num="1" rusName="Группа контроллеров" def="Контроллеры">
+    <dev name="Controller" num="0" rusName="IDAS 7018" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 7018" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="24" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="1" rusName="TM 7042" def="Контроллер нагревателя Термосекция №1(Газ)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="10" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="2" rusName="TM 7042" def="Контроллер нагревателя Термосекция №2(Центр)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="11" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="3" rusName="TM 7042" def="Контроллер нагревателя Термосекция №3(Загр.)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="12" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="4" rusName="TM 7042" def="Контроллер нагревателя термокамеры">
+      <EditFild name="name" rusName="Имя" value="TM 7042" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="13" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="5" rusName="TM 7041" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="TM 7041" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="14" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87017" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="17" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="7" rusName="IDAS 87024" def="Контроллер ЦАП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87024" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="29" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="8" rusName="IDAS 87057" def="Контроллер цифровой(выход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87057" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="3" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="9" rusName="IDAS 87053" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87053" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="65" def="Подадрес" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="Controllers" num="2" rusName="Группа контроллеров" def="Контроллеры">
+    <dev name="Controller" num="0" rusName="IDAS 7018" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 7018" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="24" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="4" rusName="TM 7042" def="Контроллер нагревателя термокамеры">
+      <EditFild name="name" rusName="Имя" value="TM 7042" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="13" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="5" rusName="TM 7041" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="TM 7041" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="14" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87017" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="17" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="7" rusName="IDAS 87024" def="Контроллер ЦАП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87024" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="29" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="8" rusName="IDAS 87057" def="Контроллер цифровой(выход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87057" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="3" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="9" rusName="IDAS 87053" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="IDAS 87053" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="65" def="Подадрес" readОnly="false" />
+    </dev>
+  </dev>
+  <dev name="Controllers" num="3" rusName="Группа контроллеров" def="Контроллеры">
+    <dev name="Controller" num="0" rusName="IDAS 7018" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 7018" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="24" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="1" rusName="TM 7042" def="Контроллер нагревателя Термосекция №1(Газ)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="10" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="2" rusName="TM 7042" def="Контроллер нагревателя Термосекция №2(Центр)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="11" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="3" rusName="TM 7042" def="Контроллер нагревателя Термосекция №3(Загр.)">
+      <EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="12" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="4" rusName="TM 7042" def="Контроллер нагревателя термокамеры">
+      <EditFild name="name" rusName="Имя" value="TM 7042" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="13" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="5" rusName="TM 7041" def="Контроллер цифровой(вход)">
+      <EditFild name="name" rusName="Имя" value="TM 7041" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="14" def="Подадрес" readОnly="false" />
+    </dev>
+    <dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
+      <EditFild name="name" rusName="Имя" value="IDAS 87017" def="Название контроллера" readОnly="true" />
+      <EditFild name="pa" rusName="ПА" value="17" def="Подадрес" readОnly="false" />
+    </dev>
+  </dev>
+
+</settings>

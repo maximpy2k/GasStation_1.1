@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="GasStation.Elements.Controllers.UserControlControllers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GasStation.Elements.Controllers"
+             mc:Ignorable="d" 
+             DataContextChanged="UserControl_DataContextChanged">
+    <ScrollViewer MouseEnter="ScrollViewer_MouseEnter" MouseLeave="ScrollViewer_MouseLeave"  HorizontalScrollBarVisibility="Visible"  VerticalScrollBarVisibility="Disabled">
+            <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" Orientation="Vertical"  x:Name="Controllers">
+                <WrapPanel.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" x:Name="ZoomTransform" />
+                </WrapPanel.LayoutTransform>
+            </WrapPanel>
+    </ScrollViewer>
+    
+</UserControl>

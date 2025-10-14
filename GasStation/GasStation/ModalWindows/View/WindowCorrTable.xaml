@@ -1,0 +1,66 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="GasStation.ModalWindows.View.WindowCorrTable"
+        mc:Ignorable="d"
+        Title="Корректировочная таблица" Height="400" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="1" ItemsSource="{Binding Points}">
+            <ListView.SelectedItem>
+                <Binding Path="SelectedFild"/>
+            </ListView.SelectedItem>
+            
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Command="{Binding CmdAdd}"/>
+                    <MenuItem Header="Удалить" Command="{Binding CmdRemove}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Исп.">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Check}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding LegendX}" Width="67">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding X}" Width="55"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding LegendY}" Width="67">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Y}"  Width="55"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <chartingToolkit:Chart  Grid.Column="0">
+            <chartingToolkit:Chart.Axes>
+                <chartingToolkit:LinearAxis Orientation="X" Title="{Binding LegendX}" SnapsToDevicePixels="False"/>
+                <chartingToolkit:LinearAxis Orientation="Y" Title="{Binding LegendY}"/>
+            </chartingToolkit:Chart.Axes>
+            <chartingToolkit:LineSeries
+                                    BorderBrush="AliceBlue"
+                                    ItemsSource="{Binding UsedPoints}" 
+                                    IndependentValuePath="X"                    
+                                    DependentValuePath="Y" Title="" AnimationSequence="FirstToLast"/>
+        </chartingToolkit:Chart>
+
+    </Grid>
+</Window>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="GasStation.Elements.Controllers.Controller_87017"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GasStation.Elements.Controllers"
+             xmlns:converters="clr-namespace:GasStation.ViewModels.Converters"
+             mc:Ignorable="d" Width="113" Height="186">
+    <UserControl.Resources>
+        <converters:ClassConverterColor x:Key="colorConverter"/>
+    </UserControl.Resources>
+    <Border Background="{Binding Path=Avalible, Converter={StaticResource colorConverter}}" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+
+        <StackPanel Margin="3">
+            <StackPanel Orientation="Horizontal" Height="17">
+                <TextBlock Text="ICPDAS 87017" FontSize="10" Margin="2" Foreground="Black" FontWeight="Bold"/>
+                <TextBlock x:Name="ContrNum" Text="" FontSize="10" Margin="2" Foreground="Black" FontWeight="Bold"/>
+            </StackPanel>
+            <Border Background="CornflowerBlue" BorderBrush="Black" BorderThickness="3" CornerRadius="10" Height="157">
+                <Grid Height="145">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Вых 0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="0" Grid.Column="2"  Margin="0,3,3,0" Text="{Binding Path=AcpValues[0]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Вых 1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="1" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[1]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Вых 2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="2" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[2]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Вых 3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="3" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[3]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Вых 4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="4" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[4]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Вых 5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="5" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[5]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Вых 6" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="6" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[6]}" IsEnabled="False" FontSize="8"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Вых 7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,4,0,3" FontSize="9" Height="12" Width="23"/>
+                    <TextBox   Grid.Row="7" Grid.Column="2" Margin="0,3,3,0" Text="{Binding Path=AcpValues[7]}" IsEnabled="False" FontSize="8"/>
+
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>
