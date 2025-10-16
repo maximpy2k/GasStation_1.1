@@ -524,6 +524,13 @@
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
 				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
+			
+			<dev name="regWork" num="5" rusName="Режим работы" def="Цифровой порт ввода вывода">
+				<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДО" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="5" def="Порт цифрового порта ввода вывода" readОnly="false" />
+				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
+				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
+			</dev>
 
 		</dev>
 		<dev name="loadingPlatform" num="1" rusName="Загрузить" def="Загрузить">

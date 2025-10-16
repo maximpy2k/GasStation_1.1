@@ -139,7 +139,7 @@
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
             <local:UserControl_Pipe_N2 Margin="145.426,195.563,0,0" HorizontalAlignment="Left" Width="220.653" Height="6.97" VerticalAlignment="Top"/>
-            <local:UserControl_LoaderControl DataContext="{Binding Loaders[0]}" HorizontalAlignment="Right" Margin="0,196.56,8.093,0" Width="115" Height="100" VerticalAlignment="Top"/>
+            <local:UserControl_LoaderControl DataContext="{Binding Loaders[0]}" HorizontalAlignment="Right" Margin="0,167,8,0" Width="115" Height="130" VerticalAlignment="Top"/>
             <local:UserControlChamber Margin="0,52.668,275.947,394.332" HorizontalAlignment="Right"
                 DataContext="{Binding Chambers[0]}"/>
             <local:UserControl_O2 HorizontalAlignment="Left" Margin="69.649,377.112,0,285.671" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Height">

@@ -21,7 +21,7 @@
 		</user>
 	</securety>
 	<dev name="ComPort" num="1" rusName="СОМ-порт" def="Номер COM-порта">
-		<EditFild name="Port" rusName="Порт" value="2" def="Наименование COM-порта" readОnly="true" />
+		<EditFild name="Port" rusName="Порт" value="3" def="Наименование COM-порта" readОnly="true" />
 		<EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
 		<EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
 		<EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
@@ -692,11 +692,16 @@
 				<EditFild name="port" rusName="Порт" value="3" def="Порт цифрового порта ввода вывода" readОnly="false" />
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
 				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-				
 			</dev>
 			<dev name="unLoadComplete" num="4" rusName="Выгружен ОК" def="Цифровой порт ввода вывода">
 				<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДО" readОnly="false" />
 				<EditFild name="port" rusName="Порт" value="4" def="Порт цифрового порта ввода вывода" readОnly="false" />
+				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
+				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
+			</dev>
+			<dev name="regWork" num="5" rusName="Режим работы" def="Цифровой порт ввода вывода">
+				<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДО" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="5" def="Порт цифрового порта ввода вывода" readОnly="false" />
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
 				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
