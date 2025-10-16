@@ -39,6 +39,8 @@ namespace GasStation_Oksid
         private const double MinZoom = 0.5;
         private const double MaxZoom = 5;
         private bool mouseEnter = false;
+        private bool _isDragging = false;
+        private Point _lastMousePosition;
 
         private void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -52,13 +54,45 @@ namespace GasStation_Oksid
             ZoomTransform.ScaleY = newZoom;
             e.Handled = true;
         }
+        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                _isDragging = true;
+                _lastMousePosition = e.GetPosition(this);
+                Mouse.OverrideCursor = Cursors.SizeAll;
+                e.Handled = true;
+            }
+        }
+        private void ScrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDragging && ScrollViewerMain != null)
+            {
+                Point currentPosition = e.GetPosition(this);
+                Vector delta = currentPosition - _lastMousePosition;
 
+                // Применяем смещение к ScrollViewer
+                ScrollViewerMain.ScrollToHorizontalOffset(ScrollViewerMain.HorizontalOffset - delta.X);
+                ScrollViewerMain.ScrollToVerticalOffset(ScrollViewerMain.VerticalOffset - delta.Y);
+
+                _lastMousePosition = currentPosition;
+                e.Handled = true;
+            }
+        }
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
 
         }
-
+        private void ScrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (_isDragging)
+            {
+                _isDragging = false;
+                Mouse.OverrideCursor = null;
+                e.Handled = true;
+            }
+        }
         MainWindowViewModel viewmodel;
         private void Pusk_Click(object sender, RoutedEventArgs e)
         {

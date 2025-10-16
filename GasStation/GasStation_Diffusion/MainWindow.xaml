@@ -125,13 +125,18 @@
                         </Slider.Background>
                     </Slider>
 
-                    <ScrollViewer MouseEnter="ScrollViewer_MouseEnter" MouseLeave="ScrollViewer_MouseLeave"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FFAFBEAF">
+                    <ScrollViewer x:Name="ScrollViewerMain"
+                     MouseEnter="ScrollViewer_MouseEnter" 
+                     MouseLeave="ScrollViewer_MouseLeave" 
+                     PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
+                     PreviewMouseMove="ScrollViewer_PreviewMouseMove"
+                     PreviewMouseLeftButtonUp="ScrollViewer_PreviewMouseLeftButtonUp"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FFAFBEAF">
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                             <Grid.LayoutTransform>
                                 <ScaleTransform ScaleX="0.8" ScaleY="0.8" x:Name="ZoomTransform" />
                             </Grid.LayoutTransform>
-                            <зеленоград:UserControl_Zelenograd_Diffusion DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,-95,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <зеленоград:UserControl_Zelenograd_Diffusion DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-22,-95,69,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <!--<newelem:UserControl_Voronezj
                                                             DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,32,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
 
