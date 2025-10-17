@@ -24,6 +24,18 @@ namespace GasStation.xml.Constant
             }
         }
         /// <summary>
+        /// Заслонка открыта
+        /// </summary>
+        public XmlClassSensorConst RegWork
+        {
+            get
+            {
+                var node = XmlNode.SelectSingleNode("dev[@name='regWork']");
+                return node == null ? null : new XmlClassSensorConst(node);
+            }
+        }
+
+        /// <summary>
         /// Заслонка закрыта
         /// </summary>
         public XmlClassSensorConst DumperClosed

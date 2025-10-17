@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoursePrj"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="115">
+             d:DesignHeight="130" d:DesignWidth="115">
     <UserControl.Resources>
         <Style x:Key="CheckBoxLeft" TargetType="{x:Type CheckBox}">
             <Setter Property="Template">
@@ -139,6 +139,58 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CheckBox" TargetType="{x:Type CheckBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="rectangle" RadiusY="10" RadiusX="10" Stroke="Black" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                                <Rectangle.Fill>
+                                    <RadialGradientBrush RadiusX="2.196">
+                                        <GradientStop Color="#FF1F1F1F" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </RadialGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock x:Name="textBlock" Margin="4,-2.667,0,1.334" TextWrapping="Wrap" Text="Закрыт" FontSize="12" FontWeight="Bold" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusY="0.606" RadiusX="2.663" GradientOrigin="-0.481,0.522">
+                                            <GradientStop Color="#FF2C2C2C" Offset="1"/>
+                                            <GradientStop Color="White" Offset="0.142"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Text" TargetName="textBlock" Value="Ручное"/>
+                                <Setter Property="Grid.ColumnSpan" TargetName="textBlock" Value="1"/>
+                                <Setter Property="Margin" TargetName="textBlock" Value="6.1,-1.3,0.332,1.5"/>
+
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusX="2.196">
+                                            <GradientStop Color="#FF00CB12" Offset="1"/>
+                                            <GradientStop Color="White"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Text" TargetName="textBlock" Value="Авто"/>
+                                <Setter Property="Grid.ColumnSpan" TargetName="textBlock" Value="1"/>
+                                <Setter Property="Margin" TargetName="textBlock" Value="13.1,-1.3,0.332,1.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ContextMenu>
@@ -147,12 +199,12 @@
             </ContextMenu>
         </Grid.ContextMenu>
         <Rectangle Fill="#FFD8D295" Height="70.467" Margin="0,-70.467,0,0" Stroke="Black" VerticalAlignment="Top" RadiusX="5" RadiusY="5" Visibility="Collapsed"/>
-        <Rectangle HorizontalAlignment="Right" Margin="0" Stroke="Black" Width="115" Fill="#FFD8D295" RadiusX="5" RadiusY="5" Height="100" VerticalAlignment="Bottom"/>
-        <CheckBox x:Name="checkBox" IsChecked="{Binding DestLoad}" Content="CheckBox" Margin="0,38" Style="{DynamicResource CheckBoxLeft}" HorizontalAlignment="Left" Width="35" VerticalAlignment="Center" Height="24"/>
+        <Rectangle HorizontalAlignment="Center" Stroke="Black" Width="115" Fill="#FFD8D295" RadiusX="5" RadiusY="5" Height="130" VerticalAlignment="Center"/>
+        <CheckBox x:Name="checkBox" IsChecked="{Binding DestLoad}" Content="CheckBox" Style="{DynamicResource CheckBoxLeft}" HorizontalAlignment="Left" Width="35" VerticalAlignment="Top" Height="24" Margin="0,69,0,0"/>
         <GroupBox x:Name="groupBox" Header="Скорость" Margin="23.233,0,23.069,3.37" BorderBrush="Black" Height="38.002" VerticalAlignment="Bottom">
             <TextBox x:Name="textBox" Text="{Binding SetupSpeed, UpdateSourceTrigger=PropertyChanged}" Margin="9,-1,16,-3" TextWrapping="Wrap"  FontWeight="Bold" BorderBrush="{x:Null}" PreviewTextInput="textBox_PreviewTextInput"/>
         </GroupBox>
-        <CheckBox x:Name="checkBox_Copy" IsChecked="{Binding DestUnload}" Content="CheckBox" Margin="0,38" Style="{DynamicResource CheckBoxLeft}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="35" VerticalAlignment="Center" Height="24">
+        <CheckBox x:Name="checkBox_Copy" IsChecked="{Binding DestUnload}" Content="CheckBox" Margin="80,69,0,0" Style="{DynamicResource CheckBoxLeft}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="35" VerticalAlignment="Top" Height="24">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -162,18 +214,20 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <GroupBox x:Name="groupBox_Copy" Header="Статус" Margin="0,-4.25,2.496,0" BorderBrush="Black" Height="41.252" VerticalAlignment="Top" HorizontalAlignment="Right" Width="51.901"/>
-        <CheckBox x:Name="checkBox1" Content="CheckBox" IsChecked="{Binding LoaderView.StatusUnload}" Height="23.334" Margin="0,10.416,16.53,0" Style="{DynamicResource CheckBoxLoaderStatus}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="23.333" IsEnabled="False"/>
-        <GroupBox x:Name="groupBox_Copy1" Header="Статус" Margin="1.996,-4.531,0,0" BorderBrush="Black" Height="41.252" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52.068"/>
-        <CheckBox x:Name="checkBox1_Copy" Content="CheckBox" IsChecked="{Binding LoaderView.StatusLoad}" Height="23.334" Margin="16.863,10.135,0,0" Style="{DynamicResource CheckBoxLoaderStatus}" VerticalAlignment="Top" IsThreeState="True" HorizontalAlignment="Left" Width="23.333" IsEnabled="False"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="72,76,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Height="14"/>
-        <Button x:Name="button" Content="Button" Margin="47.854,40.271,47.814,40.396" Style="{DynamicResource ButtonStyle1}" Command="{Binding CmdResetLoader}" />
+        <GroupBox x:Name="groupBox_Copy" Header="Статус" Margin="0,27,2,0" BorderBrush="Black" Height="41" VerticalAlignment="Top" HorizontalAlignment="Right" Width="52"/>
+        <CheckBox x:Name="checkBox1" Content="CheckBox" IsChecked="{Binding LoaderView.StatusUnload}" Height="20" Margin="0,43,18,0" Style="{DynamicResource CheckBoxLoaderStatus}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" IsEnabled="False"/>
+        <GroupBox x:Name="groupBox_Copy1" Header="Статус" Margin="2,27,0,0" BorderBrush="Black" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52"/>
+        <CheckBox x:Name="checkBox1_Copy" Content="CheckBox" IsChecked="{Binding LoaderView.StatusLoad}" Height="20" Margin="17,44,0,0" Style="{DynamicResource CheckBoxLoaderStatus}" VerticalAlignment="Top" IsThreeState="True" HorizontalAlignment="Left" Width="20" IsEnabled="False"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="72,107,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Height="14"/>
+        <Button x:Name="button" Content="Button" Margin="48,72,48,40" Style="{DynamicResource ButtonStyle1}" Command="{Binding CmdResetLoader}" />
         <GroupBox x:Name="groupBox_Copy2" Header="Кассета вверху" Margin="2.266,-74.982,2.496,0" VerticalAlignment="Top" Height="38.962" BorderBrush="Black" Visibility="Collapsed"/>
         <CheckBox IsEnabled="False" IsChecked="{Binding ChamberView.CloseGateStatus, Mode=OneWay}" Height="17.25" Margin="38.161,-57.032,40.814,0" Style="{DynamicResource CheckBoxStyle3}" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" Visibility="Collapsed">
             <CheckBox IsEnabled="False" IsChecked="{Binding ChamberView.CloseGateStatus, Mode=OneWay}" Height="17.25" Style="{DynamicResource CheckBoxStyle3}" VerticalAlignment="Top" Width="36.025" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
         </CheckBox>
+        <CheckBox IsChecked="{Binding LoaderView.RegWork}" IsEnabled="False" Height="16" Margin="0,0,30,103" Style="{DynamicResource CheckBox}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="55"/>
         <GroupBox x:Name="groupBox_Copy3" Header="Кассета внизу" Margin="1.996,-43.212,2.766,0" VerticalAlignment="Top" Height="38.962" BorderBrush="Black" Visibility="Collapsed"/>
         <CheckBox IsEnabled="False" IsChecked="{Binding ChamberView.OpenGateStatus, Mode=OneWay}" Height="17.25" Margin="38.161,-26.781,40.814,0" Style="{DynamicResource CheckBoxStyle3}" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" Visibility="Collapsed"/>
+        <GroupBox x:Name="groupBox_Copy4" Header="Управление" Margin="0,-5,0,0" BorderBrush="Black" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" Width="87"/>
 
     </Grid>
 </UserControl>

@@ -43,6 +43,7 @@ namespace GasStation.Devices
         bool ErrorUnload ;
         bool LoadComplete;
         bool UnloadComplete;
+        bool RegWork;
         private bool gateOpen;
         private bool gateClose;
         private bool? lastload = null;
@@ -53,6 +54,9 @@ namespace GasStation.Devices
 
         protected override void NextStepFunc()
         {
+            RegWork = GetPortRegWork();
+            _clsLoaderStep.LoaderView.RegWork = RegWork;
+
             ErrorLoad =  GetPortLoadError();
             ErrorUnload =  GetPortUnloadError();
             
@@ -210,6 +214,16 @@ namespace GasStation.Devices
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.DumperClosed.ContrNum] as ClassController87053;
             var val = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.DumperClosed.Port];
               
+            return val;
+        }
+
+        public bool GetPortRegWork()
+        {
+            if (_clsLoaderStep.LoaderConst.StatusConst.RegWork == null)
+                return true;
+            var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.RegWork.ContrNum] as ClassController87053;
+            var val = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.RegWork.Port];
+
             return val;
         }
         #endregion

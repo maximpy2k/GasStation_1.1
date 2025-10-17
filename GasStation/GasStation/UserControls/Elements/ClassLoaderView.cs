@@ -162,6 +162,24 @@ namespace GasStation.ViewModels.Elements
             }
         }
 
+        private bool _regWork = false;
+        public bool RegWork
+        {
+            get
+            {
+                return _regWork;
+            }
+            set
+            {
+                if (_const.StatusConst.RegWork != null)
+                    _regWork = !_const.StatusConst.RegWork.IsInverted ? value : !value;
+                else
+                    RegWork = value;
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RegWork"));
+            }
+        }
+
         public bool UsePriv { get; set; }
 
 

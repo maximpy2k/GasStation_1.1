@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{083C8204-155B-4E1C-B811-E92F127198CB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>GasStation_Oksid</RootNamespace>
     <AssemblyName>GasStation_Oksid</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
