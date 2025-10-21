@@ -116,7 +116,6 @@
         <Image x:Name="image" Margin="6,-2,0,3" Source="/SoursePrj;component/Images/Barboter_Mirror.png" HorizontalAlignment="Left" Width="54"/>
 
         <TextBox Width="40" Height="25" FontWeight="Bold" Margin="-135,35,0,0" Background="{x:Null}" BorderBrush="Black" FontSize="18"
-                     IsReadOnly="{Binding ReadOnly}"
                      Text="{Binding Path=BubblerView.CurrentTd, StringFormat={}{0:F1}}" PreviewTextInput="TextBox_SetTemp_Copy_PreviewTextInput"/>
 
         <CheckBox IsChecked="{Binding Path=UseBubbler}" Height="20" Margin="0,0,12.669,12.331" Style="{DynamicResource CheckBox}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="55" d:LayoutOverrides="HorizontalAlignment"/>
@@ -129,7 +128,7 @@
                 </LinearGradientBrush>
             </GroupBox.Background>
         </GroupBox>
-        <TextBox x:Name="textBox_Copy1" IsReadOnly="True" Margin="71,0,0,12" TextWrapping="Wrap" FontWeight="Bold" Background="{x:Null}" BorderBrush="Black" FontSize="18" HorizontalAlignment="Left" Width="50" Height="27" VerticalAlignment="Bottom"
+        <TextBox x:Name="textBox_Copy1" Margin="71,0,0,12" TextWrapping="Wrap" FontWeight="Bold" Background="{x:Null}" BorderBrush="Black" FontSize="18" HorizontalAlignment="Left" Width="50" Height="27" VerticalAlignment="Bottom"
             Text="{Binding SetupValue, Mode=OneWay}"/>
         <CheckBox x:Name="checkBox2" IsChecked="{Binding Path = BubblerView.Relay,Mode=OneWay}" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="142,0,0,0" Style="{DynamicResource CheckBoxStyle4}" VerticalAlignment="Center" Width="33"/>
     </Grid>
