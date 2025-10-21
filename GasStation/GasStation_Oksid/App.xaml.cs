@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GasStation_Oksid
+namespace GasStation_Pirogen
 {
     /// <summary>
     /// Interaction logic for App.xaml

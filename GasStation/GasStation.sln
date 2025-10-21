@@ -95,7 +95,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GasStation_Moscow", "GasSta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oksid", "Oksid", "{B26C7C26-B388-4974-8D89-1C2AFFF01692}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStation_Oksid", "GasStation_Oksid\GasStation_Oksid.csproj", "{083C8204-155B-4E1C-B811-E92F127198CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStation_Pirogen", "GasStation_Oksid\GasStation_Pirogen.csproj", "{083C8204-155B-4E1C-B811-E92F127198CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diffusion", "Diffusion", "{7A2D0A1A-2875-420B-808B-F13BE159407F}"
 EndProject

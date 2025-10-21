@@ -22,7 +22,7 @@ using System.Xml;
 using GasStation.ModalWindows.View;
 using GasStation.xml.Script;
 
-namespace GasStation_Oksid
+namespace GasStation_Pirogen
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
