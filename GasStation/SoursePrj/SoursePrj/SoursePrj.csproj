@@ -168,6 +168,9 @@
     <Compile Include="UserControls\UserControl_Bubbler.xaml.cs">
       <DependentUpon>UserControl_Bubbler.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControl_FlapNoControl.xaml.cs">
+      <DependentUpon>UserControl_FlapNoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControl_FrequencyGenerator.xaml.cs">
       <DependentUpon>UserControl_FrequencyGenerator.xaml</DependentUpon>
     </Compile>
@@ -443,6 +446,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UserControl_Bubbler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UserControl_FlapNoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

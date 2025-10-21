@@ -414,23 +414,9 @@
                                     DataContext="{Binding Flaps[1]}"/>
 
             <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="386,132,0,0" VerticalAlignment="Top" Width="26"
-                                    DataContext="{Binding Flaps[6]}"/>
+                                    DataContext="{Binding Flaps[5]}"/>
 
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="517,217,0,0" VerticalAlignment="Top" Width="26"
-                                     DataContext="{Binding Flaps[6]}"/>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="601,215,0,0" VerticalAlignment="Top" Width="26"
-                                     DataContext="{Binding Flaps[6]}"/>
-
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="558,185,0,0" VerticalAlignment="Top" Width="26"
-                                    DataContext="{Binding Flaps[6]}"/>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="451,184,0,0" VerticalAlignment="Top" Width="26"
-                                    DataContext="{Binding Flaps[6]}"/>
-
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="452,132,0,0" VerticalAlignment="Top" Width="26"
-                                    DataContext="{Binding Flaps[6]}"/>
-
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="496,103,0,0" VerticalAlignment="Top" Width="26"
-                                    DataContext="{Binding Flaps[6]}"/>
+            
 
 
             <Rectangle Margin="174,0,0,253" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
@@ -687,10 +673,10 @@
                     </TransformGroup>
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="517,217,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[8]}"/>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="601,215,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[10]}"/>
+            <local:UserControl_FlapNoControl HorizontalAlignment="Left" Height="26" Margin="517,217,0,0" VerticalAlignment="Top" Width="26" IsEnabled="False"
+                />
+            <local:UserControl_FlapNoControl  HorizontalAlignment="Left" Height="26" Margin="601,215,0,0" VerticalAlignment="Top" Width="26" IsEnabled="False"
+                />
             <local:UserControl_Pipe_N2 Margin="439,194,0,0" HorizontalAlignment="Left" Width="177" Height="7" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                 <local:UserControl_Pipe_N2.RenderTransform>
                     <TransformGroup>
@@ -702,9 +688,9 @@
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
             <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="558,185,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[9]}"/>
+                DataContext="{Binding Flaps[7]}"/>
             <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="451,184,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[5]}"/>
+                DataContext="{Binding Flaps[6]}"/>
             <local:UserControl_Pipe_N2 Margin="414,166,0,0" HorizontalAlignment="Left" Width="54" Height="8" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                 <local:UserControl_Pipe_N2.RenderTransform>
                     <TransformGroup>
@@ -715,10 +701,9 @@
                     </TransformGroup>
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="452,132,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[7]}"/>
+
             <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="496,103,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[11]}"/>
+                DataContext="{Binding Flaps[8]}"/>
             <Rectangle Margin="550,252,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
@@ -863,6 +848,8 @@
                     </RadialGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
+            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="451,132,0,0" VerticalAlignment="Top" Width="26"
+                DataContext="{Binding Flaps[6]}"/>
 
         </Grid>
         <local:UserControl_PipeAir Margin="526,-295,0,0" Height="37" VerticalAlignment="Top"  HorizontalAlignment="Left" Width="335">
