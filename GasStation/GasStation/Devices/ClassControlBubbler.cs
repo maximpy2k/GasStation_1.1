@@ -69,7 +69,7 @@ namespace GasStation.Devices
             curr.UseBubbler = _clsBublerStep.UseBubbler;
 
             #region Определение вкл/выкл нагрева
-            if (curr.CurrTd > _clsBublerStep.SetupValue && _clsBublerStep.UseBubbler)
+            if (curr.CurrTd < _clsBublerStep.SetupValue && _clsBublerStep.UseBubbler)
                 curr.Relay = true;
             else
                 curr.Relay = false;
