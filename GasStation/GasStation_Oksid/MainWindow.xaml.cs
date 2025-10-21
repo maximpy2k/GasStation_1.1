@@ -145,6 +145,7 @@ namespace GasStation_Oksid
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
+            Properties.Settings.Default.Save();
             var result = MessageBox.Show("Закрыть программу?", null, MessageBoxButton.YesNo, MessageBoxImage.Question);
             viewmodel = (MainWindowViewModel)FindResource("viewMod1");
 
@@ -165,6 +166,27 @@ namespace GasStation_Oksid
         {
         }
 
+        private bool IsPositionValid()
+        {
+            try
+            {
+                var left = Properties.Settings.Default.WindowLeft;
+                var top = Properties.Settings.Default.WindowTop;
+                var width = 1373.5;
+                var height = 1010.231;
+
+                // Проверяем, что хотя бы 100px окна видно на экране
+                double visibleWidth = Math.Min(left + width, SystemParameters.WorkArea.Right) - Math.Max(left, SystemParameters.WorkArea.Left);
+                double visibleHeight = Math.Min(top + height, SystemParameters.WorkArea.Bottom) - Math.Max(top, SystemParameters.WorkArea.Top);
+
+                return visibleWidth >= width && visibleHeight >= height;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void ScrollViewer_MouseEnter(object sender, MouseEventArgs e)
         {
             mouseEnter = true;
@@ -173,6 +195,16 @@ namespace GasStation_Oksid
         private void ScrollViewer_MouseLeave(object sender, MouseEventArgs e)
         {
             mouseEnter = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!IsPositionValid())
+            {
+                // Устанавливаем позицию по умолчанию
+                this.Left = 0;
+                this.Top = 0;
+            }
         }
     }
 }

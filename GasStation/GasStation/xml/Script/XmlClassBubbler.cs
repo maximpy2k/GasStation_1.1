@@ -47,7 +47,7 @@ namespace GasStation.xml.Script
             atrNum.Value = num.ToString();
 
             var atrSetupVal = xmlDocument.CreateAttribute("setupValue");
-            atrSetupVal.Value = (50).ToString();
+            atrSetupVal.Value = (35).ToString();
 
             var atrUseBubbler = xmlDocument.CreateAttribute("UseBubbler");
             atrUseBubbler.Value = "False";
@@ -147,7 +147,7 @@ namespace GasStation.xml.Script
         {
             get
             {
-                var setupValue = 50.0;
+                var setupValue = 35.0;
                 if (XmlNode.Attributes != null) double.TryParse(XmlNode.Attributes["setupValue"].Value, out setupValue);
                 return setupValue;
             }
