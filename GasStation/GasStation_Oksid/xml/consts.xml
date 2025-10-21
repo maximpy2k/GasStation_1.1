@@ -77,54 +77,7 @@
 		</dev>
 	</dev>
 	<dev name="Errors" num="1" rusName="Состояние установки" def="Перчень сбойных ситуаций">
-		<dev name="Status" num="1" rusName="Состояние" def="Заслонка открыта">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="0" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="2" rusName="Состояние" def="Заслонка закрыта">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="1" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="3" rusName="Состояние" def="Загружен ОК">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="2" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="4" rusName="Состояние" def="Выгружен ОК">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="3" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="5" rusName="Состояние" def="Авария Загрузки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="4" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="6" rusName="Состояние" def="Авария Выгрузки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="5" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="7" rusName="Состояние" def="Нет воды на охлаждение горелки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="6" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="9" rusName="Состояние" def="Датчик Пламени">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="7" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
+		
 	</dev>
 	<dev name="rrg" num="1" rusName="РРГ" def="Регулятор расхода газа">
 		<dev name="properties" rusName="Свойства">
@@ -293,7 +246,7 @@
 	</dev>
 	<dev name="flap" num="6" rusName="Клапан" def="Клапан">
 		<dev name="params" num="1" rusName="параметры" def="параметры">
-			<EditFild name="normalState" rusName="Состояние клапана" value="Open" def="Клапан нормально открытый" readОnly="true" />
+			<EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально открытый" readОnly="true" />
 		</dev>
 		<dev name="dio" num="1" rusName="ДИО" def="Цифровой порт ввода вывода">
 			<EditFild name="contrNum" rusName="№ контр." value="9" def="Контроллер ДО" readОnly="false" />
@@ -304,7 +257,7 @@
 	</dev>
 	<dev name="flap" num="7" rusName="Клапан" def="Клапан">
 		<dev name="params" num="1" rusName="параметры" def="параметры">
-			<EditFild name="normalState" rusName="Состояние клапана" value="Close" def="Клапан нормально открытый" readОnly="true" />
+			<EditFild name="normalState" rusName="Состояние клапана" value="Open" def="Клапан нормально открытый" readОnly="true" />
 		</dev>
 		<dev name="dio" num="1" rusName="ДИО" def="Цифровой порт ввода вывода">
 			<EditFild name="contrNum" rusName="№ контр." value="9" def="Контроллер ДО" readОnly="false" />
@@ -690,7 +643,7 @@
 		</dev>
 		<dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
 			<EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="10" def="Out" readОnly="false" />
+			<EditFild name="port" rusName="Порт" value="11" def="Out" readОnly="false" />
 		</dev>
 		<dev name="td" num="1" rusName="Контрольная Терм." def="Термодатчик">
 			<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -702,7 +655,7 @@
 			</dev>
 			<dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь термодатчика">
 				<EditFild name="contrNum" rusName="№ контр." value="6" def="Контроллер АЦП" readОnly="false" />
-				<EditFild name="port" rusName="Порт" value="5" def="Порт АЦП термодатчика секции термокамеры" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="6" def="Порт АЦП термодатчика секции термокамеры" readОnly="false" />
 				<table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в температуру" rusNameX="U[В]" rusNameY="Т[град, С]" defX="Значение напряжения в вольтах" defY="Значение в градусах">
 					<field valueX="9.77" valueY="4" check="True" />
 					<field valueX="3.97" valueY="39" check="True" />

@@ -848,7 +848,7 @@
                     </RadialGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="451,132,0,0" VerticalAlignment="Top" Width="26"
+            <local:UserControl_Flap_Inverted HorizontalAlignment="Left" Height="26" Margin="451,132,0,0" VerticalAlignment="Top" Width="26"
                 DataContext="{Binding Flaps[6]}"/>
 
         </Grid>
