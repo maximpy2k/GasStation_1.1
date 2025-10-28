@@ -38,9 +38,9 @@
             <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=SetupValue}"/>
         </StackPanel>
         <CheckBox Content="Закрытие клапана"
-                  DataContext="{Binding Flap}"
-                  IsEnabled="{Binding EnabledChangedScript}"
-                  IsChecked="{Binding  Path=FlapState}"/>
+                  IsEnabled="{Binding Flap.EnabledChangedScript}"
+                  IsChecked="{Binding  Path=Flap.FlapState}"
+                  Visibility="{Binding  Path=RrgConst.IsFlapPropertyVisible}"/>
         <CheckBox x:Name="UsePid" Content="Использование ПИД регулятора"                 
                   Visibility="{Binding Path=RrgConst.EnablePid}"
                   IsChecked="{Binding UsePid}"/>

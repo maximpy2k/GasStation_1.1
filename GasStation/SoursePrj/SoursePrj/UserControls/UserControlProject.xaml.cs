@@ -436,16 +436,18 @@ namespace SoursePrj.UserControls
             txtBox.SetBinding(TextBox.TextProperty, new Binding($"Rrgs[{con.DevNumMas}].SetupValue") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
             txtBox.SetValue(CheckBox.IsEnabledProperty, new Binding($"ClsScript.Consts.ConstRrgs[{con.DevNumMas}].IsFlap") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
             txtBox.SetValue(TextBox.ContextMenuProperty, CreateContextMenu($"Rrgs[{con.DevNumMas}]", viewMod.CmdRrgStepParams));
-
-            FrameworkElementFactory chkBox = new FrameworkElementFactory(typeof(CheckBox));
-            chkBox.SetValue(CheckBox.IsCheckedProperty, new Binding($"Rrgs[{con.DevNumMas}].Flap.FlapView") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
-            chkBox.SetValue(CheckBox.IsEnabledProperty, new Binding($"ClsScript.Consts.ConstRrgs[{con.DevNumMas}].IsFlap") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
-            chkBox.SetValue(HeightProperty, 20.0);
-            chkBox.SetValue(WidthProperty, 20.0);
-            chkBox.SetValue(StyleProperty, rd["CheckBoxFlapStyle"]);
-
+            if (con.IsFlap)
+            {
+                FrameworkElementFactory chkBox = new FrameworkElementFactory(typeof(CheckBox));
+                chkBox.SetValue(CheckBox.IsCheckedProperty, new Binding($"Rrgs[{con.DevNumMas}].Flap.FlapView") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                chkBox.SetValue(CheckBox.IsEnabledProperty, new Binding($"ClsScript.Consts.ConstRrgs[{con.DevNumMas}].IsFlap") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                chkBox.SetValue(HeightProperty, 20.0);
+                chkBox.SetValue(WidthProperty, 20.0);
+                chkBox.SetValue(StyleProperty, rd["CheckBoxFlapStyle"]);
+                templateCell.AppendChild(chkBox);
+            }
             templateCell.AppendChild(txtBox);
-            templateCell.AppendChild(chkBox);
+            
 
 
             DataTemplate template = new DataTemplate();

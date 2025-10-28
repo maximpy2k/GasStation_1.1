@@ -197,18 +197,18 @@
             <local:UserControlChamber Margin="0,262,324,185" HorizontalAlignment="Right"
                                       DataContext="{Binding Chambers[0]}"/>
 
-            <local:UserControlRrg HorizontalAlignment="Left" Margin="202,103,0,0" Width="166" Height="85" VerticalAlignment="Top"
+            <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Margin="202,103,0,0" Width="166" Height="85" VerticalAlignment="Top"
                                   DataContext="{Binding Rrgs[4]}"/>
-            <local:UserControlRrg HorizontalAlignment="Left" Height="85" Margin="202,195,0,0" VerticalAlignment="Top" Width="167"
+            <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Height="85" Margin="202,195,0,0" VerticalAlignment="Top" Width="167"
                                   DataContext="{Binding Rrgs[1]}"/>
 
-            <local:UserControlRrg HorizontalAlignment="Left" Margin="202,296,0,0" Width="167" Height="85" VerticalAlignment="Top"
+            <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Margin="202,296,0,0" Width="167" Height="85" VerticalAlignment="Top"
                                   DataContext="{Binding Rrgs[0]}"/>
 
-            <local:UserControlRrg HorizontalAlignment="Left" Margin="203,394,0,315" Width="166"
+            <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Margin="203,394,0,315" Width="166"
                                   DataContext="{Binding Rrgs[2]}"/>
 
-            <local:UserControlRrg Margin="203,0,0,215" HorizontalAlignment="Left" Width="166" Height="85" VerticalAlignment="Bottom"
+            <local:UserControlRrgWithoutFlap Margin="203,0,0,215" HorizontalAlignment="Left" Width="166" Height="85" VerticalAlignment="Bottom"
                                   DataContext="{Binding Rrgs[3]}"/>
 
             <local:UserControlHydrogenBurner Width="Auto" Margin="508,368,696,289" Height="Auto"

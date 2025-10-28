@@ -74,6 +74,27 @@ namespace GasStation.xml.Const.Elements
             }
         }
 
+        /// <summary>
+        /// Константы для ПИД-регулятора
+        /// </summary>
+        public XmlClassPidConst Pid
+        {
+            get
+            {
+                var xmlNode = XmlNode.SelectSingleNode("dev[@name='pid']");
+                if (xmlNode == null)
+                    return null;
+                var pid = new XmlClassPidConst(xmlNode);
+
+                return pid;
+            }
+        }
+
+        /// <summary>
+        /// Наличие ПИД регулятора
+        /// </summary>
+        public string EnablePid => Pid == null ? "Collapsed" : "Visible";
+
         public override bool EnabledChangedScript => SecuretyConst.CurrUser.Privs.Contains(EnumPriv.ChangeBubblerScript);
     }
 }

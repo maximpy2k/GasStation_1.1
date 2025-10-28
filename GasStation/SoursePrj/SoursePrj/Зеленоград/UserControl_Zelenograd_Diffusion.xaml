@@ -245,11 +245,11 @@
                     </RadialGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <local:UserControlRrg Margin="288.497,0,0,192.59"
+            <local:UserControlRrgWithoutFlap Margin="288.497,0,0,192.59"
                 DataContext="{Binding Rrgs[0]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Bottom"/>
-            <local:UserControlRrg Margin="288.497,0,0,307.255"
+            <local:UserControlRrgWithoutFlap Margin="288.497,0,0,307.255"
                 DataContext="{Binding Rrgs[1]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Bottom"/>
-            <local:UserControlRrg Margin="288.497,154.751,0,0"
+            <local:UserControlRrgWithoutFlap Margin="288.497,154.751,0,0"
                 DataContext="{Binding Rrgs[2]}" HorizontalAlignment="Left" Width="166.333" Height="88.333" VerticalAlignment="Top"/>
 
             <local:UserControl_Pipe_N2 Margin="454.83,195.563,663.271,0" Height="6.97" VerticalAlignment="Top"/>

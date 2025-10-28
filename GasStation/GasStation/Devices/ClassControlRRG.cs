@@ -166,25 +166,27 @@ namespace GasStation.Devices
             #endregion
 
             #region Управление клапаном
-            curr.StateRrg = _clsRrgStep.Flap.FlapState;
-            SetPortState(_clsRrgStep.Flap.FlapState);
-            #endregion
-
-            if (last != null)
+            if (_clsRrgStep.RrgConst.IsFlap)
             {
-                if (curr.StateRrg != last.StateRrg)
+                curr.StateRrg = _clsRrgStep.Flap.FlapState;
+                SetPortState(_clsRrgStep.Flap.FlapState);
+                #endregion
+
+                if (last != null)
                 {
-                    ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
-                    conJumpArgs.NumDev = _clsRrgStep.Num;
-                    conJumpArgs.NameDev = "РРГ";
-                    conJumpArgs.CurrValue = Convert.ToInt32(curr.StateRrg);
-                    conJumpArgs.TextError = "Состояние клапана РРГ изменено";
-                    conJumpArgs.Conditional = 1;
-                    conJumpArgs.TypeConditional = TypeConditional.Text;
-                    AlarmError(this, conJumpArgs);
+                    if (curr.StateRrg != last.StateRrg)
+                    {
+                        ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
+                        conJumpArgs.NumDev = _clsRrgStep.Num;
+                        conJumpArgs.NameDev = "РРГ";
+                        conJumpArgs.CurrValue = Convert.ToInt32(curr.StateRrg);
+                        conJumpArgs.TextError = "Состояние клапана РРГ изменено";
+                        conJumpArgs.Conditional = 1;
+                        conJumpArgs.TypeConditional = TypeConditional.Text;
+                        AlarmError(this, conJumpArgs);
+                    }
                 }
             }
-
 
             if (AddData(curr))
             {

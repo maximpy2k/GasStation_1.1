@@ -152,7 +152,11 @@ namespace GasStation.xml.Script
 
         public override bool EnabledChangedScript
         {
-            get { return UsePriv || FlapConst.EnabledChangedScript; }
+            get
+            {
+                var flapEnabledChangedScript = FlapConst == null ? UsePriv : FlapConst.EnabledChangedScript;
+                return UsePriv || flapEnabledChangedScript;
+            }
         }
 
     }

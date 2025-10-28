@@ -26,6 +26,18 @@ namespace GasStation.Elements.Data
         /// Текущая температура
         /// </summary>
         public double CurrTd;
+
+        /// <summary>
+        /// Заданная температура
+        /// </summary>
+        public double SetupValue;
+
+        /// <summary>
+        /// Данные ПИД регулятора
+        /// </summary>
+        public ClassDataPid DataPid { get; set; }
+
+
         /// <summary>
         /// Конвертация в массив
         /// </summary>
@@ -38,6 +50,7 @@ namespace GasStation.Elements.Data
                 BitConverter.GetBytes(TimeStep).CopyTo(val, 1);
                 BitConverter.GetBytes(Relay).CopyTo(val, 9);
                 BitConverter.GetBytes(CurrTd).CopyTo(val, 17);
+                BitConverter.GetBytes(SetupValue).CopyTo(val, 25);
                 return val;
             }
         }
@@ -47,11 +60,11 @@ namespace GasStation.Elements.Data
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{CurrDate.ToString(),-20}{TimeStep,-16:0.00}{((UseBubbler == true) ? "Используется" : "Не используется"),-16}{((Relay == true) ? "Реле вкл" : "Реле выкл"),-16}{CurrTd,-16:0.00}";
+            return $"{CurrDate.ToString(),-20}{TimeStep,-16:0.00}{((UseBubbler == true) ? "Используется" : "Не используется"),-16}{((Relay == true) ? "Реле вкл" : "Реле выкл"),-16}{CurrTd,-16:0.00}{SetupValue,-16:0.00}";
         }
         /// <summary>
         /// Заголовок текстового файла
         /// </summary>
-        public override string HeaderStr => $"{"Дата",-20}{"Время",-16:0.00}{"Состояние борботера",-16}{"Состояние реле",-16}{"Текущая температура",-16:0.00}";
+        public override string HeaderStr => $"{"Дата",-20}{"Время",-16:0.00}{"Состояние борботера",-16}{"Состояние реле",-16}{"Текущая температура",-16:0.00}{"Заданная температура",-16:0.00}";
     }
 }

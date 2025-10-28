@@ -55,6 +55,9 @@ namespace GasStation.xml.Script
             var atrPriv = xmlDocument.CreateAttribute("usePriv");
             atrPriv.Value = "False";
 
+            var atrUsePid = xmlDocument.CreateAttribute("usePid");
+            atrUsePid.Value = "True";
+
             #endregion               
             #region Добавление атрибутов
             _xmlNode.Attributes.Append(atrName);

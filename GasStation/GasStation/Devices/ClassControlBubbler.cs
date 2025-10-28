@@ -80,11 +80,6 @@ namespace GasStation.Devices
             ClassDataBubler classData;
 
             var dateNow = DateTime.Now;
-            //var useBubler = _clsBublerStep.UseBubbler;
-            //SetPortState(_clsBublerStep.UseBubbler);
-
-            //var relay= true;
-            //SetPortState(true);
 
             if (last != null)
             {
@@ -112,29 +107,6 @@ namespace GasStation.Devices
             _clsBublerStep.BubblerView.Relay = curr.Relay;
 
 
-
-
-
-            //SetPortState(_clsBublerStep.BubblerView.Relay);
-
-            //if (_clsBublerStep.BubblerConst.Td != null)
-            //{
-            //    var tdU = GetAcp();
-            //    CurrTd.Add(tdU);
-
-            //    classData = new ClassDataBubler(_classDataTime, true, CurrTd.AverTd);
-            //    //classData = new ClassDataBubler(_classDataTime, relay, CurrTd.AverTd);
-            //    _clsBublerStep.BubblerView.CurrentTd = classData.CurrTd;
-
-            //    _clsBublerStep.BubblerView.SeriesReadTd.Add(new PointTime(dateNow, classData.CurrTd));
-
-            //    if (AddData(classData))
-            //    {
-            //        _clsBublerStep.BubblerView.SeriesReadTd.PointsPrepare.Clr(Cnt);
-            //    }
-
-            //    _clsBublerStep.BubblerView.Relay = true;
-            //}
         }
                 
         /// <summary>

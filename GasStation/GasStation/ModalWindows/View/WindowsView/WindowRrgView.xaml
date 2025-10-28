@@ -12,10 +12,10 @@
     <Window.Resources>
         <converter:ClassConverterVisibilityToBool x:Key="ConvVisibility"/>
     </Window.Resources>
-    <StackPanel Orientation="Horizontal">
+    <Grid>
         <graph:ControlChart x:Name="chart1"                            
                             Line0="{Binding Path=RrgView.SeriesSetStream}"
                             Line1="{Binding Path=RrgView.SeriesReadStream}"
                             Line2="{Binding Path=RrgView.SeriesCalcStream}"/>
-    </StackPanel>
+    </Grid>
 </Window>

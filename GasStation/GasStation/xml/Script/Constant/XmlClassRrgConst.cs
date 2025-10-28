@@ -115,10 +115,9 @@ namespace GasStation.xml.Const.Elements
             get
             {
                 var flapNode = XmlNode.SelectSingleNode("dev[@name='flap']");
-                if (flapNode == null)
-                    return null;
-
-                return new XmlClassFlapConst(flapNode);
+                if(flapNode!=null)
+                    return new XmlClassFlapConst(flapNode);
+                return null;
             }
         }
 
@@ -147,7 +146,7 @@ namespace GasStation.xml.Const.Elements
                 return FlapConst != null;
             }
         }
-
+        public string IsFlapPropertyVisible => IsFlap == false ? "Collapsed" : "Visible";
 
         public override bool EnabledChangedScript => SecuretyConst.CurrUser.Privs.Contains(EnumPriv.ChangeRrgScript);
     }

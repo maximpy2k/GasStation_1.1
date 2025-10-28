@@ -13,7 +13,7 @@ namespace GasStation.xml.Script
     /// <summary>
     /// Xml узел РРГ
     /// </summary>
-    public class XmlClassRrg:XmlBaseClassElementScript
+    public class XmlClassRrg : XmlBaseClassElementScript
     {
         /// <summary>
         /// Константы РРГ
@@ -40,9 +40,12 @@ namespace GasStation.xml.Script
             _xmlNode = xmlDocument.CreateElement("dev");
 
             #region Добавление клапана
-            var fl = new XmlClassFlap(1, RrgConst.FlapConst,rrgView.FlapView);
-            var importNode = xmlDocument.ImportNode(fl.XmlNode, true);
-            _xmlNode.AppendChild(importNode); 
+            if (RrgConst.IsFlap)
+            {
+                var fl = new XmlClassFlap(1, RrgConst.FlapConst, rrgView.FlapView);
+                var importNode = xmlDocument.ImportNode(fl.XmlNode, true);
+                _xmlNode.AppendChild(importNode);
+            }
             #endregion
             #region Создание атрибутов
             var atrName = xmlDocument.CreateAttribute("name");
@@ -86,7 +89,7 @@ namespace GasStation.xml.Script
         /// <param name="xmlRrgNode">XML узел с заданием для РРГ для шага скрипта</param>
         /// <param name="rrgConst">Константы РРГ</param>
         /// <param name="rrgView">Класс для отображения</param>
-        public XmlClassRrg(XmlNode xmlRrgNode, XmlClassRrgConst rrgConst, ClassRrgView rrgView) :base(xmlRrgNode)
+        public XmlClassRrg(XmlNode xmlRrgNode, XmlClassRrgConst rrgConst, ClassRrgView rrgView) : base(xmlRrgNode)
         {
             TypeElement = TypeElement.Rrg;
 
@@ -117,7 +120,7 @@ namespace GasStation.xml.Script
                 PropertyIsChange("TimeRaise");
             }
         }
-        
+
         /// <summary>
         /// Установленное значение РРГ
         /// </summary>
@@ -138,7 +141,7 @@ namespace GasStation.xml.Script
 
                 if (value > RrgConst.MasCapConst[0].Table.MaxVal)
                 {
-                    XmlNode.Attributes["setupValue"].Value = RrgConst.MasCapConst[0].Table.MaxVal.ToString(); 
+                    XmlNode.Attributes["setupValue"].Value = RrgConst.MasCapConst[0].Table.MaxVal.ToString();
                     return;
                 }
 
@@ -166,13 +169,13 @@ namespace GasStation.xml.Script
             set
             {
                 if (!EnabledChangedScript)
-                    return;                
+                    return;
 
                 XmlNode.Attributes["typeReg"].Value = value.ToString();
                 PropertyIsChange("TypeReg");
             }
         }
-       
+
         /// <summary>
         /// Использование ПИД регулятора
         /// </summary>
@@ -183,7 +186,7 @@ namespace GasStation.xml.Script
                 if (XmlNode.Attributes["usePid"] == null)
                     return false;
                 bool usePid;
-                
+
                 bool.TryParse(XmlNode.Attributes["usePid"].Value, out usePid);
                 return usePid;
             }
@@ -191,7 +194,7 @@ namespace GasStation.xml.Script
             {
                 if (!EnabledChangedScript)
                     return;
-                if(XmlNode.Attributes["usePid"]==null)
+                if (XmlNode.Attributes["usePid"] == null)
                 {
                     MessageBox.Show("Используется старая версия скрипта.\nНет атрибута 'usePid'");
                     return;
@@ -213,8 +216,14 @@ namespace GasStation.xml.Script
                 if (flap != null)
                     return flap;
                 var node = _xmlNode.SelectSingleNode("dev[@name='flap']");
-                flap = new XmlClassFlap(node, RrgConst.FlapConst,RrgView.FlapView);
-                return flap;
+
+                if (RrgConst.IsFlap)
+                {
+                    flap = new XmlClassFlap(node, RrgConst.FlapConst, RrgView.FlapView);
+                    return flap;
+                }
+                return null;
+
             }
         }
 
@@ -245,8 +254,8 @@ namespace GasStation.xml.Script
                 XmlNode.Attributes["usePriv"].Value = value.ToString();
 
                 var node = XmlNode.SelectSingleNode("dev[@name='flap']");
-
-                node.Attributes["usePriv"].Value = value.ToString();
+                if(node != null)
+                    node.Attributes["usePriv"].Value = value.ToString();
 
                 PropertyIsChange("UsePriv");
             }

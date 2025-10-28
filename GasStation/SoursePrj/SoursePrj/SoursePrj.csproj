@@ -99,6 +99,9 @@
     <Compile Include="UserControls\UserControlProject.xaml.cs">
       <DependentUpon>UserControlProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlRrgWithoutFlap.xaml.cs">
+      <DependentUpon>UserControlRrgWithoutFlap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControlRrg.xaml.cs">
       <DependentUpon>UserControlRrg.xaml</DependentUpon>
     </Compile>
@@ -359,6 +362,10 @@
     <Page Include="UserControls\UserControlProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlRrgWithoutFlap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UserControlRrg.xaml">
       <SubType>Designer</SubType>
