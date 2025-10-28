@@ -21,7 +21,7 @@
 		</user>
 	</securety>
 	<dev name="ComPort" num="1" rusName="СОМ-порт" def="Номер COM-порта">
-		<EditFild name="Port" rusName="Порт" value="5" def="Наименование COM-порта" readОnly="true" />
+		<EditFild name="Port" rusName="Порт" value="3" def="Наименование COM-порта" readОnly="true" />
 		<EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
 		<EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
 		<EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
@@ -70,56 +70,6 @@
 		<dev name="Controller" num="9" rusName="IDAS 87053" def="Контроллер ДИ (Статусы)">
 			<EditFild name="name" rusName="Имя" value="IDAS 87053" def="Контроллер ДИ (Статусы)" readОnly="true" />
 			<EditFild name="pa" rusName="ПА" value="3" def="Подадрес" readОnly="false" />
-		</dev>
-	</dev>
-	<dev name="Errors" num="1" rusName="Состояние установки" def="Перчень сбойных ситуаций">
-		<dev name="Status" num="1" rusName="Состояние" def="Заслонка открыта">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="0" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="2" rusName="Состояние" def="Заслонка закрыта">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="1" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="3" rusName="Состояние" def="Загружен ОК">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="2" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="4" rusName="Состояние" def="Выгружен ОК">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="3" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="5" rusName="Состояние" def="Авария Загрузки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="4" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="6" rusName="Состояние" def="Авария Выгрузки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="5" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="7" rusName="Состояние" def="Нет воды на охлаждение горелки">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="6" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
-		</dev>
-		<dev name="Status" num="9" rusName="Состояние" def="Датчик Пламени">
-			<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДИ" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="7" def="Порт" readОnly="false" />
-			<EditFild name="dest" rusName="Дест" value="In" def="Режим работы контроллера" readОnly="true" />
-			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 		</dev>
 	</dev>
 	<dev name="rrg" num="1" rusName="РРГ" def="Регулятор расхода газа">
@@ -526,8 +476,8 @@
 			</dev>
 			
 			<dev name="regWork" num="5" rusName="Режим работы" def="Цифровой порт ввода вывода">
-				<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДО" readОnly="false" />
-				<EditFild name="port" rusName="Порт" value="5" def="Порт цифрового порта ввода вывода" readОnly="false" />
+				<EditFild name="contrNum" rusName="№ контр." value="9" def="Контроллер ДО" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="7" def="Порт цифрового порта ввода вывода" readОnly="false" />
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
 				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
@@ -535,13 +485,13 @@
 		</dev>
 		<dev name="loadingPlatform" num="1" rusName="Загрузить" def="Загрузить">
 			<EditFild name="contrNum" rusName="№ контр." value="8" def="Контроллер загрузчика" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="9" def="Управление загрузкой" readОnly="false" />
+			<EditFild name="port" rusName="Порт" value="13" def="Управление загрузкой" readОnly="false" />
 			<EditFild name="dest" rusName="Дест" value="Out" def="Режим работы контроллера" readОnly="true" />
 			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 		</dev>
 		<dev name="unloadingPlatform" num="2" rusName="Выгрузить" def="Выгрузить">
 			<EditFild name="contrNum" rusName="№ контр." value="8" def="Контроллер загрузчика" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="10" def="Управление выгрузкой" readОnly="false" />
+			<EditFild name="port" rusName="Порт" value="14" def="Управление выгрузкой" readОnly="false" />
 			<EditFild name="dest" rusName="Дест" value="Out" def="Режим работы контроллера" readОnly="true" />
 			<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 		</dev>
