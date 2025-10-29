@@ -3,11 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:chartApplication="clr-namespace:ChartApplication;assembly=ChartApplication"
+        xmlns:chartApplication="clr-namespace:ChartApplication;assembly=ChartApplication" xmlns:userControlsView="clr-namespace:GasStation.UserControls.UserControlsView"
         mc:Ignorable="d"
-        Title="Расширенная информация барботёра" Height="300" Width="300">
+        Title="Расширенная информация барботёра" Height="300" Width="705">
     <Grid>
-        <chartApplication:ControlChart   x:Name="chart1"                            
-                            Line0="{Binding Path=SeriesReadTd}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<StackPanel Orientation="Horizontal">-->
+        <userControlsView:PidRegulator DataContext="{Binding Path=DataBubbler.ClassPidOut}" />
+
+        <chartApplication:ControlChart Grid.Column="1"   x:Name="chart1"                             
+                            Line0="{Binding Path=SeriesSetTemp}"
+                            Line1="{Binding Path=SeriesReadTemp}"
+                            Line2="{Binding Path=SeriesCalcTemp}"/>
     </Grid>
 </Window>

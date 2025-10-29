@@ -527,6 +527,8 @@
 	<dev name="bubbler" num="1" rusName="Барбот." def="барботер">
 		<dev name="properties" num="1" rusName="Параметры" def="Параметры">
 			<EditFild name="normalState" rusName="Состояние" value="Close" def="Барботер отключен" readОnly="true" />
+			<EditFild name="maxUpSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости нагрева" readОnly="true" />
+			<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения" readОnly="true" />
 		</dev>
 		<dev name="dio" num="1" rusName="Цифорвой выход" def="Настройка цифрового порта">
 			<EditFild name="contrNum" rusName="№ контр." value="8" def="Порядковый номер контроллера" readОnly="false" />
@@ -548,7 +550,17 @@
 					<field valueX="5" valueY="300" check="True" />
 				</table>
 			</dev>
+
 		</dev>
+		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры барботера" readОnly="true" />
+			<EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД барботера" readОnly="true" />
+			<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД барботера" readОnly="true" />
+			<EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД барботера" readОnly="true" />
+			<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры барботера" readОnly="true" />
+			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+		</dev>
+
 	</dev>
 	
 </settings>

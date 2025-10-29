@@ -1,5 +1,6 @@
 ﻿using GasStation.Elements.Data;
 using GasStation.Mathem.Pid;
+using GasStation.xml.Const.Elements;
 using GasStation.xml.Script;
 using GasStation.xml.Script.XmlScript.Elements;
 using System;
@@ -13,100 +14,102 @@ namespace GasStation.Mathem.Bubbler
     public class ClassBubblerPidRegulation
     {
         /// <summary>
-        /// Временной информации
+        /// Константы для термосекции
         /// </summary>
-        private ClassDataTime _classDataTime;
-        /// <summary>
-        /// Параметры шага РРГ
-        /// </summary>
-        private XmlClassBubbler _clsBubblerStep;
-        /// <summary>
-        /// Параметры шага скрипта
-        /// </summary>
-        private XmlClassStepParams _stepParams;
-
-        /// <summary>
-        /// Начальное показание температуры
-        /// </summary>
-        private double? _firstTemp { get; set; }
+        XmlClassBubblerConst _bubblerConst { get; set; }
 
 
-        /// <summary>
-        /// Текущее установочное значение температуры
-        /// </summary>
-        public double CurrSetupValue;        
-        
-        /// <summary>
-        /// Измеренная температура
-        /// </summary>
-        public double? CurrMeasTemp { get; set; }
-
-        /// <summary>
-        /// Время шага
-        /// </summary>
-        public double CurrTimeStep;
-
-        /// <summary>
-        /// Класс ПИД регулятора
-        /// </summary>
-        private ClassPidRegulator _clsPidRegulator { get; set; }
+        XmlClassBubbler _bubblerStep;
 
         /// <summary>
         /// Конструктор класса
-        /// </summary>
-        /// <param name="classDataTime">Временная иныформация</param>        
-        public ClassBubblerPidRegulation(ClassDataTime classDataTime)
+        /// </summary>        
+        public ClassBubblerPidRegulation()
         {
-            _classDataTime = classDataTime;
+
         }
+        /// <summary>
+        /// Новый шаг скрипта
+        /// </summary>
+        /// <param name="constPidOut">Константы для внешнего ПИД регулятора</param>
+        /// <param name="constPidIn">Константы для внутреннего ПИД регулятора</param>
+        public void DataStep(XmlClassBubblerConst bubblerConst, XmlClassBubbler bubblerStep)
+        {
+            _bubblerConst = bubblerConst;
+            _bubblerStep = bubblerStep;
+        }
+
+        protected ClassPidRegulator _сlassPidRegulatorOut;
+        /// <summary>
+        /// Класс внешнего ПИД регулятора
+        /// </summary>
+        protected ClassPidRegulator ClassPidRegulatorOut
+        {
+            get
+            {
+                if (_сlassPidRegulatorOut != null)
+                    return _сlassPidRegulatorOut;
+
+                _сlassPidRegulatorOut = new ClassPidRegulator(_bubblerConst.Pid);
+                return _сlassPidRegulatorOut;
+            }
+            set
+            {
+                _сlassPidRegulatorOut = value;
+            }
+        }
+
 
         /// <summary>
-        /// Запуск нового шага скрпта
+        /// Список данных по камере
         /// </summary>
-        /// <param name="clsBubblerStep">Параметры шага РРГ</param>
-        /// <param name="stepParams">Параметры шага скрипта</param>
-        /// <param name="firstPress">Начальное показание вакуметра</param>
-        public void NewScriptStep(XmlClassBubbler clsBubblerStep, XmlClassStepParams stepParams, double? firstTemp)
-        {
-            _clsBubblerStep = clsBubblerStep;
-            _stepParams = stepParams;
+        public List<ClassDataChamber> LstDataChamber = new List<ClassDataChamber>();
 
-            if (_firstTemp == null)
-                _firstTemp = firstTemp;
 
-            if (_clsPidRegulator == null)
-                _clsPidRegulator = new ClassPidRegulator(_clsBubblerStep.BubblerConst.Pid);
 
-            _clsPidRegulator.DataStep();
-
-            
-        }
-        
+        private double? SetupTemp;
+        private double? TdIn;
+        private double? TdOut;
 
         /// <summary>
-        /// Вычисление мощности РРГ
+        /// Добавление нового шага управления
         /// </summary>
-        /// <param name="deltaVal">Величина воздействия</param>
-        /// <returns>Код для нагревателя</returns>
-        public double EvalfRelay(double deltaVal)
+        /// <param name="tdOut">Температура с термодатчика внешнего контура</param>
+        /// <param name="setupTemp">Заданная температура</param>
+        public ClassDataBubler NextStep_MaximumSpeed(ClassDataTime classDataTime, double tdOut, double setupTemp)
         {
-            if (deltaVal < 0)
-                return 0;
-
-            //var k = (_clsBubblerStep.Const.MasCapConst[0 ].Table.MinVal - _clsRrgStep.RrgConst.MasCapConst[0].Table.MaxVal) / (0.0 - 100.0);
-            //var b = _clsRrgStep.RrgConst.MasCapConst[0].Table.MinVal - k * 0.0;
-
-            return 100.0;// (deltaVal * 100) * k + b;
+            double setTemp = setupTemp;
+            var data = new ClassDataBubler(classDataTime, _bubblerConst);
+            data.DataPid = null;
+            data.SetPower = data.ClassPidOut.DeltaValue;// EvalfPower(data.ClassPidOut.DeltaValue);
+            return data;
         }
-
-        public ClassDataPid NextCycleStep(double currTemp)
+        public ClassDataBubler NextStep_InnerPidRegulation(ClassDataTime classDataTime, double tdOut, double setupTemp)
         {
-            CurrTimeStep = _classDataTime.TimeStep;
-            CurrSetupValue = _clsBubblerStep.SetupValue;
-            CurrMeasTemp = currTemp;
+            var data = new ClassDataBubler(classDataTime, _bubblerConst);
+            var setTemp = setupTemp;
 
-            var classDataPid = _clsPidRegulator.NextStep(currTemp, CurrSetupValue);
-            return classDataPid;
+            data.ClassPidOut = ClassPidRegulatorOut.NextStep(tdOut, setTemp);
+            data.SetPower = data.ClassPidOut.DeltaValue;// EvalfPower(data.ClassPidOut.DeltaValue);
+            return data;
+        }
+        public ClassDataBubler NextStep(ClassDataTime classDataTime, double tdOut, double setupTemp)
+        {
+            if (SetupTemp != setupTemp)
+                SetupTemp = null;
+
+            if (SetupTemp == null)
+            {
+                SetupTemp = setupTemp;
+                TdOut = tdOut;
+            }
+
+            if (_bubblerStep.UsePid)
+            {
+                return NextStep_InnerPidRegulation(classDataTime, tdOut, setupTemp);
+            }
+            else
+                return NextStep_MaximumSpeed(classDataTime, tdOut, setupTemp);
         }
     }
 }

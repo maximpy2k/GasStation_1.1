@@ -1,18 +1,85 @@
-﻿using System;
+﻿using GasStation.xml.Const.Elements;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GasStation.Elements.Data
 {
-    public class ClassDataBubler:ClassDataBase
+    public class ClassDataBubler:ClassDataBase,INotifyPropertyChanged
     {
 
         public ClassDataBubler(ClassDataTime dataTime) : base(dataTime)
         {            
-        }     
+        }
+        public ClassDataBubler(ClassDataTime dataTime, XmlClassBubblerConst con) : base(dataTime)
+        {
+            DataTime = dataTime;
+            CurrDate = dataTime.BeginCycleStep;
+            _con = con;
+            ClassPidOut = new ClassDataPid(0, 0, con.Pid);
+        }
+        /// <summary>
+        /// Класс данных времени
+        /// </summary>
+        public ClassDataTime DataTime { get; set; }
+        private static XmlClassBubblerConst _con;
+        public bool StateHeat;
+        /// <summary>
+        /// Время измерения
+        /// </summary>
 
+        private double setupTemp;
+
+        /// <summary>
+        /// Температура, для установки
+        /// </summary>
+        public double SetupTemp
+        {
+            get
+            {
+                return setupTemp;
+            }
+            set
+            {
+                setupTemp = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SetupTemp"));
+            }
+        }
+
+        /// <summary>
+        /// Установленная мощность
+        /// </summary>
+        public double SetPower { get; set; }
+
+
+        ClassDataPid classPidOut;
+        /// <summary>
+        /// Данные по внешнему ПИД регулятору
+        /// </summary>
+        public ClassDataPid ClassPidOut
+        {
+            get
+            {
+                return classPidOut;
+            }
+            set
+            {
+                if (classPidOut == null)
+                    classPidOut = new ClassDataPid(0, 0, _con.Pid);
+
+                classPidOut.CurrValue = value.CurrValue;
+                classPidOut.DeltaValue = value.DeltaValue;
+                classPidOut.Edif = value.Edif;
+                classPidOut.Eint = value.Eint;
+                classPidOut.Eprop = value.Eprop;
+                classPidOut.SetupValue = value.SetupValue;
+            }
+        }
         /// <summary>
         /// Состояние борботера
         /// </summary>
@@ -32,10 +99,15 @@ namespace GasStation.Elements.Data
         /// </summary>
         public double SetupValue;
 
+        public double CurrSetTemp;
+
         /// <summary>
         /// Данные ПИД регулятора
         /// </summary>
         public ClassDataPid DataPid { get; set; }
+
+        public bool UsePid =>DataPid != null?true:false;
+        
 
 
         /// <summary>
@@ -66,5 +138,9 @@ namespace GasStation.Elements.Data
         /// Заголовок текстового файла
         /// </summary>
         public override string HeaderStr => $"{"Дата",-20}{"Время",-16:0.00}{"Состояние борботера",-16}{"Состояние реле",-16}{"Текущая температура",-16:0.00}{"Заданная температура",-16:0.00}";
+        
+        
+        public event PropertyChangedEventHandler PropertyChanged;
     }
+
 }

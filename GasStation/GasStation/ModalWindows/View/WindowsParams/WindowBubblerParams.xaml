@@ -3,12 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:conv="clr-namespace:GasStation.ViewModels.Converters"
         mc:Ignorable="d"
-        Title="Настройки барботёра" Height="122.025" Width="300">
+        Title="Настройки барботёра" Height="200" Width="300">
+    <Window.Resources>
+        <conv:ClassConverterRegime x:Key="ConvRegime"/>
+    </Window.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label FontSize="22" Content="Барботёр  №" Margin="5"></Label>
             <Label FontSize="22" DataContext="{Binding}" Content="{Binding Path=Num}" Margin="5"></Label>
+        </StackPanel>
+        <ComboBox Height="20" Margin="5"                   
+          ItemsSource="{Binding Source={StaticResource ConvRegime}, Path=Items}"
+          IsEnabled="{Binding EnabledChangedScript}"
+          Text="{Binding Path = TypeReg, Mode=TwoWay, Converter={StaticResource ConvRegime}}"/>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Height="20" Text="Заданная температура"  Width="127" Margin="2"/>
+
+            <TextBox IsEnabled="{Binding EnabledChangedScript}" Height="20" Width="70" Margin="2" Text="{Binding Path=SetupValue}"/>
         </StackPanel>
         <CheckBox Content="Включение барботёра"
                   IsEnabled="{Binding EnabledChangedScript}"
