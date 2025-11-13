@@ -136,11 +136,12 @@ namespace GasStation.Devices
                 if (_clsBubblerStep.UsePid)
                     relay = SerRelayValuePid(curr.ClassPidOut);
                 else relay = SerRelayValue();
-
+            SetPortState(_clsBublerStep.BubblerView.Relay);
                     curr.Relay = relay;
                 
             }
             SetPortState(_clsBubblerStep.BubblerView.Relay);
+            var dateNow = DateTime.Now;
 
             if (last != null)
             {
