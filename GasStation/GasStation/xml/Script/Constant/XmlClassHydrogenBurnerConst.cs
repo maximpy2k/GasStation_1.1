@@ -113,7 +113,16 @@ namespace GasStation.xml.Constant.XmlConst.Elements
             }
         }
 
-        public XmlTdConst TdFire => (XmlTdConst)(Td[1]);
+        public XmlTdConst TdFire 
+        {
+            get
+            {
+                if (Td.Length <= 1 ) 
+                    return null;
+
+                return (XmlTdConst)(Td[1]);
+            }
+        }
 
         public XmlTdConst TdBurner => (XmlTdConst)(Td[0]);
 

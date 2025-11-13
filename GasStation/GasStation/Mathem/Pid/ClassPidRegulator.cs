@@ -55,8 +55,6 @@ namespace GasStation.Mathem.Pid
         /// <returns>Данные по шагу работы ПИД регулятора</returns>
         public ClassDataPid NextStep(double currValue, double setupValue)
         {
-            //if (ListPidData.Count == 0)
-            //    ListPidData.Add(new ClassDataPid(currValue, setupValue, _pidConst));
             if (_lastPidData == null)
                 _lastPidData = new ClassDataPid(currValue, setupValue, _pidConst);
 

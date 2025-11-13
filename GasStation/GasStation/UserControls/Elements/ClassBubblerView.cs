@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ChartApplication.points;
+using GasStation.Annotations;
+using GasStation.Elements.Data;
+using GasStation.xml.Const.Elements;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,9 +12,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using GasStation.Annotations;
-using ChartApplication.points;
-using GasStation.xml.Const.Elements;
 
 namespace GasStation.ViewModels.Elements
 {
@@ -29,22 +30,33 @@ namespace GasStation.ViewModels.Elements
         {
             get
             {
-                return _const.Td != null ? new[] { SeriesReadTd } : null;                    
+                return _const.Td != null ? new[] { SeriesReadTemp, SeriesSetTemp } : null;                    
             }
         }
         /// <summary>
         /// Гпафик зависимости текущей барботера от времени
         /// </summary>
-        private PointsData<Point> seriesReadTd = new PointsData<Point>(LabelX, LabelY, LabelChart, LabelChart);
+        private PointsData<Point> seriesReadTemp = new PointsData<Point>(LabelX, LabelY, LabelChart, LabelSeriesReadTemp);
         /// <summary>
         /// График зависимости считанного значения температуры от времени
         /// </summary>
-        public PointsData<Point> SeriesReadTd
+        public PointsData<Point> SeriesReadTemp
         {
-            get { return seriesReadTd; }
+            get { return seriesReadTemp; }
             set
             {
-                seriesReadTd = value;
+                seriesReadTemp = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SeriesReadStream"));
+            }
+        }
+
+        private PointsData<Point> seriesSetTemp = new PointsData<Point>(LabelX, LabelY, LabelChart, LabelSeriesSetTemp);
+        public PointsData<Point> SeriesSetTemp
+        {
+            get { return seriesSetTemp; }
+            set
+            {
+                seriesSetTemp = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SeriesReadStream"));
             }
         }
@@ -55,11 +67,14 @@ namespace GasStation.ViewModels.Elements
 
         private const string LabelChart = "Температура барботера";
 
-        private const string LabelSeriesReadTd = "Текущая температура";
+        private const string LabelSeriesReadTemp = "Текущая температура";
+        private const string LabelSeriesSetTemp = "Заданная температура";
+        private const string LabelSeriesCalcTemp = "Рассчитанная температура";
 
         public void Clear()
         {
-            SeriesReadTd = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesReadTd} {_const.RusName} {_const.DevNum}");
+            SeriesReadTemp = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesReadTemp} {_const.RusName} {_const.DevNum}");
+            SeriesSetTemp = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesSetTemp} {_const.RusName} {_const.DevNum}");
         }
 
         private bool _relay;
@@ -103,6 +118,34 @@ namespace GasStation.ViewModels.Elements
         /// Возможность проверки привелегий
         /// </summary>
         public bool UsePriv { get; set; }
+
+        private ClassDataBubler dataBubbler;
+        /// <summary>
+        /// Данные по Барботеру
+        /// </summary>
+        public ClassDataBubler DataBubbler
+        {
+            get { return dataBubbler; }
+            set
+            {
+                dataBubbler = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DataBubbler"));
+            }
+        }
+        private bool usePid = false;
+        public bool UsePid
+        {
+            get
+            {
+                return usePid;
+            }
+            set
+            {
+                usePid = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UsePid"));
+            }
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -18,7 +18,7 @@
         WindowStartupLocation="Manual" 
         Left="{Binding Source={x:Static properties:Settings.Default}, Path=WindowLeft, Mode=TwoWay}"
         Top="{Binding Source={x:Static properties:Settings.Default}, Path=WindowTop, Mode=TwoWay}"
-        Title="Пирогенное окисление ПО (Версия 1.4.0 от 28.10.2025)" Height="1010.231" 
+        Title="Пирогенное окисление ПО (Версия 1.5.1 от 13.11.2025)" Height="1010.231" 
         Width="1373.5" Background="AliceBlue">
     <Window.Resources>
         <model:MainWindowViewModel x:Key="viewMod1"/>
@@ -146,7 +146,7 @@
                             <!--<newelem:UserControl_Voronezj
                                                             DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,32,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
 
-                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" Height="235" Margin="880,27,68,567" Width="450"/>
+                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" Height="245" Margin="880,27,68,567" Width="450"/>
                         </Grid>
                     </ScrollViewer>
 

@@ -10,6 +10,7 @@ namespace GasStation.xml.Const.Elements
     {
         public XmlClassBubblerConst(XmlNode xmlNode):base(xmlNode)
         {
+
         }
 
         /// <summary>
@@ -54,6 +55,27 @@ namespace GasStation.xml.Const.Elements
                     masCapConst[idx] = new XmlClassCapConst(nodes[idx]);
 
                 return masCapConst;
+            }
+        }
+
+        /// <summary>
+        /// Узел Xml
+        /// </summary>
+        public double UpSpeed
+        {
+            get
+            {
+                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxUpSpeed']");
+                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
+            }
+        }
+
+        public double DownSpeed
+        {
+            get
+            {
+                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxDownSpeed']");
+                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
             }
         }
 

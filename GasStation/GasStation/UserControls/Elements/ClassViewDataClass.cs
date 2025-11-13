@@ -134,7 +134,7 @@ namespace GasStation.ViewModels.Elements
         public ClassHydrogenBurnerView[] HydrogenBurnerView { get; set; }
         public BaseClassViewControllers[] ViewControllers{ get; set; }
 
-        private string _messageOut = "";
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -180,7 +180,7 @@ namespace GasStation.ViewModels.Elements
                 return lst.ToArray();
             }
         }
-
+        private string _messageOut = "";
         public string MessageOut
         { get
             {
@@ -190,6 +190,27 @@ namespace GasStation.ViewModels.Elements
             {
                 _messageOut = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MessageOut"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MessageType"));
+            }
+        }
+        public string MessageType
+        {
+            get
+            {
+                var str= _messageOut.Split('\r');
+                var lastStr ="";
+                if (str.Length > 1)
+                    lastStr = str[str.Length - 2];
+                str = null;
+                if (lastStr.Contains("Тревога"))
+                    return "Тревога";
+                if (lastStr.Contains("Ошибка"))
+                    return "Ошибка";
+                if (lastStr.Contains("Авария"))
+                    return "Авария";
+                
+
+                return "Норма";
             }
         }
 

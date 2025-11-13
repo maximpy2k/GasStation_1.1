@@ -100,6 +100,37 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="SensorStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Rectangle x:Name="rectangle" RadiusY="5" RadiusX="5" Stroke="Black">
+                                <Rectangle.Fill>
+                                    <RadialGradientBrush RadiusY="0.9" RadiusX="0.9">
+                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFA0E65B"/>
+                                    </RadialGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <RadialGradientBrush RadiusY="0.9" RadiusX="0.9">
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="#FFE51400"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Ellipse Fill="#FF04F836" HorizontalAlignment="Left" Margin="382,600,0,167" Stroke="Black" Width="30"/>
@@ -211,7 +242,7 @@
             <local:UserControlRrgWithoutFlap Margin="203,0,0,215" HorizontalAlignment="Left" Width="166" Height="85" VerticalAlignment="Bottom"
                                   DataContext="{Binding Rrgs[3]}"/>
 
-            <local:UserControlHydrogenBurner Width="Auto" Margin="508,368,696,289" Height="Auto"
+            <local:UserControlHydrogenBurnerOneTd Width="Auto" Margin="508,368,696,289" Height="Auto"
                                              DataContext="{Binding Burners[0]}"/>
 
             <local:UserControl_N2 HorizontalAlignment="Left" Margin="70,78,0,0" Width="34" RenderTransformOrigin="0.5,0.5" Height="134" VerticalAlignment="Top">
@@ -351,7 +382,6 @@
                     </RadialGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <CheckBox x:Name="checkBox_Copy" IsChecked="{Binding Burners[0].HydrogenBurnerView.IsWater}" Content="CheckBox" Height="33" Margin="650,623,0,0" Style="{DynamicResource CheckBox_WaterError}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="33"/>
             <CheckBox x:Name="checkBox_Copy1"  IsChecked="{Binding Chambers[0].ChamberView.IsWater}" Content="CheckBox" Height="33" Margin="0,0,311,141" Style="{DynamicResource CheckBox_WaterError}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="33"/>
             <Image x:Name="image" HorizontalAlignment="Left" Height="21" Margin="137,0,0,110.833" VerticalAlignment="Bottom" Width="17" Source="/SoursePrj;component/Images/ClapWater.png"/>
             <Image x:Name="image1" HorizontalAlignment="Left" Height="112" Margin="20.166,0,0,61.086" VerticalAlignment="Bottom" Width="118" Source="/SoursePrj;component/Images/Water.png"/>
@@ -416,7 +446,7 @@
             <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="386,132,0,0" VerticalAlignment="Top" Width="26"
                                     DataContext="{Binding Flaps[5]}"/>
 
-            
+
 
 
             <Rectangle Margin="174,0,0,253" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="9" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5" Height="9" VerticalAlignment="Bottom">
@@ -850,6 +880,7 @@
             </Rectangle>
             <local:UserControl_Flap_Inverted HorizontalAlignment="Left" Height="26" Margin="451,132,0,0" VerticalAlignment="Top" Width="26"
                 DataContext="{Binding Flaps[6]}"/>
+            <CheckBox x:Name="checkBox_Copy"  IsChecked="{Binding Burners[0].HydrogenBurnerView.IsWater}" Content="CheckBox" Height="33" Margin="0,0,688,141" Style="{DynamicResource CheckBox_WaterError}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="33"/>
 
         </Grid>
         <local:UserControl_PipeAir Margin="526,-295,0,0" Height="37" VerticalAlignment="Top"  HorizontalAlignment="Left" Width="335">
@@ -903,5 +934,10 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="label2_Copy" Content="Н.О." HorizontalAlignment="Left" Margin="381,580,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFD8D295" HorizontalAlignment="Left" Height="34" Margin="184,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="104" RadiusX="5" RadiusY="5"/>
+        <Label x:Name="label_Copy1" Content="Воздух" HorizontalAlignment="Left" Margin="187,35,0,0" Width="72" Height="35" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <CheckBox  IsChecked="{Binding Sensors[0].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" Visibility="{Binding EnableOut, Mode=OneWay}" IsEnabled="False" Height="19" Margin="259,45,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="19"/>
+        <CheckBox  IsChecked="{Binding Sensors[1].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" Visibility="{Binding EnableOut, Mode=OneWay}" IsEnabled="False" Height="31" Margin="22,39,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="107"/>
+        <Label x:Name="label_Copy2" Content="Утечка H2" HorizontalAlignment="Left"  Margin="27,37,0,0" Width="99" Height="35"  VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Bisque"/>
     </Grid>
 </UserControl>

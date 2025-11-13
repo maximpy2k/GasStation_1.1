@@ -11,7 +11,6 @@
     <StackPanel Orientation="Horizontal">
         <StackPanel>
             <userControlsView:PidRegulator DataContext="{Binding Path='RrgView.DataRrg.DataPid'}" />
-
         </StackPanel>
         <chartApplication:ControlChart x:Name="chart1"                            
                             Line0="{Binding Path=RrgView.SeriesSetStream}"

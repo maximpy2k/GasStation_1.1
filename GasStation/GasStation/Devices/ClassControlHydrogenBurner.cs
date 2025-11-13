@@ -46,7 +46,9 @@ namespace GasStation.Devices
 
 
             _tdBurner = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.Td[0]);
-            _tdFire = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.Td[1]);
+
+            if(_classHydrogenBurnerStep.HydrogenBurnerConst.Td.Length>1)
+                _tdFire = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.Td[1]);
 
             _states = states.ToArray();
             newStep = true;
@@ -73,13 +75,16 @@ namespace GasStation.Devices
         protected override void NextStepFunc()
         {
             _tdBurner.Add(GetAcpTdBurner());
-            _tdFire.Add(GetAcpTdFire());
+            if(_tdFire!= null)
+                _tdFire.Add(GetAcpTdFire());
 
             var last = (ClassDataHydrogenBurner)LastData;
             var curr = new ClassDataHydrogenBurner(_classDataTime);
 
             curr.TdBurner = _tdBurner.AverTd;
-            curr.TdFire = _tdFire.AverTd;
+           if(_tdFire!= null)
+                curr.TdFire = _tdFire.AverTd;
+            
             curr.StateWater = GetPortWaterState();
             curr.StateFire = GetPortFireState();
 
@@ -149,7 +154,8 @@ namespace GasStation.Devices
                 _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.PointsPrepare.Clr(Cnt);
             }
 
-            _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdFire));
+            if(_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire!=null)
+                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdFire));
             _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdBurner));
 
             _classHydrogenBurnerStep.HydrogenBurnerView.TdHeaterHydrogenBurner = curr.TdBurner;

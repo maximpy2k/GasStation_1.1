@@ -58,13 +58,19 @@ namespace GasStation.xml.Script
             var atrUsePid = xmlDocument.CreateAttribute("usePid");
             atrUsePid.Value = "True";
 
+            var atrTypeReg = xmlDocument.CreateAttribute("typeReg");
+            atrTypeReg.Value = "MaximumSpeed";// typeReg.ToString();
+
             #endregion               
+
             #region Добавление атрибутов
             _xmlNode.Attributes.Append(atrName);
             _xmlNode.Attributes.Append(atrNum);
             _xmlNode.Attributes.Append(atrUseBubbler);
             _xmlNode.Attributes.Append(atrSetupVal);
             _xmlNode.Attributes.Append(atrPriv);
+            _xmlNode.Attributes.Append(atrUsePid);
+            _xmlNode.Attributes.Append(atrTypeReg);
             #endregion
 
             bubblerView.UsePriv = UsePriv;
@@ -120,6 +126,52 @@ namespace GasStation.xml.Script
         //        PropertyIsChange("UseBubbler");
         //    }
         //}
+
+        /// <summary>
+        /// Использование ПИД регулятора
+        /// </summary>
+        public bool UsePid
+        {
+            get
+            {
+                if (XmlNode.Attributes["usePid"] == null)
+                    return false;
+                bool usePid;
+
+                bool.TryParse(XmlNode.Attributes["usePid"].Value, out usePid);
+                return usePid;
+            }
+            set
+            {
+                if (!EnabledChangedScript)
+                    return;
+                if (XmlNode.Attributes["usePid"] == null)
+                {
+                    MessageBox.Show("Используется старая версия скрипта.\nНет атрибута 'usePid'");
+                    return;
+                }
+
+                XmlNode.Attributes["usePid"].Value = value.ToString();
+                PropertyIsChange("UsePid");
+            }
+        }
+
+        public Regims TypeReg
+        {
+            get
+            {
+                var currType = (Regims)Enum.Parse(typeof(Regims), XmlNode.Attributes["typeReg"].Value);
+                return currType;
+            }
+            set
+            {
+                if (!EnabledChangedScript)
+                    return;
+
+                XmlNode.Attributes["typeReg"].Value = value.ToString();
+                PropertyIsChange("TypeReg");
+            }
+        }
 
         public bool UseBubbler
         {

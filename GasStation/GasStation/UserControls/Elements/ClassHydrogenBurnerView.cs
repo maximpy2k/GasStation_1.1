@@ -16,7 +16,8 @@ namespace GasStation.ViewModels.Elements
         {
             _const = con;
 
-            _seriesTdFire = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdFire} {_const.TdFire.RusName} {_const.TdFire.DevNum}");
+            if(_const.TdFire!=null)
+                _seriesTdFire = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdFire} {_const.TdFire.RusName} {_const.TdFire.DevNum}");
 
             _seriesTdHeaterHydrogenBurner = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdHeaterHydrogenBurner} {_const.TdBurner.RusName} {_const.TdBurner.DevNum}");
         }
@@ -37,6 +38,7 @@ namespace GasStation.ViewModels.Elements
                 _tdFire = value;
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TdFire"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VisibleTdFire"));
             }
         }
 
@@ -56,6 +58,25 @@ namespace GasStation.ViewModels.Elements
                 _tdHeaterHydrogenBurner = value;
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TdHeaterHydrogenBurner"));
+            }
+        }
+
+        public Visibility visibleTdFire = Visibility.Visible;
+        public Visibility VisibleTdFire
+        {
+            get
+            {
+                if (_const.TdFire != null)
+                    visibleTdFire = Visibility.Visible;
+                else
+                    visibleTdFire = Visibility.Collapsed;
+
+               return visibleTdFire;
+            }
+            set
+            {
+                visibleTdFire = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VisibleTdFire"));
             }
         }
 
@@ -193,14 +214,17 @@ namespace GasStation.ViewModels.Elements
         {
             get
             {
-                return new[] { SeriesTdHeaterHydrogenBurner, SeriesTdFire };
+                if(SeriesTdFire!=null)
+                    return new[] { SeriesTdHeaterHydrogenBurner, SeriesTdFire };
+                return new[] { SeriesTdHeaterHydrogenBurner};
             }
         }
 
         public void Clear()
         {
-            SeriesTdFire = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdFire} {_const.TdFire.RusName} {_const.TdFire.DevNum}");
-            SeriesTdHeaterHydrogenBurner = new PointsData<Point>(LabelX, LabelY, LabelChart,  $"{LabelSeriesTdHeaterHydrogenBurner} {_const.TdBurner.RusName} {_const.TdBurner.DevNum}");
+            if(_const.TdFire!=null)
+                SeriesTdFire = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{_const.TdFire.RusName} {_const.TdFire.DevNum}");
+            SeriesTdHeaterHydrogenBurner = new PointsData<Point>(LabelX, LabelY, LabelChart,  $"{_const.TdBurner.RusName} {_const.TdBurner.DevNum}");
         }
     }
 }

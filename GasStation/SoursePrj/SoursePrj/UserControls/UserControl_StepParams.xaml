@@ -6,11 +6,11 @@
              xmlns:conv="clr-namespace:GasStation.ViewModels.Converters;assembly=GasStation"
              xmlns:local="clr-namespace:SoursePrj"
              mc:Ignorable="d" 
-             d:DesignHeight="250" Width="484.811" Height="250">
+             d:DesignHeight="250" Width="484.811" Height="280">
     <UserControl.Resources>
         <conv:ClassConverterStepParams x:Key="ConverterStepParams"></conv:ClassConverterStepParams>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="0,0,0,-6">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -20,13 +20,14 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="230*"/>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Margin="0" Stroke="Black" RadiusX="5" RadiusY="5" Grid.RowSpan="8" OpacityMask="Black" Grid.ColumnSpan="2">
+        <Rectangle Stroke="Black" RadiusX="5" RadiusY="5" Grid.RowSpan="9" OpacityMask="Black" Grid.ColumnSpan="3">
             <Rectangle.Resources>
                 <Style TargetType="Rectangle">
                     <Style.Triggers>
@@ -52,12 +53,14 @@
         <Label x:Name="label_Type" Content="Тип интервала" Grid.Row="5" FontSize="16" FontWeight="Bold"/>
 
         <Label x:Name="label_Copy1" Content="Время до выгрузки" Margin="0" Grid.Row="6" FontSize="16" FontWeight="Bold"/>
-        <Label x:Name="label_Copy2" Content="Время до окончания интервала" Margin="0" Grid.Row="7" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_Copy2" Content="Время до окончания инт." Margin="0,0,0,0" Grid.Row="7" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_Copy3" Content="Статус работы" Margin="0,0,0,0" Grid.Row="8" FontSize="16" FontWeight="Bold"/>
         <TextBox x:Name="textBoxCh" IsReadOnly="True" Text="{Binding Path=Consts.ChannelConsts.NameChannel,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="0" FontSize="16" FontWeight="Bold"/>
         <TextBox x:Name="textBoxUser" IsReadOnly="True" DataContext="{Binding Path=Consts.XmlConst, Mode=OneWay}" 
                  Text="{Binding XPath=settings/securety/@rusName, Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="1" TextChanged="textBoxUser_TextChanged" FontSize="16" FontWeight="Bold"/>
 
         <TextBox x:Name="textBox" IsReadOnly="True" Text="{Binding Path=FileName,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
+        
         <TextBox x:Name="textBox_Status" IsReadOnly="True" Text="{Binding Path=StatusSystem,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="3" FontSize="16" FontWeight="Bold">
             <TextBox.Resources>
                 <Style TargetType="TextBox">
@@ -78,6 +81,57 @@
                                     <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
                                         <GradientStop Color="White" Offset="1"/>
                                         <GradientStop Color="#FF3BAA1A" Offset="0"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox x:Name="textBox_Status1" IsReadOnly="True" Text="{Binding Path=ViewData.MessageType,Mode=OneWay}" Grid.Column="1" Margin="2" TextWrapping="Wrap" Grid.Row="8" FontSize="16" FontWeight="Bold">
+            <TextBox.Resources>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="Авария">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="Red" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="Text" Value="Ошибка">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="Red" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="Text" Value="Норма">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="White" Offset="1"/>
+                                        <GradientStop Color="#FF3BAA1A" Offset="0"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="Text" Value="Тревога">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <RadialGradientBrush RadiusX="0.9" RadiusY="0.9">
+                                        <GradientStop Color="White" Offset="1"/>
+                                        <GradientStop Color="Yellow"  Offset="0"/>
                                     </RadialGradientBrush>
                                 </Setter.Value>
                             </Setter>

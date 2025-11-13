@@ -96,6 +96,9 @@
     <Compile Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2_N2.xaml.cs">
       <DependentUpon>UserControl_Pipe_SiH2Cl2_N2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlHydrogenBurnerOneTd.xaml.cs">
+      <DependentUpon>UserControlHydrogenBurnerOneTd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControlProject.xaml.cs">
       <DependentUpon>UserControlProject.xaml</DependentUpon>
     </Compile>
@@ -228,7 +231,7 @@
     <Compile Include="UserControls\UserControl_Gate.xaml.cs">
       <DependentUpon>UserControl_Gate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl_Drossel.xaml.cs">
+    <Compile Include="UserControls\UserControl_Drossel.xaml.cs">
       <DependentUpon>UserControl_Drossel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Брянск\Изотрон\UserControl_IzotronBryanskNK.xaml.cs">
@@ -358,6 +361,10 @@
     <Page Include="UserControls\Pipes\UserControl_Pipe_SiH2Cl2_N2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlHydrogenBurnerOneTd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UserControlProject.xaml">
       <SubType>Designer</SubType>
@@ -535,7 +542,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl_Drossel.xaml">
+    <Page Include="UserControls\UserControl_Drossel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

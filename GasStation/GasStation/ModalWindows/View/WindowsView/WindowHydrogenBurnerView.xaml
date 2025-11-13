@@ -33,20 +33,20 @@
                             Line2="{Binding SeriesCurrSetTemp}" Margin="0,0,266,-60"/>-->
 
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="4" Text="Термодатчик горелки"/>
-            <TextBox IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="4"
-                 Text="{Binding Path =TdHeaterHydrogenBurner}"/>
+            <TextBox  IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="4"
+                 Text="{Binding Path = HydrogenBurnerView.TdHeaterHydrogenBurner}"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="4" Text="Термодатчик пламени"/>
-            <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="4"
-                 Text="{Binding Path=TdFire}"/>
+            <TextBlock Visibility="{Binding VisibleTdFire}" Grid.Row="1" Grid.Column="0" Margin="4" Text="Термодатчик пламени"/>
+            <TextBox Visibility="{Binding VisibleTdFire}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="4"
+                 Text="{Binding Path=HydrogenBurnerView.TdFire}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Margin="4" Text="Нагрев"/>
             <CheckBox Grid.Row="2" Grid.Column="1" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center"
-                 IsChecked="{Binding Path=Heating}"/>
+                 IsChecked="{Binding Path=Heat}"/>
         </Grid>
         <graph:ControlChart x:Name="chart1" Grid.Column="1" Margin="5" 
-            Line0="{Binding Path=SeriesTdHeaterHydrogenBurner}"
-            Line1="{Binding Path=SeriesTdFire}"/>
+            Line0="{Binding Path=HydrogenBurnerView.SeriesTdHeaterHydrogenBurner}"
+            Line1="{Binding Path=HydrogenBurnerView.SeriesTdFire}"/>
     </Grid>
 
 </Window>
