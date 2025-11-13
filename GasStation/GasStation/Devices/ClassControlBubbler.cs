@@ -21,7 +21,7 @@ namespace GasStation.Devices
         /// Класс параметров  шага устройства
         /// </summary>
         XmlClassBubbler _clsBubblerStep => (XmlClassBubbler)_clsDevStep;
-        
+
         public ClassControlBubbler(ClassDataTime classDataTime) : base(classDataTime)
         {
 
@@ -46,7 +46,7 @@ namespace GasStation.Devices
                 return _bubblerPidRegulation;
             }
         }
-        
+
         private double LastSetTempOut = -25;
 
 
@@ -124,7 +124,7 @@ namespace GasStation.Devices
             LastSetTempOut = setTemp;
 
             ClassDataBubler curr = _bubblerPidRegulation.NextStep(_classDataTime, CurrTd.AverTd, setTemp);
-            
+
             curr.SetupTemp = _clsBubblerStep.SetupValue;
             curr.UseBubbler = _clsBubblerStep.UseBubbler;
 
@@ -132,14 +132,12 @@ namespace GasStation.Devices
             var relay = false;
             if (curr.UseBubbler)
             {
-                
+
                 if (_clsBubblerStep.UsePid)
                     relay = SerRelayValuePid(curr.ClassPidOut);
                 else relay = SerRelayValue();
-            SetPortState(_clsBubblerStep.BubblerView.Relay);
-                    curr.Relay = relay;
-                
             }
+            curr.Relay = relay;
             SetPortState(_clsBubblerStep.BubblerView.Relay);
             var dateNow = DateTime.Now;
 
@@ -193,7 +191,7 @@ namespace GasStation.Devices
         {
             if (pid.DeltaValue < 0)
                 return false;
-            
+
             return true;
         }
         private bool SerRelayValue()
@@ -211,11 +209,11 @@ namespace GasStation.Devices
         public double GetAcp()
         {
             var contr7018 = LstContr[_clsBubblerStep.BubblerConst.Td.MasAcpConst[0].ContrNum] as ClassController7018;
-            if(contr7018!=null)
+            if (contr7018 != null)
                 return contr7018.AcpValues[_clsBubblerStep.BubblerConst.Td.MasAcpConst[0].Port];
 
             var contr87017 = LstContr[_clsBubblerStep.BubblerConst.Td.MasAcpConst[0].ContrNum] as ClassController87017;
-            if(contr87017!=null)
+            if (contr87017 != null)
                 return contr87017.AcpValues[_clsBubblerStep.BubblerConst.Td.MasAcpConst[0].Port];
 
             return 0.0;
@@ -226,7 +224,7 @@ namespace GasStation.Devices
             var constBubler = _clsBubblerStep.BubblerConst;
             if (constBubler.MasDioConst == null)
                 return;
-            
+
 
             var contr = LstContr[constBubler.MasDioConst[0].ContrNum] as ClassController87057;
             contr.MasPortsState[constBubler.MasDioConst[0].Port] = portState;
@@ -240,5 +238,5 @@ namespace GasStation.Devices
 
 
     }
-    
+
 }
