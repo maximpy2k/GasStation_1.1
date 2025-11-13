@@ -88,9 +88,11 @@ namespace GasStation.Mathem.Chamber
             switch (_chamberSectionStep.TypeReg)
             {
                 case Regims.MaximumSpeed:
-                    return GetMaximumSpeed(classDataTime);
+                    return _chamberSectionStep.SetupTemp;
                 case Regims.TimeInterval:
                     return TimeInterval(classDataTime);
+                case Regims.DefaultSpeed:
+                    return GetMaximumSpeed(classDataTime);
             }
             return _chamberSectionStep.SetupTemp;
         }
