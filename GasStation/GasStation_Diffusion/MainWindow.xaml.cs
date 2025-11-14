@@ -30,7 +30,7 @@ namespace GasStation_Diffusion
         }
 
         private const double ZoomSpeed = 0.05;
-        private const double MinZoom = 0.5;
+        private const double MinZoom = 0.8;
         private const double MaxZoom = 5;
         private bool mouseEnter = false;
         private bool _isDragging = false;

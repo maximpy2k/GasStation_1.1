@@ -121,7 +121,7 @@
                     <TextBlock Text="Схема" FontSize="14.667"/>
                 </TabItem.Header>
                 <Grid Background="#FFAFBEAF">
-                    <Slider Grid.Row="0" Name="SliderScale" Minimum="0.5" Maximum="1.5" Value="0.8" Grid.ColumnSpan="2" d:LayoutOverrides="TopMargin, BottomMargin" Margin="0,0,0.334,0" >
+                    <Slider Grid.Row="0" Name="SliderScale" Minimum="0.5" Maximum="1.5" Value="0.8" Margin="0,26,0,0" >
                         <Slider.Background>
                             <RadialGradientBrush RadiusX="0.659" RadiusY="29.228" GradientOrigin="0.515,28.136">
                                 <GradientStop Color="#FFC2CEC2" Offset="0.619"/>
@@ -135,17 +135,17 @@
                      MouseLeave="ScrollViewer_MouseLeave" 
                      PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
                      PreviewMouseMove="ScrollViewer_PreviewMouseMove"
-                     PreviewMouseLeftButtonUp="ScrollViewer_PreviewMouseLeftButtonUp"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FFAFBEAF">
+                     PreviewMouseLeftButtonUp="ScrollViewer_PreviewMouseLeftButtonUp" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Background="#FFAFBEAF" Margin="0,26,0,-26">
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                             <Grid.LayoutTransform>
                                 <ScaleTransform ScaleX="0.8" ScaleY="0.8" x:Name="ZoomTransform" />
                             </Grid.LayoutTransform>
-                            <зеленоград:UserControl_Zelenograd_Diffusion DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-22,-95,69,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <зеленоград:UserControl_Zelenograd_Diffusion DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-133,-27,0,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <!--<newelem:UserControl_Voronezj
                                                             DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,32,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
 
-                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" Margin="823,324,78,26" Width="450"/>
+                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" Margin="807,358,94,-8" Width="450"/>
 
                         </Grid>
                     </ScrollViewer>
