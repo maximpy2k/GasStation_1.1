@@ -49,6 +49,8 @@ namespace GasStation.Controllers
         public int ErrWrite = 0;
 
         public int ErrWdt = 0;
+
+        public int CountResetWdt = 0;
         /// <summary>
         /// Добавление ошибки чтения
         /// </summary>
@@ -258,6 +260,7 @@ namespace GasStation.Controllers
                 case "80":
                     ControllerStatus = true;
                     ClrErrWdt();
+                    CountResetWdt = 0;
                     break;
                 //WdtStatusErr
                 case "04":
@@ -265,7 +268,10 @@ namespace GasStation.Controllers
                 default:
                     AddErrWdt();
                     GenerateAlarm(Transfer.Ошибка_сработал_Wdt_таймер, ErrWdt, TypeConditional.Alarm);
+                    if (CountResetWdt < ErrRead)
+                        ResetWdt();
                     ControllerStatus = false;
+                    CountResetWdt++;
                     break;
             }
         }

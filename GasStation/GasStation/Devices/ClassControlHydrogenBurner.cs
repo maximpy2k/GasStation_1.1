@@ -156,6 +156,7 @@ namespace GasStation.Devices
 
             if(_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire!=null)
                 _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdFire));
+            
             _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdBurner));
 
             _classHydrogenBurnerStep.HydrogenBurnerView.TdHeaterHydrogenBurner = curr.TdBurner;

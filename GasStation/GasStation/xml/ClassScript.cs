@@ -51,7 +51,7 @@ namespace GasStation.xml
         {
             //ClsDataTime = new ClassDataTime(Steps);
             ViewData.Clear();
-            SelectedGraph = "Термокамера 1";
+            SelectedGraph = "Термокамера";
         }
         
         private ClassDataTime _clsDataTime;

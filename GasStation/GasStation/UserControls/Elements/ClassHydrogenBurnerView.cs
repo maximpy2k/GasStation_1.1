@@ -216,6 +216,7 @@ namespace GasStation.ViewModels.Elements
             {
                 if(SeriesTdFire!=null)
                     return new[] { SeriesTdHeaterHydrogenBurner, SeriesTdFire };
+
                 return new[] { SeriesTdHeaterHydrogenBurner};
             }
         }

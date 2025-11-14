@@ -305,7 +305,8 @@ namespace GasStation.xml.Constant
                     mas.Add($"{conv.Convert(xml.TdBurner.DevName, xml.TdBurner.DevNum)}");
 
                     //Температура горения
-                    mas.Add($"{conv.Convert(xml.TdFire.DevName, xml.TdFire.DevNum)}");
+                    if(xml.TdFire != null)
+                        mas.Add($"{conv.Convert(xml.TdFire.DevName, xml.TdFire.DevNum)}");
 
                     //Датчик воды горелки
                     mas.Add($"{conv.Convert(xml.DioWaterConst.DevName, xml.DioWaterConst.DevNum,@"горелки")}");
@@ -378,7 +379,8 @@ namespace GasStation.xml.Constant
                 if (PumpSysConst.Length > 0)
                     mas.Add(@"Насосная система");
 
-                mas.AddRange(ConstBurner.Select(xml => $"{xml.RusName} {xml.DevNum}"));
+                if (ConstBurner.Length > 0)
+                    mas.Add(@"Горелка");
 
                 return mas;
             }

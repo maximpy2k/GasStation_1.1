@@ -257,7 +257,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBox x:Name="textBox_Copy" IsReadOnly="True" Margin="0,13.398,24.54,0" TextWrapping="Wrap" FontWeight="Bold" Background="{x:Null}" BorderBrush="Black" FontSize="18" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62"
-                 Text="{Binding Path=HydrogenBurnerView.TdFire,StringFormat={}{0:0.0}}"/>
+                 Text="{Binding Path=HydrogenBurnerView.TdHeaterHydrogenBurner,StringFormat={}{0:0.0}}"/>
         <GroupBox x:Name="groupBox1" Header="Задание" Margin="2.874,0,0,7.677" BorderBrush="Black" FontWeight="Bold" Height="49.947" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="70.394">
             <GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

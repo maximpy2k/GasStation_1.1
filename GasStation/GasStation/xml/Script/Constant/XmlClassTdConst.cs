@@ -1,4 +1,5 @@
 ﻿using GasStation.xml.Constant;
+using GasStation.xml.Constant.XmlConst;
 using System;
 using System.Linq;
 using System.Xml;
@@ -77,5 +78,17 @@ namespace GasStation.xml.Const.Elements
                 return masAcpConst;
             }
         }
-     }
+
+
+        public XmlTableConst CorrectionTable
+        {
+            get
+            {
+                var node = XmlNode.SelectSingleNode("table[@name='CorrectionTable']");
+                if (node == null)
+                    return null;
+                return new XmlTableConst(node);
+            }
+        }
+    }
 }

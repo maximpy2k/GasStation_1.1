@@ -575,7 +575,7 @@ namespace GasStation.Devices
                 conJumpArgs.NumDev = _classChamberStep.Num;
                 conJumpArgs.NameDev = "Камера";
                 conJumpArgs.CurrValue = Convert.ToInt32(stateDWater);
-                conJumpArgs.TextError =$"Нет водяного охлаждения, нагрев будет отключен через {TimeToOff[numDWater]} секунд";
+                conJumpArgs.TextError =$"Тревога! Нет водяного охлаждения, нагрев будет отключен через {TimeToOff[numDWater]} секунд";
                 conJumpArgs.Conditional = 0;
                 conJumpArgs.TypeConditional = TypeConditional.LogWrite;
                 if(TimeToOff[numDWater]== _classChamberStep.ChamberConst.TimeToOff[numDWater]-1)

@@ -683,25 +683,74 @@ namespace GasStation.Mathem.Chamber
 
         public double EvalfT(double u)
         {
-            if (TdType == TypeTd.TABLE)            
-                return ConstTd.MasAcpConst[0].GetValue(u);
+            if (TdType == TypeTd.TABLE)
+            {
+                var corrTempTable = ConstTd.MasAcpConst[0].GetValue(u);
+                return Correction(corrTempTable);
+            }            
+                
             
             if (u < TableTd.First()[1])
-                return TableTd.First()[0];
+            {
+                var corrTempTdD = TableTd.First()[0];
+                return Correction(corrTempTdD);
+            }
 
             if (u > TableTd.Last()[1])
-                return TableTd.Last()[0];
+            {
+                var corrTempTdU = TableTd.Last()[0];
+                return Correction(corrTempTdU);
+            }
 
             var min = TableTd.Where(dat => dat[1] <= u).Last();
             var max = TableTd.Where(dat => dat[1] >= u).First();
 
             if (max[1] == min[1])
-                return max[0];
+            {
+                var corrTempMax = max[0];
+                return Correction(corrTempMax);
+            }
 
             var k = (max[0] - min[0]) / (max[1] - min[1]);
             var b = min[0] - k * min[1];
 
-            return k * u + b;
+            var temp = k * u + b;
+            return Correction(temp);
+        }
+
+        private double Correction(double inTemp )
+        {
+            var tab = ConstTd.CorrectionTable;
+            if(tab == null)
+                return inTemp;
+
+            var points = tab.UsedPoints.OrderBy(dat => dat.X).Distinct().ToArray();
+
+            if (points.Length == 0)
+                return inTemp;
+
+            if (inTemp < points[0].X)
+                return inTemp;
+            if (inTemp > points.Last().X)
+                return inTemp;
+
+            var minMas = points.Where(dat => dat.X <= inTemp).ToArray();
+            var maxMas = points.Where(dat => dat.X > inTemp).ToArray();
+
+            if (minMas.Length != 0 && maxMas.Length == 0)
+                return minMas.Last().Y;
+            if (minMas.Length == 0 && maxMas.Length != 0)
+                return maxMas[0].Y;
+
+
+            var beg = minMas.Last();
+            var end = maxMas.First();
+
+            var k = (beg.Y - end.Y) / (beg.X - end.X);
+            var b = beg.Y - k * beg.X;
+
+            var temp = k * inTemp + b;
+            return temp;
         }
 
         //int maxErr = 10;

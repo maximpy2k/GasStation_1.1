@@ -14,8 +14,8 @@ namespace GasStation.xml.Script
     /// <summary>
     /// Xml узел камеры
     /// </summary>
-    public class XmlClassChamberSection: XmlBaseClassElementScript
-    { 
+    public class XmlClassChamberSection : XmlBaseClassElementScript
+    {
         /// <summary>
         /// Константы термосекции
         /// </summary>
@@ -63,10 +63,10 @@ namespace GasStation.xml.Script
             #region Добавление атрибутов
 
             _xmlNode.Attributes.Append(atrName);
-            _xmlNode.Attributes.Append(atrNum);            
+            _xmlNode.Attributes.Append(atrNum);
             _xmlNode.Attributes.Append(atrUseSetThermo);
             _xmlNode.Attributes.Append(atrUsePid);
-             _xmlNode.Attributes.Append(atrTypeReg);
+            _xmlNode.Attributes.Append(atrTypeReg);
             _xmlNode.Attributes.Append(atrPriv);
             #endregion
         }
@@ -77,13 +77,13 @@ namespace GasStation.xml.Script
         /// <param name="xmlNode">XML узел с заданием для термосекции для шага скрипта </param>
         /// <param name="thermoSectionConst">Константы термоскции</param>
         /// /// <param name="ThermoSectionView">Класс для отображения</param>
-        public XmlClassChamberSection(XmlNode xmlNode, XmlClassThermoSectionConst thermoSectionConst, ClassChamberSectionView ThermoSectionView) :base(xmlNode)
+        public XmlClassChamberSection(XmlNode xmlNode, XmlClassThermoSectionConst thermoSectionConst, ClassChamberSectionView ThermoSectionView) : base(xmlNode)
         {
             TypeElement = TypeElement.ChamberSection;
 
             ThermoSectionConst = thermoSectionConst;
             this.ThermoSectionView = ThermoSectionView;
-        }            
+        }
         /// <summary>
         /// Номер таблицы корректировки
         /// </summary>
@@ -92,8 +92,7 @@ namespace GasStation.xml.Script
         /// <summary>
         /// Использование ПИД регулятора
         /// </summary>
-        public bool 
-UsePid
+        public bool UsePid
         {
             get
             {
@@ -103,10 +102,6 @@ UsePid
             }
             set
             {
-                //if (!EnabledChangedScript)
-                //{
-                //    return;
-                //}
 
                 XmlNode.Attributes["usePid"].Value = value.ToString();
                 PropertyIsChange("UsePid");
@@ -131,7 +126,7 @@ UsePid
                 PropertyIsChange("SetupTemp");
             }
         }
-       
+
         /// <summary>
         /// Режим работы Термосекции
         /// </summary>
@@ -139,11 +134,11 @@ UsePid
         {
             get
             {
-                return (Regims) Enum.Parse(typeof (Regims), XmlNode.Attributes["typeReg"].Value);
+                return (Regims)Enum.Parse(typeof(Regims), XmlNode.Attributes["typeReg"].Value);
             }
             set
             {
-                XmlNode.Attributes["typeReg"].Value=value.ToString();
+                XmlNode.Attributes["typeReg"].Value = value.ToString();
                 PropertyIsChange("TypeReg");
             }
         }
@@ -157,47 +152,8 @@ UsePid
             {
                 var setupTemp = double.NaN;
                 double.TryParse(XmlNode.ParentNode.Attributes["setupTemp"].Value, out setupTemp);
+                return setupTemp;
 
-
-                //XmlTableFild beg = new XmlTableFild(0.0, 0.0, true);
-                //XmlTableFild end = new XmlTableFild(1500, 1500, true);
-
-                //var tabNum = 0;
-                //if (UseSetThermo)
-                //    tabNum = 0;
-
-                //if (UsePid)
-                //    tabNum = 1;
-
-                var tab = ThermoSectionConst.Tables[TabNum];
-
-
-                var points = tab.UsedPoints.OrderBy(dat=>dat.X).Distinct().ToArray();
-
-                if (points.Length == 0)
-                    return setupTemp;
-
-                if (setupTemp < points[0].X)
-                    return setupTemp;
-                if (setupTemp > points.Last().X)
-                    return setupTemp;
-
-                var minMas = points.Where(dat => dat.X <= setupTemp).ToArray();
-                var maxMas = points.Where(dat => dat.X > setupTemp).ToArray();
-
-                if (minMas.Length != 0 && maxMas.Length == 0)
-                    return minMas.Last().Y;
-                if (minMas.Length == 0 && maxMas.Length != 0)
-                    return maxMas[0].Y;
-
-
-                var beg = minMas.Last();
-                var end = maxMas.First();
-
-                var k = (beg.Y - end.Y) / (beg.X - end.X);
-                var b = beg.Y - k * beg.X;
-
-                return k * setupTemp + b;                
             }
         }
 

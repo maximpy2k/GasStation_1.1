@@ -936,8 +936,8 @@
         <Label x:Name="label2_Copy" Content="Н.О." HorizontalAlignment="Left" Margin="381,580,0,0" VerticalAlignment="Top"/>
         <Rectangle Fill="#FFD8D295" HorizontalAlignment="Left" Height="34" Margin="184,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="104" RadiusX="5" RadiusY="5"/>
         <Label x:Name="label_Copy1" Content="Воздух" HorizontalAlignment="Left" Margin="187,35,0,0" Width="72" Height="35" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-        <CheckBox  IsChecked="{Binding Sensors[0].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" Visibility="{Binding EnableOut, Mode=OneWay}" IsEnabled="False" Height="19" Margin="259,45,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="19"/>
-        <CheckBox  IsChecked="{Binding Sensors[1].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" Visibility="{Binding EnableOut, Mode=OneWay}" IsEnabled="False" Height="31" Margin="22,39,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="107"/>
+        <CheckBox  IsChecked="{Binding Sensors[0].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" IsEnabled="False" Height="19" Margin="259,45,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="19"/>
+        <CheckBox  IsChecked="{Binding Sensors[1].SensorView.SensorValue, Mode=OneWay}" HorizontalAlignment="Left" IsEnabled="False" Height="31" Margin="22,39,0,0" Style="{DynamicResource SensorStyle}" VerticalAlignment="Top" Width="107"/>
         <Label x:Name="label_Copy2" Content="Утечка H2" HorizontalAlignment="Left"  Margin="27,37,0,0" Width="99" Height="35"  VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Bisque"/>
     </Grid>
 </UserControl>

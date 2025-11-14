@@ -30,7 +30,7 @@ namespace GasStation.Controllers
 
             var cmd1 = $"#{contrConst.Pa:X2}0A{LowByte:X2}";
             var cmd2 = $"#{contrConst.Pa:X2}0B{HiByte:X2}";
-
+            //4090
             SendCmd(cmd1);
             SendCmd(cmd2);            
         }
