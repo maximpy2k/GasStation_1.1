@@ -175,9 +175,9 @@
     <Resource Include="Ico_SK.ico.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="xml\consts.xml">
+    <Content Include="xml\consts.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

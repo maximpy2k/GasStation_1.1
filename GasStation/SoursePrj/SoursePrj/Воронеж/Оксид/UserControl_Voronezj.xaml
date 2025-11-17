@@ -22,8 +22,8 @@
                                     </RadialGradientBrush>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <Image x:Name="image" Margin="10.373,3.919,10.374,5.081" Source="Images/DropWater.png" HorizontalAlignment="Stretch"/>
-                            <Image x:Name="image_Copy" Margin="7,2" Source="Images/CrossCancel.png" HorizontalAlignment="Stretch"/>
+                            <Image x:Name="image" Margin="10.373,3.919,10.374,5.081" Source="/SoursePrj;component/Images/DropWater.png" HorizontalAlignment="Stretch"/>
+                            <Image x:Name="image_Copy" Margin="7,2" Source="/SoursePrj;component/Images/CrossCancel.png" HorizontalAlignment="Stretch"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
@@ -62,7 +62,7 @@
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter Property="HorizontalAlignment" TargetName="userControl_LoaderDisc" Value="Left"/>
                                 <Setter Property="Width" TargetName="userControl_LoaderDisc" Value="106.636"/>
-                                <Setter Property="Margin" TargetName="userControl_LoaderDisc" Value="-230.849,0,0,0"/>
+                                <Setter Property="Margin" TargetName="userControl_LoaderDisc" Value="-320.849,0,0,0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -609,7 +609,7 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Image x:Name="image" HorizontalAlignment="Left" Height="21" Margin="137,0,0,110.833" VerticalAlignment="Bottom" Width="17" Source="Images/ClapWater.png"/>
-            <Image x:Name="image1" HorizontalAlignment="Left" Height="112" Margin="20.166,0,0,61.086" VerticalAlignment="Bottom" Width="118" Source="Images/Water.png"/>
+            <Image x:Name="image1" HorizontalAlignment="Left" Height="112" Margin="20.166,0,0,61.086" VerticalAlignment="Bottom" Width="118" Source="/SoursePrj;component/Images/Water.png"/>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="26" Margin="57.666,0,0,94.167" TextWrapping="Wrap" Text="H2O" VerticalAlignment="Bottom" Width="40" FontSize="18" FontWeight="Bold"/>
             <Rectangle Margin="0,0,57.85,336.833" Stroke="Black" StrokeThickness="0.1" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="162.75">
                 <Rectangle.Fill>
@@ -672,7 +672,7 @@
             <local:UserControl_Flap HorizontalAlignment="Left" Height="25.708" Margin="458.167,0,0,245.086" VerticalAlignment="Bottom" Width="25.708"
                                     DataContext="{Binding Flaps[0]}"/>
             <!--<local:UserControl_StepParams HorizontalAlignment="Right" Height="184.302" Margin="0,25.773,20.609,0" VerticalAlignment="Top" Width="400.094"/>-->
-            <local:UserControl_Gate Margin="1106,264,168,-264" />
+            <local:UserControl_GateBinding DataContext="{Binding Gates[0]}" Margin="1106,257,168,-264" />
         </Grid>
 
     </Grid>

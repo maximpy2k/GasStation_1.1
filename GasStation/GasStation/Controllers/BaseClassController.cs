@@ -268,7 +268,7 @@ namespace GasStation.Controllers
                 default:
                     AddErrWdt();
                     GenerateAlarm(Transfer.Ошибка_сработал_Wdt_таймер, ErrWdt, TypeConditional.Alarm);
-                    if (CountResetWdt < ErrRead)
+                    if (CountResetWdt < ErrWdt)
                         ResetWdt();
                     ControllerStatus = false;
                     CountResetWdt++;

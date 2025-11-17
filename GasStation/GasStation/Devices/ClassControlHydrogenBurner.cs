@@ -87,7 +87,7 @@ namespace GasStation.Devices
             
             curr.StateWater = GetPortWaterState();
             curr.StateFire = GetPortFireState();
-
+            
 
             #region Определение вкл/выкл нагрева
             if (curr.TdBurner < _classHydrogenBurnerStep.HydrogenBurnerConst.SetupTemp && _classHydrogenBurnerStep.Heat)
@@ -132,7 +132,7 @@ namespace GasStation.Devices
             CheckStatus(curr);
             SetPortRelay(_classHydrogenBurnerStep.Heat);
             SetPortHeater(_classHydrogenBurnerStep.HydrogenBurnerView.Relay);
-
+            curr.StateHeat = _classHydrogenBurnerStep.Heat;
             if (last != null)
             {
                 if (curr.StateHeat != last.StateHeat)
@@ -164,6 +164,7 @@ namespace GasStation.Devices
             _classHydrogenBurnerStep.HydrogenBurnerView.Relay = curr.StateRelay;
             _classHydrogenBurnerStep.HydrogenBurnerView.IsWater = curr.StateWater;
             _classHydrogenBurnerStep.HydrogenBurnerView.IsFire = curr.StateFire;
+
         }
 
         public double GetAcpTdBurner()

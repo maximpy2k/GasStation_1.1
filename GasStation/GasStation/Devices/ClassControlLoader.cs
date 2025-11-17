@@ -10,6 +10,7 @@ using GasStation.Status;
 using GasStation.xml.Script;
 using GasStation.xml.Script.XmlScript;
 using GasStation.xml.Script.EnumConst;
+using System.Windows.Controls;
 
 namespace GasStation.Devices
 {
@@ -110,6 +111,7 @@ namespace GasStation.Devices
                 if (ErrorLoad)
                 {
                     _clsLoaderStep.LoaderView.StatusLoad = !ErrorLoad;
+                    
                     SetPortLoad(_clsLoaderStep.DestLoad);
 
                     if (lastErrorload != ErrorLoad)
@@ -230,23 +232,44 @@ namespace GasStation.Devices
 
         public void SetPortLoad(bool? portState)
         {
+            if (lastLoad != portState && generateEventLoad)
+            {
+                GenerateEvent((bool)portState, "Направление загрузчика, Загрузка", TypeConditional.Text);
+                generateEventLoad = false;
+            }
+
             if (_clsLoaderStep.LoaderConst.Load == null)
                 return;
             var contr = LstContr[_clsLoaderStep.LoaderConst.Load.ContrNum] as ClassController87057;
 
             if (portState!=null)
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.Load.Port] = (bool)portState;
+
+            lastLoad = portState;
+            generateEventLoad = true;
         }
 
         public void SetPortUnload(bool? portState)
         {
+            if(lastUnload != portState&& generateEventLoad)
+            {
+                GenerateEvent((bool)portState, "Направление загрузчика, Выгрузка", TypeConditional.Text);
+                generateEventLoad = false;
+            }
             if (_clsLoaderStep.LoaderConst.UnLoad == null)
                 return;
             var contr = LstContr[_clsLoaderStep.LoaderConst.UnLoad.ContrNum] as ClassController87057;
             if (portState != null)
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.UnLoad.Port] = (bool)portState;
-        }
 
+            lastUnload = portState;
+            generateEventLoad = true;
+
+
+        }
+        private bool? lastLoad=false;
+        private bool? lastUnload = false;
+        private bool generateEventLoad = true;
         public void CheckStatus()
         {
             #region Проверка загрузки
@@ -298,7 +321,7 @@ namespace GasStation.Devices
 
             #region Проверка Заслонки Открыта
 
-            List<XmlStateConditionScript> statesDGateOpen = _states.Where(dat => dat.Device == "Заслонка открыта").ToList();
+            List<XmlStateConditionScript> statesDGateOpen = _states.Where(dat => dat.Device == "Gate").ToList();
 
             for (int i = 0; i < statesDGateOpen.Count; i++)
             {

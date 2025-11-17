@@ -67,7 +67,16 @@ namespace GasStation.xml.Script.Constant
                 return node == null ? null : new XmlClassDioPortConst(node);
             }
         }
-
+        public bool GateControl
+        {
+            get
+            {
+                if (OpenGate == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
 
         public override bool EnabledChangedScript => SecuretyConst.CurrUser.Privs.Contains(EnumPriv.ChangeGateScript);
     }

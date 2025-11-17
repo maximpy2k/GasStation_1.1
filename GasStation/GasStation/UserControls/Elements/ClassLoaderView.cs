@@ -174,7 +174,7 @@ namespace GasStation.ViewModels.Elements
                 if (_const.StatusConst.RegWork != null)
                     _regWork = !_const.StatusConst.RegWork.IsInverted ? value : !value;
                 else
-                    RegWork = value;
+                    _regWork = value;
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RegWork"));
             }

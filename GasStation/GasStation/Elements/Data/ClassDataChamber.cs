@@ -20,6 +20,11 @@ namespace GasStation.Elements.Data
             ClassPidOut = new ClassDataPid(0, 0, con.Pid[0]);
         }
 
+        public ClassDataChamber()
+        {
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 

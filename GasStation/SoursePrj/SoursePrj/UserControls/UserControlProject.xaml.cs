@@ -81,7 +81,10 @@ namespace SoursePrj.UserControls
                 gridView.Columns.Add(NewCol(loader));
 
             foreach (var gate in viewMod.ClsScript.Consts.GateConst)
-                gridView.Columns.Add(NewCol(gate));
+            {
+                if (gate.GateControl)
+                    gridView.Columns.Add(NewCol(gate));
+            }
 
 
             Lst.View = gridView;

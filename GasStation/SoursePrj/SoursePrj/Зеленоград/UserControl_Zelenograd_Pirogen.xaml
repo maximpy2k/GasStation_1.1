@@ -202,7 +202,7 @@
                     </TransformGroup>
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
-            <local:UserControl_LoaderControl DataContext="{Binding Loaders[0]}" HorizontalAlignment="Right" Margin="0,0,9,291" Width="115" Height="130" VerticalAlignment="Bottom"/>
+            <local:UserControl_LoaderControlWithControl DataContext="{Binding Loaders[0]}" HorizontalAlignment="Right" Margin="0,0,9,291" Width="115" Height="130" VerticalAlignment="Bottom"/>
 
             <Rectangle HorizontalAlignment="Left" Height="20" Margin="478,0,0,349" Stroke="Black" VerticalAlignment="Bottom" Width="34" StrokeThickness="0.1" RadiusX="3" RadiusY="3">
                 <Rectangle.Fill>

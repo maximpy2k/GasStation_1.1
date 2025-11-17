@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using GasStation.Controllers;
+using GasStation.Controllers.DI;
 using GasStation.Devices.ControlChamber;
 using GasStation.Elements.Data;
+using GasStation.Status;
 using GasStation.ViewModels.Elements;
-using GasStation.xml.Script.XmlScript.Elements;
-using GasStation.Controllers;
-using System;
 using GasStation.xml.Const.Elements;
 using GasStation.xml.Script;
-using GasStation.Status;
 using GasStation.xml.Script.EnumConst;
-using GasStation.Controllers.DI;
+using GasStation.xml.Script.XmlScript.Elements;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
+using System.Windows.Forms;
 using static GasStation.xml.Script.EnumConst.ClassEnumWaterSensor;
 
 namespace GasStation.Devices
@@ -23,6 +25,8 @@ namespace GasStation.Devices
 
         private bool HeapState = true;
         private bool StateWater = false;
+
+        public ClassDataChamber curr = new ClassDataChamber();
         public ClassControlTermoChamber(ClassDataTime classDataTime) : base(classDataTime)
         {
             
@@ -39,6 +43,7 @@ namespace GasStation.Devices
             Init();
 
             HeapState = _classChamberStep.Heat;
+            
             //_classChamberStep.ChamberView.RelayState = HeapState;
             SetPortState(HeapState);
 
@@ -85,107 +90,6 @@ namespace GasStation.Devices
                 CheckVoltage24State();
             }
 
-            #region Проверка воды
-            // var StateDWater = GetPortWaterState();
-            // _classChamberStep.ChamberView.IsWater = _classChamberStep.ChamberConst.DioWaterConst.IsInverted ? !StateDWater : StateDWater;
-            // //if (StateDWater != prevStateWater || StartFunc==false)
-            // //{
-            //     prevStateWater = StateDWater;
-            // if (!StateDWater)
-            // {
-            //     if (TimeToOff < 1)
-            //     {
-            //         _classChamberStep.Heat = false;
-            //         SetPortState(_classChamberStep.Heat);
-            //         _classChamberStep.ChamberView.EnableButton = false;
-
-            //         if (HeatOff == true)
-            //             return;
-
-
-            //         if (_classChamberStep.ChamberView.EnableButton == false)
-
-            //         {
-            //             ConJumpArgs conJumpArgs1 = new ConJumpArgs(_classDataTime.TimeStep);
-            //             conJumpArgs1.NumDev = _classChamberStep.Num;
-            //             conJumpArgs1.NameDev = "Камера";
-            //             conJumpArgs1.CurrValue = Convert.ToInt32(StateDWater);
-            //             conJumpArgs1.TextError = $"Нагрев печи отключен";
-            //             conJumpArgs1.Conditional = 0;
-            //             conJumpArgs1.TypeConditional = TypeConditional.Alarm;
-            //             AlarmError?.Invoke(this, conJumpArgs1);
-            //             HeatOff = true;
-            //             return;
-            //         }
-            //     }
-
-            //         TimeToOff = TimeToOff - 1;
-            //         ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-            //         conJumpArgs.NumDev = _classChamberStep.Num;
-            //         conJumpArgs.NameDev = "Камера";
-            //         conJumpArgs.CurrValue = Convert.ToInt32(StateDWater);
-            //         conJumpArgs.TextError =
-            //             $"Нет водяного охлаждения, нагрев будет отключен через {TimeToOff} секунд";
-            //         conJumpArgs.Conditional = 0;
-            //         conJumpArgs.TypeConditional = TypeConditional.Text;
-            //         AlarmError?.Invoke(this, conJumpArgs);
-            //     }
-
-            // else
-            //     TimeToOff=_classChamberStep.ChamberConst.TimeToOff;
-            // //}
-            //     #endregion
-
-            // #region Проверка воды передний фланец
-            // if (_classChamberStep.ChamberConst.DioWaterForwardConst != null)
-            // {
-            //     var StateDWaterForward = GetPortWaterForwardState();
-            //     _classChamberStep.ChamberView.IsWaterForward = _classChamberStep.ChamberConst.DioWaterForwardConst.IsInverted ? !StateDWaterForward:StateDWaterForward;
-            //    // if (StateDWaterForward != prevStateWaterForward || StartFunc == false)
-            //   //  {
-            //         prevStateWaterForward = StateDWaterForward;
-            //         if (!StateDWaterForward)
-            //         {
-            //             ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-            //             conJumpArgs.NumDev = _classChamberStep.Num;
-            //             conJumpArgs.NameDev = "Камера";
-            //             conJumpArgs.CurrValue = Convert.ToInt32(StateDWater);
-            //             conJumpArgs.TextError = "Нет водяного охлаждения (передний фланец)";
-            //             conJumpArgs.Conditional = 0;
-            //             conJumpArgs.TypeConditional = TypeConditional.Alarm;
-            //             AlarmError?.Invoke(this, conJumpArgs);
-            //         }
-            //     }
-            //// }
-            // #endregion
-
-            // #region Проверка воды задний фланец
-            // if (_classChamberStep.ChamberConst.DioWaterBackwardConst != null)
-            // {
-            //     var StateDWaterBackward = GetPortWaterBackwardState();
-
-            //     _classChamberStep.ChamberView.IsWaterBackward = StateDWaterBackward;
-            //     _classChamberStep.ChamberView.IsWaterBackward = _classChamberStep.ChamberConst.DioWaterBackwardConst.IsInverted ? !StateDWaterBackward : StateDWaterBackward;
-            //     if (StateDWaterBackward != prevStateWaterBackward || StartFunc == false)
-            //     {
-
-            //         prevStateWaterBackward = StateDWaterBackward;
-            //         if (!StateDWaterBackward)
-            //         {
-            //             ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-            //             conJumpArgs.NumDev = _classChamberStep.Num;
-            //             conJumpArgs.NameDev = "Камера";
-            //             conJumpArgs.CurrValue = Convert.ToInt32(StateDWaterBackward);
-            //             conJumpArgs.TextError = "Нет водяного охлаждения (задний фланец)";
-            //             conJumpArgs.Conditional = 0;
-            //             conJumpArgs.TypeConditional = TypeConditional.Alarm;
-            //             AlarmError?.Invoke(this, conJumpArgs);
-            //         }
-            //     }
-
-            //     StartFunc = true;
-            // }
-            #endregion
 
             #region Проверка заслонки
             if (_classChamberStep.ChamberConst.DioDumperOpenConst != null)
@@ -206,6 +110,7 @@ namespace GasStation.Devices
 
             }
             CheckStatus();
+            curr.StateHeat = HeapState;
         }
 
         public bool GetPortWaterState()
@@ -318,27 +223,49 @@ namespace GasStation.Devices
         }
 
         private bool CrashThermocouple = false;
+        
         public void CheckStatus()
         {
+            if (curr != null)
+            {
+                if (curr.StateHeat != HeapState)
+                {
+                    ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+                    conJumpArgs.NumDev = _classChamberStep.Num;
+                    conJumpArgs.NameDev = "Термокамера";
+                    conJumpArgs.CurrValue = Convert.ToInt32(curr.StateHeat);
+                    conJumpArgs.TextError = "Нагрев";
+                    conJumpArgs.Conditional = 1;
+                    conJumpArgs.TypeConditional = TypeConditional.Text;
+                    AlarmError(this, conJumpArgs);
+
+                }
+            }
+
             #region Проверка аварийной температуры
 
             var termoSec = ThermoSections;
 
             foreach (var ts in termoSec)
             {
-                var curr = (ClassDataChamber)ts.LastData;
-                if (curr == null)
+                var currSectionData = (ClassDataChamber)ts.LastData;
+                if (currSectionData == null)
                     continue;
-                if (curr.ClassPidIn.CurrValue >= _classChamberStep.ChamberConst.CrashTemp)
+
+                
+
+
+
+                if (currSectionData.ClassPidIn.CurrValue >= _classChamberStep.ChamberConst.CrashTemp)
                 {
                     HeapState = false;
                     SetPortState(HeapState);
-                    ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
+                    ConJumpArgs conJumpArgs = new ConJumpArgs(currSectionData.TimeStep);
                     conJumpArgs.NumDev = _classChamberStep.Num;
                     conJumpArgs.NameDev = "Термокамера";
-                    conJumpArgs.CurrValue = curr.ClassPidIn.CurrValue;
+                    conJumpArgs.CurrValue = currSectionData.ClassPidIn.CurrValue;
 
-                    if (curr.ClassPidIn.CurrValue >= 10000)
+                    if (currSectionData.ClassPidIn.CurrValue >= 10000)
                     {
                         CrashThermocouple = true;
                         _classChamberStep.Heat = false;
@@ -361,16 +288,16 @@ namespace GasStation.Devices
                     AlarmError?.Invoke(this, conJumpArgs);
                     return;
                 }
-                if (curr.ClassPidOut.CurrValue >= _classChamberStep.ChamberConst.CrashTemp)
+                if (currSectionData.ClassPidOut.CurrValue >= _classChamberStep.ChamberConst.CrashTemp)
                 {
                     HeapState = false;
                     SetPortState(HeapState);
-                    ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
+                    ConJumpArgs conJumpArgs = new ConJumpArgs(currSectionData.TimeStep);
                     conJumpArgs.NumDev = _classChamberStep.Num;
                     conJumpArgs.NameDev = "Термокамера";
-                    conJumpArgs.CurrValue = curr.ClassPidOut.CurrValue;
+                    conJumpArgs.CurrValue = currSectionData.ClassPidOut.CurrValue;
 
-                    if (curr.ClassPidOut.CurrValue >= 10000)
+                    if (currSectionData.ClassPidOut.CurrValue >= 10000)
                     {
                         CrashThermocouple = true;
                         _classChamberStep.Heat = false;

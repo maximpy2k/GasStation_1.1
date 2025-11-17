@@ -183,8 +183,14 @@
     <Compile Include="UserControls\UserControl_FrequencyGenerator.xaml.cs">
       <DependentUpon>UserControl_FrequencyGenerator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControl_Gate.xaml.cs">
+      <DependentUpon>UserControl_Gate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControl_GateControl.xaml.cs">
       <DependentUpon>UserControl_GateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControl_LoaderControlWithControl.xaml.cs">
+      <DependentUpon>UserControl_LoaderControlWithControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserControl_LoaderControlWithoutSpeed.xaml.cs">
       <DependentUpon>UserControl_LoaderControlWithoutSpeed.xaml</DependentUpon>
@@ -228,8 +234,8 @@
     <Compile Include="Брянск\UserControl_Bryansk.xaml.cs">
       <DependentUpon>UserControl_Bryansk.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UserControl_Gate.xaml.cs">
-      <DependentUpon>UserControl_Gate.xaml</DependentUpon>
+    <Compile Include="UserControls\UserControl_GateBinding.xaml.cs">
+      <DependentUpon>UserControl_GateBinding.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserControl_Drossel.xaml.cs">
       <DependentUpon>UserControl_Drossel.xaml</DependentUpon>
@@ -478,9 +484,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UserControl_Gate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\UserControl_GateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControl_LoaderControlWithControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UserControl_LoaderControlWithoutSpeed.xaml">
       <SubType>Designer</SubType>
@@ -538,7 +552,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UserControl_Gate.xaml">
+    <Page Include="UserControls\UserControl_GateBinding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

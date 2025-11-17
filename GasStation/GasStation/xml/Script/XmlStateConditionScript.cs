@@ -256,6 +256,9 @@ namespace GasStation.xml.Script
         {
             get
             {
+                if (Device == null)
+                    return "";
+
                 var device = Device;
 
                 var indexZ = device.LastIndexOf(" ");

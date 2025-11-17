@@ -16,6 +16,9 @@ namespace GasStation.Elements.Data
         {
             this.xmlСlassGate = xmlСlassGate;
         }
+        public bool StatusGateOpen { get; set; }
+        public bool StatusGateClose { get; set; }
+
         public override string HeaderStr => $"{"Дата",-20}{"Время",-10}{"Кнопка открытия заслонки",-20}{"Кнопка закрытия заслонки",-20}{"Датчик открытой заслонки",-30}{"Датчик закрытой заслонки",-30}";
 
         public override string ToString()

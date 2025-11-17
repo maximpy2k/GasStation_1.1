@@ -32,14 +32,67 @@ namespace GasStation_Voronezj
         public MainWindow()
         {
             InitializeComponent();
+            this.PreviewMouseWheel += OnPreviewMouseWheel;
         }
 
+        private const double ZoomSpeed = 0.05;
+        private const double MinZoom = 0.8;
+        private const double MaxZoom = 5;
+        private bool mouseEnter = false;
+        private bool _isDragging = false;
+        private Point _lastMousePosition;
+
+        private void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (!mouseEnter)
+                return;
+            double zoomFactor = e.Delta > 0 ? ZoomSpeed : -ZoomSpeed;
+            double newZoom = ZoomTransform.ScaleX + zoomFactor;
+
+            newZoom = Math.Max(MinZoom, Math.Min(MaxZoom, newZoom));
+            ZoomTransform.ScaleX = newZoom;
+            ZoomTransform.ScaleY = newZoom;
+            e.Handled = true;
+        }
+        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                _isDragging = true;
+                _lastMousePosition = e.GetPosition(this);
+                Mouse.OverrideCursor = Cursors.SizeAll;
+                e.Handled = true;
+            }
+        }
+        private void ScrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDragging && ScrollViewerMain != null)
+            {
+                Point currentPosition = e.GetPosition(this);
+                Vector delta = currentPosition - _lastMousePosition;
+
+                // Применяем смещение к ScrollViewer
+                ScrollViewerMain.ScrollToHorizontalOffset(ScrollViewerMain.HorizontalOffset - delta.X);
+                ScrollViewerMain.ScrollToVerticalOffset(ScrollViewerMain.VerticalOffset - delta.Y);
+
+                _lastMousePosition = currentPosition;
+                e.Handled = true;
+            }
+        }
         private void button_Click(object sender, RoutedEventArgs e)
-        {           
+        {
 
 
         }
-
+        private void ScrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (_isDragging)
+            {
+                _isDragging = false;
+                Mouse.OverrideCursor = null;
+                e.Handled = true;
+            }
+        }
         MainWindowViewModel viewmodel;
         private void Pusk_Click(object sender, RoutedEventArgs e)
         {
@@ -92,6 +145,7 @@ namespace GasStation_Voronezj
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
+            Properties.Settings.Default.Save();
             var result = MessageBox.Show("Закрыть программу?", null, MessageBoxButton.YesNo, MessageBoxImage.Question);
             viewmodel = (MainWindowViewModel)FindResource("viewMod1");
 
@@ -102,17 +156,55 @@ namespace GasStation_Voronezj
                 return;
             }
             if (viewmodel.ClassProcessingScript != null)
-            //viewmodel.ClassProcessingScript.AbortScript = true;
-            viewmodel.ClassProcessingScript.Stop();
+                //viewmodel.ClassProcessingScript.AbortScript = true;
+                viewmodel.ClassProcessingScript.Stop();
             Process.GetCurrentProcess().Kill();
         }
-
 
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
         }
 
+        private bool IsPositionValid()
+        {
+            try
+            {
+                var left = Properties.Settings.Default.WindowLeft;
+                var top = Properties.Settings.Default.WindowTop;
+                var width = 1373.5;
+                var height = 1010.231;
 
+                // Проверяем, что хотя бы 100px окна видно на экране
+                double visibleWidth = Math.Min(left + width, SystemParameters.WorkArea.Right) - Math.Max(left, SystemParameters.WorkArea.Left);
+                double visibleHeight = Math.Min(top + height, SystemParameters.WorkArea.Bottom) - Math.Max(top, SystemParameters.WorkArea.Top);
+
+                return visibleWidth >= width && visibleHeight >= height;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void ScrollViewer_MouseEnter(object sender, MouseEventArgs e)
+        {
+            mouseEnter = true;
+        }
+
+        private void ScrollViewer_MouseLeave(object sender, MouseEventArgs e)
+        {
+            mouseEnter = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!IsPositionValid())
+            {
+                // Устанавливаем позицию по умолчанию
+                this.Left = 0;
+                this.Top = 0;
+            }
+        }
     }
 }

@@ -10,10 +10,18 @@
         xmlns:conv="clr-namespace:GasStation.ViewModels.Converters;assembly=GasStation"
         xmlns:newelem="clr-namespace:SoursePrj;assembly=SoursePrj"
         xmlns:userControls="clr-namespace:SoursePrj.UserControls;assembly=SoursePrj"
+        xmlns:properties="clr-namespace:GasStation_Voronezj.Properties"
         xmlns:prj="clr-namespace:SoursePrj.UserControls;assembly=SoursePrj"
         Closing="MainWindow_OnClosing"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="Manual" 
+        Left="{Binding Source={x:Static properties:Settings.Default}, Path=WindowLeft, Mode=TwoWay}"
+        Top="{Binding Source={x:Static properties:Settings.Default}, Path=WindowTop, Mode=TwoWay}"
         mc:Ignorable="d"
-        Title="Оксид 3 ПО (Версия 15.5 от 05.10.2023)" Height="1069.231" Width="1373.5" Background="AliceBlue">
+        Title="Оксид 3 ПО (Версия 16.0 от 17.11.2025)" 
+        Height="1040.231" 
+        Width="1373.5" 
+        Background="AliceBlue">
     <Window.Resources>
         <model:MainWindowViewModel x:Key="viewMod1"/>
         <conv:ClassConverterRegime x:Key="ConvRegime"/>
@@ -125,11 +133,16 @@
                         </Slider.Background>
                     </Slider>
 
-                    <ScrollViewer  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FFAFBEAF">
+                    <ScrollViewer  x:Name="ScrollViewerMain"
+                      MouseEnter="ScrollViewer_MouseEnter" 
+                      MouseLeave="ScrollViewer_MouseLeave" 
+                      PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
+                      PreviewMouseMove="ScrollViewer_PreviewMouseMove"
+                      PreviewMouseLeftButtonUp="ScrollViewer_PreviewMouseLeftButtonUp" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" Background="#FFAFBEAF">
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                             <Grid.LayoutTransform>
-                                <ScaleTransform ScaleY="{Binding Value, ElementName=SliderScale}" ScaleX="{Binding Value, ElementName=SliderScale}"/>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8" x:Name="ZoomTransform"/>
                             </Grid.LayoutTransform>
                             <newelem:UserControl_Voronezj
                                                             DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,32,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
