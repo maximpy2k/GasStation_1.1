@@ -228,8 +228,8 @@ namespace GasStation.Devices.ControlChamber
             {
                 var k = (ClassChamberSectionStep.ThermoSectionConst.MinKey - ClassChamberSectionStep.ThermoSectionConst.MaxKey) / (0.0 - 100.0);
                 var b = ClassChamberSectionStep.ThermoSectionConst.MinKey - k * 0.0;
-                var setVal= ((int)(setValue * 100 * k + b)) << 1;
-
+                //var setVal= ((int)(setValue * 100 * k + b)) << 1;
+                var setVal = ((int)(setValue * 100 * k + b)) > ClassChamberSectionStep.ThermoSectionConst.MaxKey ? ClassChamberSectionStep.ThermoSectionConst.MaxKey : ((int)(setValue * 100 * k + b));
                 doController = LstContr[ClassChamberSectionStep.ThermoSectionConst.ContrNum] as BaseDOController;
                 doController.SetValue((int)setVal);
                 return;

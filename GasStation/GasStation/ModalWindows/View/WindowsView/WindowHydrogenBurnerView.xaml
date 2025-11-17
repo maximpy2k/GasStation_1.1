@@ -36,8 +36,8 @@
             <TextBox  IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="4"
                  Text="{Binding Path = HydrogenBurnerView.TdHeaterHydrogenBurner}"/>
 
-            <TextBlock Visibility="{Binding HydrogenBurnerView.VisibleTdFire}" Grid.Row="1" Grid.Column="0" Margin="4" Text="Термодатчик пламени"/>
-            <TextBox Visibility="{Binding HydrogenBurnerView.VisibleTdFire}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="4"
+            <TextBlock Visibility="{Binding VisibleTdFire}" Grid.Row="1" Grid.Column="0" Margin="4" Text="Термодатчик пламени"/>
+            <TextBox Visibility="{Binding VisibleTdFire}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="4"
                  Text="{Binding Path=HydrogenBurnerView.TdFire}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Margin="4" Text="Нагрев"/>

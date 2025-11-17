@@ -65,5 +65,25 @@ namespace StationImitation.Controllers
             _viewController.DioValues = dioValues;
             return "";
         }
+        protected override string DogCmds(string quest)
+        {
+            var val = Convert.ToInt32(quest.Substring(3, 4), 16);
+
+            if (addr != this.addr)
+                return "";
+
+            PortState &= 0x0FFF;
+            PortState = val;
+            _viewController.SetPower = PortState;
+
+            bool[] dioValues = new bool[14];
+            for (int i = 0; i < 14; i++)
+            {
+                dioValues[i] = Convert.ToBoolean((val & (1 << i)) >> i);
+            }
+
+            _viewController.DioValues = dioValues;
+            return "";
+        }
     }
 }

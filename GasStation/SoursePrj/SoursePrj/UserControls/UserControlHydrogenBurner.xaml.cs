@@ -36,8 +36,10 @@ namespace SoursePrj
                 return;
             }
             var burner = (XmlClassHydrogenBurning)DataContext;
-            win.DataContext = burner.HydrogenBurnerView;
-            
+            win.DataContext = DataContext;
+            //var burner = (XmlClassHydrogenBurning)DataContext;
+            //win.DataContext = burner.HydrogenBurnerView;
+
             win.ShowDialog();
         }
 

@@ -134,7 +134,11 @@ namespace GasStation.Mathem.Chamber
         public ClassDataChamber NextStep(ClassDataTime classDataTime, double tdOut, double tdIn, double setupTemp)
         {
             if (SetupTemp != setupTemp)
+            {
+                ClassPidRegulatorIn = null;
+                ClassPidRegulatorOut = null;
                 SetupTemp = null;
+            }
 
             if (SetupTemp == null)
             {
