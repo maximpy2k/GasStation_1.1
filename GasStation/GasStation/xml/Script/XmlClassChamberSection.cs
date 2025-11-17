@@ -54,7 +54,7 @@ namespace GasStation.xml.Script
             atrUsePid.Value = false.ToString();
 
             var atrTypeReg = xmlDocument.CreateAttribute("typeReg");
-            atrTypeReg.Value = "MaximumSpeed";
+            atrTypeReg.Value = "DefaultSpeed";
 
             var atrPriv = xmlDocument.CreateAttribute("usePriv");
             atrPriv.Value = "False";
