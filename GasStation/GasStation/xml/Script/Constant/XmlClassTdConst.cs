@@ -84,7 +84,7 @@ namespace GasStation.xml.Const.Elements
         {
             get
             {
-                var node = XmlNode.SelectSingleNode("table[@name='CorrectionTable']");
+                var node = XmlNode.SelectSingleNode("table[@name='CorrectionTemp']");
                 if (node == null)
                     return null;
                 return new XmlTableConst(node);

@@ -18,7 +18,7 @@
         WindowStartupLocation="Manual" 
         Left="{Binding Source={x:Static properties:Settings.Default}, Path=WindowLeft, Mode=TwoWay}"
         Top="{Binding Source={x:Static properties:Settings.Default}, Path=WindowTop, Mode=TwoWay}"
-        Title="Диффузия ПО (Версия 1.5.7 от 17.11.2025)" Height="1010.231" Width="1373.5" Background="AliceBlue" >
+        Title="Диффузия ПО (Версия 1.5.9 от 19.11.2025)" Height="1010.231" Width="1373.5" Background="AliceBlue" >
     <Window.Resources>
         <model:MainWindowViewModel x:Key="viewMod1"/>
         <conv:ClassConverterRegime x:Key="ConvRegime"/>

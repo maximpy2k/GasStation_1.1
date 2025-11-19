@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Xml;
 
 namespace GasStation.ModalWindows.Commands
 {
-    public class CommandOpenTable:ICommand
+    public class CommandOpenTable : ICommand
     {
         public CommandOpenTable()
         {
@@ -29,17 +30,43 @@ namespace GasStation.ModalWindows.Commands
         public void Execute(object parameter)
         {
             var scriptStep = parameter as XmlClassChamberSection;
-            
-
-            XmlNode xmlNode = scriptStep != null ? scriptStep.ThermoSectionConst.Tables[scriptStep.TabNum].XmlNode : parameter as XmlNode;
-            
-            var win = new WindowCorrTable();
-            var data= new XmlTableConst(xmlNode);
-            win.DataContext = data;
-            win.ShowDialog();
+            XmlNode xmlNode = null;
             if (scriptStep != null)
-                scriptStep.RefrashTemp();
-            
+            {
+                var cascadePidUse = scriptStep.UseSetThermo;
+
+                if (cascadePidUse)
+                {
+                    if (scriptStep.ThermoSectionConst.Td[0].CorrectionTable != null)
+                        xmlNode = scriptStep.ThermoSectionConst.Td[0].CorrectionTable.XmlNode;
+                    else
+                    {
+                        MessageBox.Show("Отсутствует корректировочная таблица для рабочего термодатчика");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (scriptStep.ThermoSectionConst.Td[1].CorrectionTable != null)
+                        xmlNode = scriptStep.ThermoSectionConst.Td[1].CorrectionTable.XmlNode;
+                    else
+                    {
+                        MessageBox.Show("Отсутствует корректировочная таблица для контрольного термодатчика");
+                        return;
+                    }
+                }
+
+            }
+            else
+                xmlNode = parameter as XmlNode;
+
+                var win = new WindowCorrTable();
+                var data = new XmlTableConst(xmlNode);
+                win.DataContext = data;
+                win.ShowDialog();
+                if (scriptStep != null)
+                    scriptStep.RefrashTemp();
+
+            }
         }
     }
-}

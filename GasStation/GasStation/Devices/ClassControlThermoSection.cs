@@ -79,6 +79,8 @@ namespace GasStation.Devices.ControlChamber
 
         }
 
+
+
         private void ReadTd()
         {
             #region Расчет температуры по внешнему термодатчику
@@ -216,6 +218,8 @@ namespace GasStation.Devices.ControlChamber
             return contr.AcpValues[ClassChamberSectionStep.ThermoSectionConst.Td[1].MasAcpConst[0].Port];
         }
 
+        public bool SwithHeater=false;
+        private int sendsInit = 0;
         public void SetValue(double setValue)
         {
             if (setValue < 0)
@@ -228,9 +232,24 @@ namespace GasStation.Devices.ControlChamber
             {
                 var k = (ClassChamberSectionStep.ThermoSectionConst.MinKey - ClassChamberSectionStep.ThermoSectionConst.MaxKey) / (0.0 - 100.0);
                 var b = ClassChamberSectionStep.ThermoSectionConst.MinKey - k * 0.0;
-                //var setVal= ((int)(setValue * 100 * k + b)) << 1;
+
                 var setVal = ((int)(setValue * 100 * k + b)) > ClassChamberSectionStep.ThermoSectionConst.MaxKey ? ClassChamberSectionStep.ThermoSectionConst.MaxKey : ((int)(setValue * 100 * k + b));
                 doController = LstContr[ClassChamberSectionStep.ThermoSectionConst.ContrNum] as BaseDOController;
+                
+                if (SwithHeater)
+                {
+                    if (sendsInit < 5)
+                    {
+                        setVal = ClassChamberSectionStep.ThermoSectionConst.MinKey;
+                        sendsInit++;
+                    }
+                    else
+                    {
+                        sendsInit = 0;
+                        SwithHeater = false;
+                    }
+                }
+
                 doController.SetValue((int)setVal);
                 return;
             }
@@ -238,99 +257,12 @@ namespace GasStation.Devices.ControlChamber
 
             
             var setVal1 = cap.GetValue(setValue * 100);
-
             capController.SetCap(setVal1, cap.Port);
-
-            //var contr = LstContr[ClassChamberSectionStep.ThermoSectionConst.ContrNum] as BaseDOController;
         }
 
         public void CheckStatus(ClassDataChamber curr)
         {
             return;
-            //#region Проверка температуры (газ)
-            //if (NumSec != 1)
-            //    return;
-            //var States = _states.Where(dat => dat.DevName == "Термосекция(Газ)").ToList();
-            //var currValue = ClassChamberSectionStep.UsePid ? curr.ClassPidIn.CurrValue : curr.ClassPidOut.CurrValue;
-
-            //if (ClassChamberSectionStep.UsePid)
-            //    currValue = curr.ClassPidIn.CurrValue;
-            //if (!ClassChamberSectionStep.UsePid)
-            //    currValue = curr.ClassPidOut.CurrValue;
-
-            //for (int i = 0; i < States.Count; i++)
-            //{
-            //    if ((curr.DataTime.TimeStep > States[i].Timer) && ((currValue < States[i].ValueBegin) || (currValue > States[i].ValueEnd)))
-            //    {
-            //        EmergencyTemp = true;
-            //        ConJumpArgs conJumpArgs = new ConJumpArgs(curr.DataTime.TimeStep);
-            //        conJumpArgs.NumDev = ClassChamberSectionStep.Num;
-            //        conJumpArgs.NameDev = "Термосекция(Газ)";
-            //        conJumpArgs.CurrValue = currValue;
-            //        conJumpArgs.TextError = "Значение температуры за границей допустимого диапазона";
-            //        conJumpArgs.Conditional = States[i].NumStep;
-            //        conJumpArgs.TypeConditional = TypeConditional.Error;
-                    
-            //        StateError?.Invoke(this, conJumpArgs);
-            //    }
-            //}
-            //#endregion
-
-            //#region Проверка температуры (Центр)
-            //if (NumSec != 1)
-            //    return;
-            //List<XmlStateConditionScript> States_SecCent = _states.Where(dat => dat.DevName == "Термосекция(Центр)").ToList();
-            //double currValue_States_SecCent = 0;
-            //if (ClassChamberSectionStep.UsePid)
-            //    currValue_States_SecCent = curr.ClassPidIn.CurrValue;
-            //if (!ClassChamberSectionStep.UsePid)
-            //    currValue_States_SecCent = curr.ClassPidOut.CurrValue;
-
-            //for (int i = 0; i < States_SecCent.Count; i++)
-            //{
-            //    if ((curr.DataTime.TimeScript > States_SecCent[i].Timer) && ((currValue_States_SecCent < States_SecCent[i].ValueBegin) || (currValue_States_SecCent > States_SecCent[i].ValueEnd)))
-            //    {
-            //        EmergencyTemp = true;
-            //        ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
-            //        conJumpArgs.NumDev = ClassChamberSectionStep.Num;
-            //        conJumpArgs.NameDev = "Термосекция(Центр)";
-            //        conJumpArgs.CurrValue = currValue_States_SecCent;
-            //        conJumpArgs.TextError = "Значение температуры за границей допустимого диапазона";
-            //        conJumpArgs.Conditional = States_SecCent[i].NumStep;
-            //        conJumpArgs.TypeConditional = TypeConditional.Error;
-            //        Console.WriteLine(DateTime.Now);
-            //        StateError?.Invoke(this, conJumpArgs);
-            //    }
-            //}
-            //#endregion
-
-            //#region Проверка температуры (Загрузчик)
-            //if (NumSec != 1)
-            //    return;
-            //List<XmlStateConditionScript> States_SecLoad = _states.Where(dat => dat.DevName == "Термосекция(Загр.)").ToList();
-            //double currValue_States_SecLoad = 0;
-            //if (ClassChamberSectionStep.UsePid)
-            //    currValue_States_SecLoad = curr.ClassPidIn.CurrValue;
-            //if (!ClassChamberSectionStep.UsePid)
-            //    currValue_States_SecLoad = curr.ClassPidOut.CurrValue;
-
-            //for (int i = 0; i < States_SecLoad.Count; i++)
-            //{
-            //    if ((curr.DataTime.TimeScript > States_SecLoad[i].Timer) && ((currValue_States_SecLoad < States_SecLoad[i].ValueBegin) || (currValue_States_SecLoad > States_SecLoad[i].ValueEnd)))
-            //    {
-            //        EmergencyTemp = true;
-            //        ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
-            //        conJumpArgs.NumDev = ClassChamberSectionStep.Num;
-            //        conJumpArgs.NameDev = "Термосекция(Загр.)";
-            //        conJumpArgs.CurrValue = currValue_States_SecLoad;
-            //        conJumpArgs.TextError = "Значение температуры за границей допустимого диапазона";
-            //        conJumpArgs.Conditional = States_SecLoad[i].NumStep;
-            //        conJumpArgs.TypeConditional = TypeConditional.Error;
-            //        Console.WriteLine(DateTime.Now);
-            //        StateError?.Invoke(this, conJumpArgs);
-            //    }
-            //}
-            //#endregion
         }
     }
 }

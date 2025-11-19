@@ -89,7 +89,7 @@ namespace GasStation.Controllers
 
         protected void ClrErrWdt()
         {
-            ErrRead = 0;
+            ErrWdt = 0;
         }
         /// <summary>
         /// Очистка ошибок записи
@@ -98,6 +98,8 @@ namespace GasStation.Controllers
         {
             ErrWrite = 0;
         }
+
+        private int maxCounWdtErrors = 60;
         #endregion        
 
         /// <summary>
@@ -111,6 +113,8 @@ namespace GasStation.Controllers
             _sp = sp;
             _pathToLogFolder = pathToLogFolder;
             ControllerStatus = true;
+            maxCounWdtErrors = Convert.ToInt32(contrConst.WDT,16);
+            
         }
 
         public string SendCmd(string s)
@@ -268,7 +272,7 @@ namespace GasStation.Controllers
                 default:
                     AddErrWdt();
                     GenerateAlarm(Transfer.Ошибка_сработал_Wdt_таймер, ErrWdt, TypeConditional.Alarm);
-                    if (CountResetWdt < ErrWdt)
+                    if (CountResetWdt < maxCounWdtErrors)
                         ResetWdt();
                     ControllerStatus = false;
                     CountResetWdt++;

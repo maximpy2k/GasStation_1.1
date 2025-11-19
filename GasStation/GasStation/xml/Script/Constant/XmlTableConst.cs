@@ -193,6 +193,17 @@ namespace GasStation.xml.Constant.XmlConst
                 return legendX;
             }
         }
+        public string RusName
+        {
+            get
+            {
+                var rusName = "Таблица";
+                if (XmlNode.Attributes["rusName"] != null)
+                    rusName = XmlNode.Attributes["rusName"].Value;
+
+                return rusName;
+            }
+        }
 
         public string LegendY
         {

@@ -50,7 +50,8 @@
             </ListView.View>
         </ListView>
 
-        <chartingToolkit:Chart  Grid.Column="0">
+        <TextBlock Text="{Binding RusName}" Height="25" Margin="0,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
+        <chartingToolkit:Chart Grid.Column="0">
             <chartingToolkit:Chart.Axes>
                 <chartingToolkit:LinearAxis Orientation="X" Title="{Binding LegendX}" SnapsToDevicePixels="False"/>
                 <chartingToolkit:LinearAxis Orientation="Y" Title="{Binding LegendY}"/>

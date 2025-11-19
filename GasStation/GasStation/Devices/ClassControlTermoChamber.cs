@@ -76,6 +76,7 @@ namespace GasStation.Devices
         private bool prevStateWaterForward= false;
         private bool prevStateWaterBackward = false;
         private bool StartFunc = false;
+        private bool StateHeatSwitch = false;
         private bool HeatOff = false;
         protected override void NextStepFunc()
         {
@@ -100,8 +101,20 @@ namespace GasStation.Devices
 
 
             HeapState = CrashThermocouple==false && _classChamberStep.Heat;
+            
 
             SetPortState(HeapState);
+            ChechSwitchPower();
+            if (StateHeatSwitch == true)
+            {
+                for (int i = 0; i < _classChamberStep.ChamberSections.Length; i++)
+                {
+                    ThermoSections[i].NumSec = i;
+                    ThermoSections[i].SwithHeater = true;
+
+                }
+                StateHeatSwitch = false;
+            }
 
             for (int i = 0; i < _classChamberStep.ChamberSections.Length; i++)
             {
@@ -226,21 +239,6 @@ namespace GasStation.Devices
         
         public void CheckStatus()
         {
-            if (curr != null)
-            {
-                if (curr.StateHeat != HeapState)
-                {
-                    ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-                    conJumpArgs.NumDev = _classChamberStep.Num;
-                    conJumpArgs.NameDev = "Термокамера";
-                    conJumpArgs.CurrValue = Convert.ToInt32(curr.StateHeat);
-                    conJumpArgs.TextError = "Нагрев";
-                    conJumpArgs.Conditional = 1;
-                    conJumpArgs.TypeConditional = TypeConditional.Text;
-                    AlarmError(this, conJumpArgs);
-
-                }
-            }
 
             #region Проверка аварийной температуры
 
@@ -354,6 +352,24 @@ namespace GasStation.Devices
             #endregion
         }
 
+        public void ChechSwitchPower()
+        {
+            if (curr != null)
+            {
+                if (curr.StateHeat != HeapState)
+                {
+                    ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+                    conJumpArgs.NumDev = _classChamberStep.Num;
+                    conJumpArgs.NameDev = "Термокамера";
+                    conJumpArgs.CurrValue = Convert.ToInt32(curr.StateHeat);
+                    conJumpArgs.TextError = "Нагрев";
+                    conJumpArgs.Conditional = 1;
+                    conJumpArgs.TypeConditional = TypeConditional.Text;
+                    AlarmError(this, conJumpArgs);
+                    StateHeatSwitch = HeapState;
+                }
+            }
+        }
 
         void checkSectionStatus(ClassControlThermoSection ts)
         {

@@ -419,7 +419,7 @@ namespace GasStation.xml
             set
             {
                 _isViewScriptStop = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("IsViewScriptStop"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsViewScriptStop"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StatusSystem"));
             }
         }

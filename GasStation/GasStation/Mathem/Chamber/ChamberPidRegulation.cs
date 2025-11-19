@@ -135,8 +135,8 @@ namespace GasStation.Mathem.Chamber
         {
             if (SetupTemp != setupTemp)
             {
-                ClassPidRegulatorIn = null;
-                ClassPidRegulatorOut = null;
+                //ClassPidRegulatorIn = null;
+                //ClassPidRegulatorOut = null;
                 SetupTemp = null;
             }
 
