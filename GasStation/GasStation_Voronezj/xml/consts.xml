@@ -562,7 +562,7 @@
 				<EditFild name="contrNum" rusName="№ контр." value="3" def="Контроллер нагревателя" readОnly="false" />
 				<EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" />
 				<EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры" readОnly="true" />
-				<EditFild name="maxKey" rusName="Макс.код" value="4090" def="Максимальный температура в секции термокамеры" readОnly="true" />
+				<EditFild name="maxKey" rusName="Макс.код" value="1000" def="Максимальный температура в секции термокамеры" readОnly="true" />
 				<EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
 				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
 			</dev>
