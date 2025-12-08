@@ -1,7 +1,8 @@
 ﻿using ChartApplication.points;
+using GasStation.Elements.Data;
+using GasStation.xml.Constant.XmlConst.Elements;
 using System.ComponentModel;
 using System.Windows;
-using GasStation.xml.Constant.XmlConst.Elements;
 
 namespace GasStation.ViewModels.Elements
 {
@@ -19,7 +20,9 @@ namespace GasStation.ViewModels.Elements
             if(_const.TdFire!=null)
                 _seriesTdFire = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdFire} {_const.TdFire.RusName} {_const.TdFire.DevNum}");
 
-            _seriesTdHeaterHydrogenBurner = new PointsData<Point>(LabelX, LabelY, LabelChart, $"{LabelSeriesTdHeaterHydrogenBurner} {_const.TdBurner.RusName} {_const.TdBurner.DevNum}");
+            _seriesTdHeaterHydrogenBurner = new PointsData<Point>(LabelX, LabelY, LabelChart, $" {_const.TdBurner.RusName} {_const.TdBurner.DevNum}");
+            
+            _seriesSetTemp = new PointsData<Point>(LabelX, LabelY, LabelChart, $"Заданная Т");
         }
 
         private double _tdFire;
@@ -195,6 +198,20 @@ namespace GasStation.ViewModels.Elements
             }
         }
 
+        private PointsData<Point> _seriesSetTemp;// = new PointsData<Point>(LabelX, LabelY, LabelChart, LabelSeriesTdHeaterHydrogenBurner);
+        /// <summary>
+        /// График температурного наружнего датчика  камеры от времени
+        /// </summary>
+        public PointsData<Point> SeriesSetTemp
+        {
+            get { return _seriesSetTemp; }
+            set
+            {
+                _seriesSetTemp = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SeriesSetTemp"));
+            }
+        }
+
         /// <summary>
         /// Использовать ли привилегии
         /// </summary>
@@ -209,6 +226,7 @@ namespace GasStation.ViewModels.Elements
         private const string LabelSeriesTdFire = "Т пламени";
 
         private const string LabelSeriesTdHeaterHydrogenBurner = "Т нагревателя";
+        private const string LabelSetTemp = "Заданная Т";
 
         public PointsData<Point>[] MasGraph
         {
@@ -218,6 +236,20 @@ namespace GasStation.ViewModels.Elements
                     return new[] { SeriesTdHeaterHydrogenBurner, SeriesTdFire };
 
                 return new[] { SeriesTdHeaterHydrogenBurner};
+            }
+        }
+
+        private ClassDataHydrogenBurner dataHydrogen;
+        /// <summary>
+        /// Данные по Барботеру
+        /// </summary>
+        public ClassDataHydrogenBurner DataHydrogen
+        {
+            get { return dataHydrogen; }
+            set
+            {
+                dataHydrogen = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DataHydrogen"));
             }
         }
 

@@ -138,16 +138,6 @@
         <Label x:Name="label2" Content="Н.О." HorizontalAlignment="Left" Margin="448,166,0,0" VerticalAlignment="Top"/>
         <Rectangle Stroke="Black" VerticalAlignment="Top" Fill="#FFD8D295" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" Width="50" Height="30" Margin="207,593,0,0"/>
         <Grid Margin="0,3.167,0,-3.167" HorizontalAlignment="Left" Width="1371.6" Height="796.833" VerticalAlignment="Top">
-            <local:UserControl_Pipe_N2 Margin="452,141,0,0" HorizontalAlignment="Left" Width="114" Height="8" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
-                <local:UserControl_Pipe_N2.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="90"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </local:UserControl_Pipe_N2.RenderTransform>
-            </local:UserControl_Pipe_N2>
             <local:UserControl_Pipe_O2 Margin="177,234,0,556" Width="253" Height="7" HorizontalAlignment="Left"/>
             <local:UserControl_Pipe_N2 Margin="242,0,0,181" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="229" Height="7"/>
             <local:UserControl_Pipe_O2 Margin="444,378,0,0" HorizontalAlignment="Left" Width="84" Height="8" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
@@ -236,7 +226,7 @@
             <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Margin="202,296,0,0" Width="167" Height="85" VerticalAlignment="Top"
                                   DataContext="{Binding Rrgs[0]}"/>
 
-            <local:UserControlRrgWithoutFlap HorizontalAlignment="Left" Margin="203,394,0,315" Width="166"
+            <local:UserControlRrg HorizontalAlignment="Left" Margin="203,394,0,315" Width="166"
                                   DataContext="{Binding Rrgs[2]}"/>
 
             <local:UserControlRrgWithoutFlap Margin="203,0,0,215" HorizontalAlignment="Left" Width="166" Height="85" VerticalAlignment="Bottom"
@@ -703,8 +693,6 @@
                     </TransformGroup>
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
-            <local:UserControl_FlapNoControl HorizontalAlignment="Left" Height="26" Margin="517,217,0,0" VerticalAlignment="Top" Width="26" IsEnabled="False"
-                />
             <local:UserControl_FlapNoControl  HorizontalAlignment="Left" Height="26" Margin="601,215,0,0" VerticalAlignment="Top" Width="26" IsEnabled="False"
                 />
             <local:UserControl_Pipe_N2 Margin="439,194,0,0" HorizontalAlignment="Left" Width="177" Height="7" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
@@ -732,7 +720,7 @@
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
 
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="496,103,0,0" VerticalAlignment="Top" Width="26"
+            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="516,215,0,0" VerticalAlignment="Top" Width="26"
                 DataContext="{Binding Flaps[8]}"/>
             <Rectangle Margin="550,252,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5">
                 <Rectangle.RenderTransform>
@@ -751,22 +739,6 @@
                 </Rectangle.Fill>
             </Rectangle>
             <Rectangle Margin="609,252,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="360"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-                <Rectangle.Fill>
-                    <RadialGradientBrush RadiusY="1.291" RadiusX="1.291">
-                        <GradientStop Color="#FFE0E9E4" Offset="0.078"/>
-                        <GradientStop Color="#FF353638" Offset="0.509"/>
-                    </RadialGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle Margin="504,192,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

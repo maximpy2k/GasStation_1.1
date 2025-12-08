@@ -337,6 +337,13 @@ namespace GasStation
                     FlagAbort = true;
                     break;
                 }
+                if (_script.ClsDataTime.Message != "")
+                {
+
+                    var message1 = $"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}   { _script.ClsDataTime.Message}";
+                    _script.ViewData.MessageOut = _script.ViewData.MessageOut.Insert(_script.ViewData.MessageOut.Count(), message1.ToString() + $"{Environment.NewLine}");
+                    _script.ClsDataTime.Message = "";
+                }
                 
                 if (_script.ClsDataTime.TimeCycleStep <= 0.4)                   
                     continue;

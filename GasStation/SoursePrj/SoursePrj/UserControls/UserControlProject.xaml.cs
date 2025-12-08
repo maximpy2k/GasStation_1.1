@@ -371,7 +371,13 @@ namespace SoursePrj.UserControls
         /// <returns></returns>
         private GridViewColumn NewCol(XmlClassHydrogenBurnerConst con)
         {
-           
+
+            FrameworkElementFactory templateCell = new FrameworkElementFactory(typeof(StackPanel));
+            templateCell.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+
+            FrameworkElementFactory txtBox = new FrameworkElementFactory(typeof(TextBox));
+            txtBox.SetValue(WidthProperty, 40.0);
+            txtBox.SetBinding(TextBox.TextProperty, new Binding($"Burners[{con.DevNumMas}].SetupValue") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
             FrameworkElementFactory chkBox = new FrameworkElementFactory(typeof(CheckBox));
             chkBox.SetValue(CheckBox.IsCheckedProperty, new Binding($"Burners[{con.DevNumMas}].Heat") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
@@ -379,13 +385,42 @@ namespace SoursePrj.UserControls
             chkBox.SetValue(WidthProperty, 20.0);
             chkBox.SetValue(StyleProperty, rd["CheckBoxFlapStyle"]);
 
+            templateCell.AppendChild(txtBox);
+            templateCell.AppendChild(chkBox);
+
+
             DataTemplate template = new DataTemplate();
-            template.VisualTree = chkBox;
+            template.VisualTree = templateCell;
             GridViewColumn col = new GridViewColumn();
             col.Header = $"{con.RusName} {con.DevNum}";
             col.CellTemplate = template;
-
             return col;
+            //FrameworkElementFactory templateCell = new FrameworkElementFactory(typeof(StackPanel));
+            //templateCell.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+
+            //FrameworkElementFactory txtBox = new FrameworkElementFactory(typeof(TextBox));
+            //txtBox.SetValue(WidthProperty, 40.0);
+            ////txtBox.SetBinding(TextBox.TextProperty, new Binding($"Burners[{con.DevNumMas}].SetupValue") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            ////txtBox.SetValue(CheckBox.IsEnabledProperty, new Binding($"ClsScript.Consts.ConstRrgs[{con.DevNumMas}].IsFlap") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+
+
+            //FrameworkElementFactory chkBox = new FrameworkElementFactory(typeof(CheckBox));
+            //chkBox.SetValue(CheckBox.IsCheckedProperty, new Binding($"Burners[{con.DevNumMas}].Heat") { Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            //chkBox.SetValue(HeightProperty, 20.0);
+            //chkBox.SetValue(WidthProperty, 20.0);
+            //chkBox.SetValue(StyleProperty, rd["CheckBoxFlapStyle"]);
+
+            //templateCell.AppendChild(txtBox);
+            //templateCell.AppendChild(chkBox);
+
+
+            //DataTemplate template = new DataTemplate();
+            //template.VisualTree = chkBox;
+            //GridViewColumn col = new GridViewColumn();
+            //col.Header = $"{con.RusName} {con.DevNum}";
+            //col.CellTemplate = template;
+
+            //return col;
         }
 
         /// <summary>

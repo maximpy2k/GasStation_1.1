@@ -5,13 +5,14 @@ using GasStation.xml.Script.XmlScript.Elements;
 using GasStation.xml.Const.Elements;
 using GasStation.xml.Script;
 using GasStation.xml.Script.EnumConst;
+using GasStation.xml.Script.XmlScript;
 
-namespace GasStation.Mathem.Bubbler
+namespace GasStation.Mathem.Hydrogen
 {
     /// <summary>
     /// Класс вычисления значения расхода газа
     /// </summary>
-    public class ClassBubblerSetEnable
+    public class ClassHydrogenSetEnable
     {
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace GasStation.Mathem.Bubbler
         /// <summary>
         /// Параметры шага скрипта
         /// </summary>
-        private XmlClassBubbler _bubblerStep;
+        private XmlClassHydrogenBurning _hydrogenStep;
 
         /// <summary>
         /// Конструктор класса
@@ -31,21 +32,21 @@ namespace GasStation.Mathem.Bubbler
         /// <param name="chamberSectionStep">Параметры шага скрипта</param>
         /// <param name="tdOut">Начальная температура внешнего термодатчика</param>
         /// <param name="tdIn">Начальная температура внутреннего термодатчика</param>
-        public ClassBubblerSetEnable(XmlClassBubbler bubblerStep, double tdOut)
+        public ClassHydrogenSetEnable(XmlClassHydrogenBurning hydrogenStep, double tdOut)
         {
-            _bubblerStep = bubblerStep;
+            _hydrogenStep = hydrogenStep;
             _begTdOut = tdOut;
         }
 
         private double GetMaximumSpeed(ClassDataTime classDataTime)
         {
-            var setTemp = _bubblerStep.SetupValue;
+            var setTemp = _hydrogenStep.SetupValue;
 
             var begTd = _begTdOut;
 
-            double speed = _bubblerStep.BubblerConst.UpSpeed;
+            double speed = _hydrogenStep.HydrogenBurnerConst.UpSpeed;
             if (setTemp < begTd)
-                speed = -_bubblerStep.BubblerConst.DownSpeed;
+                speed = -_hydrogenStep.HydrogenBurnerConst.DownSpeed;
 
             var currSetTemp = begTd + classDataTime.TimeStep * speed / 60.0;
 
@@ -60,7 +61,7 @@ namespace GasStation.Mathem.Bubbler
 
         public double TimeInterval(ClassDataTime classDataTime)
         {
-            var endTd = _bubblerStep.SetupValue;
+            var endTd = _hydrogenStep.SetupValue;
             var begTd = _begTdOut;
 
 
@@ -78,16 +79,17 @@ namespace GasStation.Mathem.Bubbler
 
         public double NextStep(ClassDataTime classDataTime)
         {
-            switch (_bubblerStep.TypeReg)
+            switch (_hydrogenStep.TypeReg)
             {
                 case Regims.DefaultSpeed:
                     return GetMaximumSpeed(classDataTime);
                 case Regims.TimeInterval:
                     return TimeInterval(classDataTime);
             }
-            return _bubblerStep.SetupValue;
+            return _hydrogenStep.SetupValue;
 
         }
+
     }
 
 }

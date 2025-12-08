@@ -168,6 +168,9 @@
     <Compile Include="Elements\ViewModels\ViewModelControllerCap.cs" />
     <Compile Include="Elements\ViewModels\ViewModelControllerDio.cs" />
     <Compile Include="Elements\ViewModels\ViewModelControllerTMPower.cs" />
+    <Compile Include="Mathem\Hydrogen\ClassHydrogenPidRegulation.cs" />
+    <Compile Include="Mathem\Hydrogen\ClassHydrogenSetEnable.cs" />
+    <Compile Include="Mathem\Hydrogen\ClassLineFuncCoefs.cs" />
     <Compile Include="Mathem\Bubbler\ClassBubblerPidRegulation.cs" />
     <Compile Include="Mathem\Bubbler\ClassBubblerSetEnable.cs" />
     <Compile Include="Mathem\Bubbler\ClassLineFuncCoefs.cs" />
@@ -200,6 +203,9 @@
     </Compile>
     <Compile Include="ModalWindows\View\WindowsParams\WindowFlapParams.xaml.cs">
       <DependentUpon>WindowFlapParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModalWindows\View\WindowsView\WindowHydrogenBurnerPidView.xaml.cs">
+      <DependentUpon>WindowHydrogenBurnerPidView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ModalWindows\View\WindowsView\WindowHydrogenBurnerView.xaml.cs">
       <DependentUpon>WindowHydrogenBurnerView.xaml</DependentUpon>
@@ -436,6 +442,10 @@
     <Page Include="ModalWindows\View\WindowsParams\WindowFlapParams.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModalWindows\View\WindowsView\WindowHydrogenBurnerPidView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ModalWindows\View\WindowsView\WindowHydrogenBurnerView.xaml">
       <SubType>Designer</SubType>

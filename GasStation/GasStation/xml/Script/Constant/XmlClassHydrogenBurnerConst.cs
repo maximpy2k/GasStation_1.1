@@ -47,6 +47,27 @@ namespace GasStation.xml.Constant.XmlConst.Elements
         }
 
         /// <summary>
+        /// Узел Xml
+        /// </summary>
+        public double UpSpeed
+        {
+            get
+            {
+                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxUpSpeed']");
+                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
+            }
+        }
+
+        public double DownSpeed
+        {
+            get
+            {
+                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxDownSpeed']");
+                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
+            }
+        }
+
+        /// <summary>
         /// Пускатель
         /// </summary>
         public XmlClassDioPortConst DioRealyConst
@@ -146,27 +167,28 @@ namespace GasStation.xml.Constant.XmlConst.Elements
             }
         }
 
+        public override bool EnabledChangedScript => SecuretyConst.CurrUser.Privs.Contains(EnumPriv.ChangeBurningScript);
+
         /// <summary>
-        /// Температура горения
+        /// Константы для ПИД-регулятора
         /// </summary>
-        public double SetupTemp
+        public XmlClassPidConst Pid
         {
             get
             {
-                var xmlConst = XmlNode.SelectSingleNode("dev / EditFild[@name = 'setupTemp']");
-                return Convert.ToDouble(xmlConst.Attributes["value"].Value);
+                var xmlNode = XmlNode.SelectSingleNode("dev[@name='pid']");
+                if (xmlNode == null)
+                    return null;
+                var pid = new XmlClassPidConst(xmlNode);
+
+                return pid;
             }
         }
 
-        public override bool EnabledChangedScript => SecuretyConst.CurrUser.Privs.Contains(EnumPriv.ChangeBurningScript);
+        /// <summary>
+        /// Наличие ПИД регулятора
+        /// </summary>
+        public string EnablePid => Pid == null ? "Collapsed" : "Visible";
 
-        //public XmlClassStatusConst StatusConst
-        //{
-        //    get
-        //    {
-        //        var statusNode = XmlNode.SelectSingleNode("dev[@name='status']");
-        //        return new XmlClassStatusConst(statusNode);
-        //    }
-        //}
     }
 }

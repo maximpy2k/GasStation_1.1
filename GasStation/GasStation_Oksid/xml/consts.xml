@@ -34,6 +34,7 @@
 		<dev name="Controller" num="0" rusName="IDAS 7019" def="Контроллер АЦП">
 			<EditFild name="name" rusName="Имя" value="IDAS 7018" def="Контроллер АЦП" readОnly="true" />
 			<EditFild name="pa" rusName="ПА" value="24" def="Подадрес" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="1" rusName="TM 7042" def="Контроллер нагревателя Термосекция №1(Газ)">
 			<EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
@@ -41,6 +42,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="2" rusName="TM 7042" def="Контроллер нагревателя Термосекция №2(Центр)">
 			<EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
@@ -48,6 +50,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="3" rusName="TM 7042" def="Контроллер нагревателя Термосекция №3(Загр.)">
 			<EditFild name="name" rusName="Имя" value="TM 7042P" def="Название контроллера" readОnly="true" />
@@ -55,6 +58,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="4" rusName="TM 7042" def="Контроллер нагревателя термокамеры">
 			<EditFild name="name" rusName="Имя" value="TM 7042" def="Название контроллера" readОnly="true" />
@@ -62,6 +66,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="5" rusName="TM 7041" def="Контроллер цифровой(вход)">
 			<EditFild name="name" rusName="Имя" value="TM 7041" def="Название контроллера" readОnly="true" />
@@ -69,6 +74,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
 			<EditFild name="name" rusName="Имя" value="IDAS 87017" def="Контроллер АЦП" readОnly="true" />
@@ -76,6 +82,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="7" rusName="IDAS 87024" def="Контроллер ЦАП">
 			<EditFild name="name" rusName="Имя" value="IDAS 87024" def="Контроллер ЦАП" readОnly="true" />
@@ -83,6 +90,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="8" rusName="IDAS 87024" def="Контроллер ЦАП">
 			<EditFild name="name" rusName="Имя" value="IDAS 87024" def="Контроллер ЦАП" readОnly="true" />
@@ -90,6 +98,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="9" rusName="IDAS 87057" def="Контроллер ДО (Клапана)">
 			<EditFild name="name" rusName="Имя" value="IDAS 87057" def="Контроллер ДО (Клапана)" readОnly="true" />
@@ -98,6 +107,7 @@
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
 			<EditFild name="DefaultState" rusName="Состояние портов при включении" value="32768" def="Значение" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 		<dev name="Controller" num="10" rusName="IDAS 87053" def="Контроллер ДИ (Статусы)">
 			<EditFild name="name" rusName="Имя" value="IDAS 87053" def="Контроллер ДИ (Статусы)" readОnly="true" />
@@ -105,6 +115,7 @@
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
+			<EditFild name="writeLog" value="True" def="Флаг записи лога контроллера" readОnly="true" />
 		</dev>
 	</dev>
 	<dev name="sensor" num="1" rusName="Датчик воздуха" def="Датчик воздуха">
@@ -168,6 +179,15 @@
 		<dev name="properties" rusName="Свойства">
 			<EditFild name="raiseSpeed" rusName="Рост" value="3" def="Скорость возрастание расхода газа" readОnly="true" />
 			<EditFild name="downSpeed" rusName="Убывание" value="3" def="Скорость убывание расхода газа" readОnly="true" />
+		</dev>
+		<dev name="flap" num="1" rusName="Клапан" def="Клапан">
+			<dev name="properties" num="1" rusName="Параметры" def="Параметры">
+				<EditFild name="normalState" rusName="Состояние" value="Open" def="Клапан нормально открытый" readОnly="true" />
+			</dev>
+			<dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
+				<EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="13" def="Порт" readОnly="false" />
+			</dev>
 		</dev>
 		<dev name="cap" num="1" rusName="ЦАП" def="Цифро-аналоговый преобразователь управляющий регулятором расхода газа">
 			<EditFild name="contrNum" rusName="№ контр." value="7" def="Контроллер ЦАП" readОnly="false" />
@@ -606,6 +626,9 @@
 	<dev name="burner" num="1" rusName="Горелка" def="Горелка">
 		<dev name="properties" rusName="Свойства">
 			<EditFild name="setupTemp" rusName="Температура горения" value="700" def="" readОnly="false" />
+			<EditFild name="maxUpSpeed" rusName="Град. в сек." value="1" def="Ограничение скорости нагрева" readОnly="true" />
+			<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения" readОnly="true" />
+			
 		</dev>
 		<dev name="td" num="1" rusName="Т горелки" def="Термодатчик">
 			<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -647,6 +670,14 @@
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
 				<EditFild name="isInverted" rusName="Инвертирование" value="true" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
+		</dev>
+		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры горелки" readОnly="true" />
+			<EditFild name="Kp" rusName="Кп" value="0.1" def="Коэффициент пропорциональной составляющей ПИД горелки" readОnly="true" />
+			<EditFild name="Td" rusName="Тд" value="40" def="Постоянная времени дифференцирования ПИД горелки" readОnly="true" />
+			<EditFild name="Ti" rusName="Ти" value="0" def="Постоянная времени интегрирования ПИД горелки" readОnly="true" />
+			<EditFild name="Di" rusName="Ди" value="3" def="Область допустимых значений ошибки управления температуры горелки" readОnly="true" />
+			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 		</dev>
 	</dev>
 	<dev name="loader" num="1" rusName="Загрузчик" def="Загрузчик">
@@ -728,14 +759,6 @@
 			<EditFild name="Td" rusName="Тд" value="40" def="Постоянная времени дифференцирования ПИД барботера" readОnly="true" />
 			<EditFild name="Ti" rusName="Ти" value="0" def="Постоянная времени интегрирования ПИД барботера" readОnly="true" />
 			<EditFild name="Di" rusName="Ди" value="3" def="Область допустимых значений ошибки управления температуры барботера" readОnly="true" />
-			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
-		</dev>
-		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
-			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры барботера" readОnly="true" />
-			<EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД барботера" readОnly="true" />
-			<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД барботера" readОnly="true" />
-			<EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД барботера" readОnly="true" />
-			<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры барботера" readОnly="true" />
 			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 		</dev>
 	</dev>

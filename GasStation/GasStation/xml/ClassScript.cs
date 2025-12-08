@@ -1,16 +1,17 @@
-﻿using GasStation.Elements.Data;
+﻿using ChartApplication.points;
+using GasStation.Elements.Data;
+using System.Windows;
+using GasStation.ViewModels.Elements;
+using GasStation.xml.Constant;
+using GasStation.xml.Script;
+using GasStation.xml.Script.EnumConst;
+using GasStation.xml.Script.Security;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml;
-using GasStation.ViewModels.Elements;
-using GasStation.xml.Constant;
-using GasStation.xml.Script;
-using System.Windows;
-using ChartApplication.points;
-using GasStation.xml.Script.EnumConst;
-using GasStation.xml.Script.Security;
 
 namespace GasStation.xml
 {
@@ -128,7 +129,7 @@ namespace GasStation.xml
                 return;
             if (CurrStep.StepParams.NumStep == 1)
             {
-                MessageBox.Show("Невозможно удалить шаг Ожидания");
+                System.Windows.MessageBox.Show("Невозможно удалить шаг Ожидания");
                 return;
             }
             if (Steps.Count == 0)
@@ -186,6 +187,7 @@ namespace GasStation.xml
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrStep"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EnableStartTechProcess"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EnableStopTechProcess"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EnablePauseTechProcess"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StatusSystem"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentStepType"));
             }
@@ -353,15 +355,38 @@ namespace GasStation.xml
             {
                 if (!Consts.SecuretyConst.CurrUser.Privs.Contains(EnumPriv.MegaBoss))
                 {
-                    MessageBox.Show(@"У вас нет привилегии MegaBoss");
+                    System.Windows.MessageBox.Show(@"У вас нет привилегии MegaBoss");
                     return;
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsChangeScript"));
             }
         }
-            
 
+        private bool enablePauseTechProcess=true;
+
+        public bool EnablePauseTechProcess
+        {
+            get 
+            {
+                enablePauseTechProcess = false;
+                if (!EnableStartTechProcess && !IsViewScriptStart)
+                {
+                    if (Consts.SecuretyConst.CurrUser.UserName == "Admin")
+                    {
+                        enablePauseTechProcess = true;
+                    }
+                }
+                return enablePauseTechProcess;
+            }
+            set 
+            {
+                value = enablePauseTechProcess;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EnablePauseTechProcess"));
+            }
+        }
+
+       
         /// <summary>
         /// Разрешение на переход по списку шагов
         /// </summary>
@@ -377,7 +402,7 @@ namespace GasStation.xml
             {
                 if (!Consts.SecuretyConst.CurrUser.Privs.Contains(EnumPriv.MegaBoss))
                 {
-                    MessageBox.Show(@"У вас нет привилегии MegaBoss");
+                    System.Windows.MessageBox.Show(@"У вас нет привилегии MegaBoss");
                     return;
                 }
 

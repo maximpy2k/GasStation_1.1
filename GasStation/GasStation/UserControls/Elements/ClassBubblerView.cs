@@ -24,8 +24,6 @@ namespace GasStation.ViewModels.Elements
             _const = con;
         }
 
-
-
         public PointsData<Point>[] MasGraph
         {
             get

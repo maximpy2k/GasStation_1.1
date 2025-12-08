@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml;
-using GasStation.ViewModels.Elements;
+﻿using GasStation.ViewModels.Elements;
 using GasStation.xml.Constant;
 using GasStation.xml.Constant.XmlConst.Elements;
 using GasStation.xml.Script.EnumConst;
 using GasStation.xml.Script.Security;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace GasStation.xml.Script.XmlScript
 {
@@ -46,8 +47,17 @@ namespace GasStation.xml.Script.XmlScript
             var atrState = xmlDocument.CreateAttribute("heat");
             atrState.Value = false.ToString();
 
+            var atrUsePid = xmlDocument.CreateAttribute("usePid");
+            atrUsePid.Value = "True";
+
             var atrPriv = xmlDocument.CreateAttribute("usePriv");
             atrPriv.Value = "False";
+
+            var atrTypeReg = xmlDocument.CreateAttribute("typeReg");
+            atrTypeReg.Value = "MaximumSpeed";// typeReg.ToString();
+
+            var atrSetupVal = xmlDocument.CreateAttribute("setupValue");
+            atrSetupVal.Value = (35).ToString();
 
             #endregion
 
@@ -56,6 +66,9 @@ namespace GasStation.xml.Script.XmlScript
             _xmlNode.Attributes.Append(atrNum);           
             _xmlNode.Attributes.Append(atrState);
             _xmlNode.Attributes.Append(atrPriv);
+            _xmlNode.Attributes.Append(atrUsePid);
+            _xmlNode.Attributes.Append(atrTypeReg);
+            _xmlNode.Attributes.Append(atrSetupVal);
             #endregion
 
             HydrogenBurnerView.UsePriv = UsePriv;
@@ -91,6 +104,73 @@ namespace GasStation.xml.Script.XmlScript
                 PropertyIsChange("Heat");
             }
 
+        }
+
+        public Regims TypeReg
+        {
+            get
+            {
+                var currType = (Regims)Enum.Parse(typeof(Regims), XmlNode.Attributes["typeReg"].Value);
+                return currType;
+            }
+            set
+            {
+                if (!EnabledChangedScript)
+                    return;
+
+                XmlNode.Attributes["typeReg"].Value = value.ToString();
+                PropertyIsChange("TypeReg");
+            }
+        }
+
+        /// <summary>
+        /// Использование ПИД регулятора
+        /// </summary>
+        public bool UsePid
+        {
+            get
+            {
+                if (XmlNode.Attributes["usePid"] == null)
+                    return false;
+                bool usePid;
+
+                bool.TryParse(XmlNode.Attributes["usePid"].Value, out usePid);
+                return usePid;
+            }
+            set
+            {
+                if (!EnabledChangedScript)
+                    return;
+                if (XmlNode.Attributes["usePid"] == null)
+                {
+                    MessageBox.Show("Используется старая версия скрипта.\nНет атрибута 'usePid'");
+                    return;
+                }
+
+                XmlNode.Attributes["usePid"].Value = value.ToString();
+                PropertyIsChange("UsePid");
+            }
+        }
+
+        public double SetupValue
+        {
+            get
+            {
+                var setupValue = 35.0;
+                if (XmlNode.Attributes != null) double.TryParse(XmlNode.Attributes["setupValue"].Value, out setupValue);
+                return setupValue;
+            }
+            set
+            {
+                if (!EnabledChangedScript)
+                {
+                    return;
+                }
+
+
+                XmlNode.Attributes["setupValue"].Value = value.ToString();
+                PropertyIsChange("SetupValue");
+            }
         }
 
         public override bool UsePriv

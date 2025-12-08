@@ -118,5 +118,26 @@ namespace GasStation.xml.Constant.XmlConst.Elements
                 return val;
             }
         }
+
+        public bool WriteLog
+        {
+            get
+            {
+                var val = true;
+
+                if (XmlNode.SelectSingleNode("EditFild[@name='writeLog']") == null)
+                    return val;
+                try
+                {
+                    bool.TryParse(XmlNode.SelectSingleNode("EditFild[@name='writeLog']").Attributes["value"].Value, out val);
+                }
+                catch
+                {
+                    return true;
+                }
+
+                return val;
+            }
+        }
     }
 }

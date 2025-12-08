@@ -31,7 +31,7 @@ namespace GasStation.Elements.Data
         {
             Steps = steps;
         }
-        
+
         /// <summary>
         /// Время начала скрипта
         /// </summary>
@@ -59,7 +59,7 @@ namespace GasStation.Elements.Data
             BeginStep = BeginScript;
             BeginCycleStep = BeginScript;
         }
-        
+
         /// <summary>
         /// Начало нового шага скрипта
         /// </summary>
@@ -67,12 +67,12 @@ namespace GasStation.Elements.Data
         {
             TimeStep = 0;
             BeginStep = DateTime.Now;
-            
+
 
             BeginCycleStep = BeginStep;
-            EndCycleStep = BeginStep;  
+            EndCycleStep = BeginStep;
             this.stepNum = stepNum;
-            
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RemainingTimeStep"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RemainingTimeScript"));
         }
@@ -82,7 +82,7 @@ namespace GasStation.Elements.Data
         /// </summary>
         public void StartCycleStep()
         {
-            EndCycleStep= DateTime.Now;
+            EndCycleStep = DateTime.Now;
             if (!FlagPause)
             {
                 TimeStep += (EndCycleStep - BeginCycleStep).TotalMilliseconds / 1000.0;
@@ -99,7 +99,7 @@ namespace GasStation.Elements.Data
         /// <summary>
         /// Номер выполняемого шага
         /// </summary>
-        private int stepNum=0;
+        private int stepNum = 0;
 
         /// <summary>
         /// Время от начала циклического шага
@@ -111,7 +111,7 @@ namespace GasStation.Elements.Data
                 return (DateTime.Now - BeginCycleStep).TotalMilliseconds / 1000.0;
             }
         }
-
+        public string Message = "";
         /// <summary>
         /// Отработанное время шага
         /// </summary>
@@ -122,11 +122,32 @@ namespace GasStation.Elements.Data
         /// </summary>
         public double TimeScript { get; set; }
 
+        private bool flagPause = false;
         /// <summary>
         /// Флаг паузы
         /// </summary>
-        public bool FlagPause { get; set; } = false;
+        public bool FlagPause
+        {
+            get
+            {
 
+
+                return flagPause;
+            }
+            set
+            {
+                if (flagPause != value)
+                {
+                    if(flagPause ==false) 
+                        Message = "Техпроцесс поставлен на паузу";
+                    else
+                        Message = "Техпроцесс продолжен";
+                    
+                    
+                }
+                flagPause = value;
+            }
+        }
         /// <summary>
         /// Заданное время шага скрипта
         /// </summary>
@@ -142,7 +163,7 @@ namespace GasStation.Elements.Data
         {
             get
             {
-                var selSteps=Steps.Where(dat => dat.StepParams.NumStep >= stepNum + 1 && dat.StepParams.TypeStep == RegimsStep.Normal && dat.StepParams.TimeStep.TotalMilliseconds / 1000.0 != 0).ToArray();
+                var selSteps = Steps.Where(dat => dat.StepParams.NumStep >= stepNum + 1 && dat.StepParams.TypeStep == RegimsStep.Normal && dat.StepParams.TimeStep.TotalMilliseconds / 1000.0 != 0).ToArray();
                 if (selSteps == null)
                     return 0;
                 return selSteps.Sum(dat => dat.StepParams.TimeStep.TotalMilliseconds / 1000.0);
@@ -158,7 +179,7 @@ namespace GasStation.Elements.Data
         public TimeSpan ConvSecToTime(double sec)
         {
             double m = (int)(sec / 60.0);
-            double h = (int)(sec / 60.0/60);
+            double h = (int)(sec / 60.0 / 60);
             double s = sec - m * 60.0 - h * 60 * 60;
             return new TimeSpan(0, 0, 2000);
         }
@@ -174,7 +195,7 @@ namespace GasStation.Elements.Data
                 if (Steps[stepNum].StepParams.TimeStep.TotalMilliseconds / 1000.0 == 0)
                     return "Безвременной.";
                 var sec = Steps[stepNum].StepParams.TimeStep.TotalMilliseconds / 1000.0 - TimeStep;
-                return $"{new TimeSpan(0,0,(int)sec)}";
+                return $"{new TimeSpan(0, 0, (int)sec)}";
             }
         }
 
@@ -193,6 +214,6 @@ namespace GasStation.Elements.Data
             }
         }
 
-        
+
     }
 }

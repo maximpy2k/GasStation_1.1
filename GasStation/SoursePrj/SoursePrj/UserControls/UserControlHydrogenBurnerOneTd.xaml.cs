@@ -30,7 +30,7 @@ namespace SoursePrj
 
         public void OpenBurnerView(object properties, EventArgs e)
         {
-            var win = new WindowHydrogenBurnerView();
+            var win = new WindowHydrogenBurnerPidView();
             if (DataContext == null)
             {
                 return;

@@ -337,8 +337,11 @@ namespace GasStation.Controllers
         /// <param name="status">true - запись, false - чтение</param>
         public void AddLog(DateTime dateTime, String cmd, Transfer dest)
         {
-            ClassDataControllerLog log = new ClassDataControllerLog(dateTime, cmd, dest);
-            log.AppendToFile($"{_pathToLogFolder}\\Контроллеры\\{contrConst.NameController}_{contrConst.DevNum}.txt");
+            if (contrConst.WriteLog)
+            {
+                ClassDataControllerLog log = new ClassDataControllerLog(dateTime, cmd, dest);
+                log.AppendToFile($"{_pathToLogFolder}\\Контроллеры\\{contrConst.NameController}_{contrConst.DevNum}.txt");
+            }
         }
 
     }

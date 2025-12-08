@@ -84,7 +84,7 @@
 
         <Button Grid.Row="2" Grid.Column="0" Margin="3" Content="Запуск тех. процесса"  Command="{Binding Path=CmdNextStep}" 
                                              Height="30" IsEnabled="{Binding Path=ClsScript.EnableStartTechProcess}"/>
-        <CheckBox Style="{DynamicResource PauseContinueCheckBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="3" IsEnabled="{Binding Path=ClsScript.EnableStopTechProcess}"
+        <CheckBox Style="{DynamicResource PauseContinueCheckBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="3" IsEnabled="{Binding Path=ClsScript.EnablePauseTechProcess}"
                                              Height="30" IsChecked="{Binding Path=ClsScript.ClsDataTime.FlagPause}"/>
         <Button Grid.Row="2" Grid.Column="2" Margin="3" Content="Остановка тех. процесса" Command="{Binding Path=CmdGoToFirstStep}" 
                                              Height="30" IsEnabled="{Binding Path=ClsScript.EnableStopTechProcess}"/>

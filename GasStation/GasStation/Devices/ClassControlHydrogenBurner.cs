@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GasStation.Elements.Data;
-using GasStation.ViewModels.Elements;
+﻿using ChartApplication.points;
 using GasStation.Controllers;
-using GasStation.xml.Script.XmlScript.Elements;
-using GasStation.xml.Script.XmlScript;
-using GasStation.xml.Constant.XmlConst.Elements;
+using GasStation.Elements.Data;
+using GasStation.Mathem.Bubbler;
 using GasStation.Mathem.Chamber;
+using GasStation.Mathem.Hydrogen;
 using GasStation.Status;
-using System.Windows;
+using GasStation.xml.Const.Elements;
 using GasStation.xml.Script;
 using GasStation.xml.Script.EnumConst;
-using ChartApplication.points;
+using GasStation.xml.Script.XmlScript;
+using GasStation.xml.Script.XmlScript.Elements;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace GasStation.Devices
 {
@@ -25,8 +24,38 @@ namespace GasStation.Devices
         /// </summary>
         private XmlClassHydrogenBurning _classHydrogenBurnerStep => (XmlClassHydrogenBurning)_clsDevStep;
 
-        private ClassBaseTd _tdBurner;
-        private ClassBaseTd _tdFire;
+        private ClassBaseTd _currTdBurner;
+        /// <summary>
+        /// Данные по термодатчику
+        /// </summary>
+        protected ClassBaseTd CurrTdBurner
+        {
+            get
+            {
+                if (_currTdBurner != null)
+                    return _currTdBurner;
+                _currTdBurner = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.TdBurner);
+                return _currTdBurner;
+            }
+        }
+
+
+        private ClassBaseTd _currTdFire;
+        /// <summary>
+        /// Данные по термодатчику
+        /// </summary>
+        protected ClassBaseTd CurrTdFire
+        {
+            get
+            {
+                if (_currTdFire != null)
+                    return _currTdFire;
+                _currTdFire = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.TdFire);
+                return _currTdFire;
+            }
+        }
+
+
 
         ///// <summary>
         ///// Список для хранения принятых или отправляемых данных
@@ -37,23 +66,236 @@ namespace GasStation.Devices
         {
         }
 
-        public void DataStep(XmlClassHydrogenBurning classHydrogenBurningStep, IEnumerable<XmlStateConditionScript> states, XmlClassStepParams stepParams)
-        {
-            //ClrDataList();
+        /// <summary>
+        /// Экземпляр класса вычисления текущего расчета
+        /// </summary>
+        private ClassHydrogenSetEnable _clsHydrogenSetEnable;
 
-            _clsDevStep = classHydrogenBurningStep;
+        private ClassHydrogenPidRegulation _hydrogenPidRegulation;
+        /// <summary>
+        /// Класс пид регулятора
+        /// </summary>
+        private ClassHydrogenPidRegulation ClsHydrogenPidRegulation
+        {
+            get
+            {
+                if (_hydrogenPidRegulation != null)
+                    return _hydrogenPidRegulation;
+                _hydrogenPidRegulation = new ClassHydrogenPidRegulation();
+                return _hydrogenPidRegulation;
+            }
+        }
+
+        private double LastSetTempOut = -25;
+
+        private bool _usePid;
+        /// <summary>
+        /// Флаг использования Pid регулятора
+        /// </summary>
+        protected bool UsePid
+        {
+            get
+            {
+                return _usePid;
+            }
+            set
+            {
+                _hydrogenPidRegulation = null;
+                _usePid = value;
+            }
+        }
+        /// <summary>
+        /// Расчеты на каждом последующем шаге
+        /// </summary>
+        private bool firstStateWater = true;
+        private bool firstStateFire = true;
+
+        protected override void NextStepFunc()
+        {
+
+            var last = (ClassDataHydrogenBurner)LastData;
+            ReadTd();
+
+            #region Расчет заданой температуры
+            double setTemp = _clsHydrogenSetEnable.NextStep(_classDataTime);
+            #endregion
+            LastSetTempOut = setTemp;
+
+            ClassDataHydrogenBurner curr = _hydrogenPidRegulation.NextStep(_classDataTime, CurrTdBurner.AverTd, setTemp);
+
+            curr.SetupTemp = _classHydrogenBurnerStep.SetupValue;
+            curr.UseHydrogen = _classHydrogenBurnerStep.Heat;
+            curr.StateWater = GetPortWaterState();
+            curr.StateFire = GetPortFireState();
+
+            var relay = false;
+            if (curr.UseHydrogen)
+            {
+
+                if (_classHydrogenBurnerStep.UsePid)
+                    relay = SerRelayValuePid(curr.ClassPidOut);
+                else relay = SerRelayValue();
+            }
+            curr.StateRelay = relay;
+
+            SetPortState(_classHydrogenBurnerStep.HydrogenBurnerView.Relay);
+            SetPortHeatState(curr.UseHydrogen);
+            var dateNow = DateTime.Now;
+
+            if (last != null)
+            {
+                if (curr.StateWater != last.StateWater || firstStateWater)
+                {
+                    if (!curr.StateWater)
+
+                    {
+                        ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+                        conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
+                        conJumpArgs.NameDev = "Горелка";
+                        conJumpArgs.CurrValue = Convert.ToInt32(curr.StateWater);
+                        conJumpArgs.TextError = "Водяное охлаждение отсутствует";
+                        conJumpArgs.Conditional = 1;
+                        conJumpArgs.TypeConditional = TypeConditional.Alarm;
+                        AlarmError(this, conJumpArgs);
+                        firstStateWater = false;
+                    }
+                }
+
+                if (curr.StateFire != last.StateFire || firstStateFire)
+                {
+                    if (curr.StateFire)
+                    {
+                        ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+                        conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
+                        conJumpArgs.NameDev = "Горелка";
+                        conJumpArgs.CurrValue = Convert.ToInt32(curr.StateFire);
+                        conJumpArgs.TextError = "Сработал датчик пламени";
+                        conJumpArgs.Conditional = 1;
+                        conJumpArgs.TypeConditional = TypeConditional.Text;
+                        AlarmError(this, conJumpArgs);
+                        firstStateFire = false;
+                    }
+                }
+
+                if (curr.UseHydrogen != last.UseHydrogen)
+                {
+                    ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+                    conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
+                    conJumpArgs.NameDev = "Использование горелки";
+                    conJumpArgs.CurrValue = Convert.ToInt32(curr.UseHydrogen);
+                    conJumpArgs.TextError = "Состояние использования горелки изменено";
+                    conJumpArgs.Conditional = 1;
+                    conJumpArgs.TypeConditional = TypeConditional.Text;
+                    AlarmError(this, conJumpArgs);
+                }
+            }
+
+            if (AddData(curr))
+            {
+                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.PointsPrepare.Clr(Cnt);
+                if (_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire != null)
+                    _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.PointsPrepare.Clr(Cnt);
+                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesSetTemp.PointsPrepare.Clr(Cnt);
+            }
+
+
+            #region Вывод на форму  
+            _classHydrogenBurnerStep.HydrogenBurnerView.DataHydrogen = curr;
+            _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.Add(new PointTime(curr.CurrDate, CurrTdBurner.AverTd));
+
+            if (_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire != null)
+                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(curr.CurrDate, CurrTdFire.AverTd));
+            _classHydrogenBurnerStep.HydrogenBurnerView.SeriesSetTemp.Add(new PointTime(curr.CurrDate, LastSetTempOut));
+            _classHydrogenBurnerStep.HydrogenBurnerView.IsFire = curr.StateFire;
+            _classHydrogenBurnerStep.HydrogenBurnerView.IsWater = curr.StateWater;
+            _classHydrogenBurnerStep.HydrogenBurnerView.TdFire = CurrTdFire.AverTd;
+            _classHydrogenBurnerStep.HydrogenBurnerView.Relay = curr.StateRelay;
+            _classHydrogenBurnerStep.HydrogenBurnerView.TdHeaterHydrogenBurner = CurrTdBurner.AverTd;
+            _classHydrogenBurnerStep.Heat = curr.UseHydrogen;
+            #endregion
+            CheckStatus(curr);
+        }
+        private void ReadTd()
+        {
+            #region Расчет температуры по внешнему термодатчику
+            var uTdOut = GetAcp(_classHydrogenBurnerStep.HydrogenBurnerConst.TdBurner);
+            CurrTdBurner.Add(uTdOut);
+            #endregion
+
+        }
+
+        /// <summary>
+        /// Чтение АЦП
+        /// </summary>
+        /// <returns>Значение прочитанное с АЦП</returns>
+        public double GetAcp(XmlTdConst tdConst)
+        {
+            var contr7018 = LstContr[tdConst.MasAcpConst[0].ContrNum] as ClassController7018;
+            if (contr7018 != null)
+                return contr7018.AcpValues[tdConst.MasAcpConst[0].Port];
+
+            var contr87017 = LstContr[tdConst.MasAcpConst[0].ContrNum] as ClassController87017;
+            if (contr87017 != null)
+                return contr87017.AcpValues[tdConst.MasAcpConst[0].Port];
+
+            return 0.0;
+        }
+
+        private bool SerRelayValuePid(ClassDataPid pid)
+        {
+            if (pid.DeltaValue < 0)
+                return false;
+
+            return true;
+        }
+        private bool SerRelayValue()
+        {
+            if (CurrTdBurner.AverTd > LastSetTempOut)
+                return false;
+
+            return true;
+        }
+
+        public void SetPortHeatState(bool portState)
+        {
+            var constHydrogen = _classHydrogenBurnerStep.HydrogenBurnerConst;
+            if (constHydrogen.DioHeaterConst == null)
+                return;
+
+
+            var contr = LstContr[constHydrogen.DioHeaterConst.ContrNum] as ClassController87057;
+            contr.MasPortsState[constHydrogen.DioHeaterConst.Port] = portState;
+        }
+        public void SetPortState(bool portState)
+        {
+            var constHydrogen = _classHydrogenBurnerStep.HydrogenBurnerConst;
+            if (constHydrogen.DioRealyConst == null)
+                return;
+
+
+            var contr = LstContr[constHydrogen.DioRealyConst.ContrNum] as ClassController87057;
+            contr.MasPortsState[constHydrogen.DioRealyConst.Port] = portState;
+        }
+
+        public void DataStep(XmlClassHydrogenBurning clsHydrogenStep, IEnumerable<XmlStateConditionScript> states, XmlClassStepParams stepParams)
+        {
+            Init();
+            _clsDevStep = clsHydrogenStep;
+            _states = states.ToArray();
             _stepParams = stepParams;
 
 
-            _tdBurner = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.Td[0]);
+            ClsHydrogenPidRegulation.DataStep(_classHydrogenBurnerStep.HydrogenBurnerConst, _classHydrogenBurnerStep);
 
-            if(_classHydrogenBurnerStep.HydrogenBurnerConst.Td.Length>1)
-                _tdFire = new ClassBaseTd(_classHydrogenBurnerStep.HydrogenBurnerConst.Td[1]);
+            ReadTd();
 
-            _states = states.ToArray();
-            newStep = true;
-            Init();
+            LastSetTempOut = LastSetTempOut == -25 ? CurrTdBurner.AverTd : LastSetTempOut;
+            _clsHydrogenSetEnable = new ClassHydrogenSetEnable(_classHydrogenBurnerStep, LastSetTempOut);
+
+            if (File.Exists($"{path}\\HydrogenBurner{_classHydrogenBurnerStep.Num}.txt"))
+                File.Delete($"{path}\\HydrogenBurner{_classHydrogenBurnerStep.Num}.txt");
         }
+
 
         /// <summary>
         /// Расчеты на первом шаге
@@ -69,103 +311,6 @@ namespace GasStation.Devices
 
         private int currWaterTimer = 60;
 
-        /// <summary>
-        /// Расчеты на каждом последующем шаге
-        /// </summary>
-        protected override void NextStepFunc()
-        {
-            _tdBurner.Add(GetAcpTdBurner());
-            if(_tdFire!= null)
-                _tdFire.Add(GetAcpTdFire());
-
-            var last = (ClassDataHydrogenBurner)LastData;
-            var curr = new ClassDataHydrogenBurner(_classDataTime);
-
-            curr.TdBurner = _tdBurner.AverTd;
-           if(_tdFire!= null)
-                curr.TdFire = _tdFire.AverTd;
-            
-            curr.StateWater = GetPortWaterState();
-            curr.StateFire = GetPortFireState();
-            
-
-            #region Определение вкл/выкл нагрева
-            if (curr.TdBurner < _classHydrogenBurnerStep.HydrogenBurnerConst.SetupTemp && _classHydrogenBurnerStep.Heat)
-                curr.StateRelay = true;
-            else
-                curr.StateRelay = false;
-            #endregion
-
-            #region Предупреждение по датчику воды                      
-            if ((last == null && !curr.StateWater) || (last != null && !curr.StateWater && last.StateWater))
-            {
-                ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep)
-                {
-                    NumDev = _classHydrogenBurnerStep.Num,
-                    NameDev = "Горелка",
-                    CurrValue = Convert.ToInt32(curr.StateWater),
-                    Conditional = 0,
-                    TextError = "Нет водяного охлаждения",
-                    TypeConditional = TypeConditional.Alarm
-                };
-                AlarmError?.Invoke(this, conJumpArgs);
-            }
-            #endregion
-
-
-            #region Предупреждение по датчику пламени                      
-            if ((last == null && curr.StateFire) || (last != null && curr.StateFire && !last.StateFire))
-            {
-                ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep)
-                {
-                    NumDev = _classHydrogenBurnerStep.Num,
-                    NameDev = "Горелка",
-                    CurrValue = Convert.ToInt32(curr.StateFire),
-                    Conditional = 0,
-                    TextError = "Сработал датчик пламени",
-                    TypeConditional = TypeConditional.Alarm
-                };
-                AlarmError?.Invoke(this, conJumpArgs);
-            }
-            #endregion
-
-            CheckStatus(curr);
-            SetPortRelay(_classHydrogenBurnerStep.Heat);
-            SetPortHeater(_classHydrogenBurnerStep.HydrogenBurnerView.Relay);
-            curr.StateHeat = _classHydrogenBurnerStep.Heat;
-            if (last != null)
-            {
-                if (curr.StateHeat != last.StateHeat)
-                {
-                    ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-                    conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
-                    conJumpArgs.NameDev = "Нагреватель горелки";
-                    conJumpArgs.CurrValue = Convert.ToInt32(curr.StateHeat);
-                    conJumpArgs.TextError = "Состояние нагрева изменено";
-                    conJumpArgs.Conditional = 1;
-                    conJumpArgs.TypeConditional = TypeConditional.Text;
-                    AlarmError(this, conJumpArgs);
-                }
-            }
-
-            if (AddData(curr))
-            {
-                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.PointsPrepare.Clr(Cnt); ;
-                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.PointsPrepare.Clr(Cnt);
-            }
-
-            if(_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire!=null)
-                _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdFire));
-            
-            _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdHeaterHydrogenBurner.Add(new PointTime(_classDataTime.BeginCycleStep, curr.TdBurner));
-
-            _classHydrogenBurnerStep.HydrogenBurnerView.TdHeaterHydrogenBurner = curr.TdBurner;
-            _classHydrogenBurnerStep.HydrogenBurnerView.TdFire = curr.TdFire;
-            _classHydrogenBurnerStep.HydrogenBurnerView.Relay = curr.StateRelay;
-            _classHydrogenBurnerStep.HydrogenBurnerView.IsWater = curr.StateWater;
-            _classHydrogenBurnerStep.HydrogenBurnerView.IsFire = curr.StateFire;
-
-        }
 
         public double GetAcpTdBurner()
         {
@@ -195,8 +340,6 @@ namespace GasStation.Devices
 
         public bool GetPortWaterState()
         {
-            //var contr = LstContr[_classHydrogenBurnerStep.HydrogenBurnerConst.DioWaterConst.ContrNum] as ClassController87053;
-            //return (contr.DioValues[_classHydrogenBurnerStep.HydrogenBurnerConst.DioWaterConst.Port]);
 
             var con = _classHydrogenBurnerStep.HydrogenBurnerConst.DioWaterConst;
             if (con is null)
@@ -215,9 +358,9 @@ namespace GasStation.Devices
 
             var val = contr.DioValues[_classHydrogenBurnerStep.HydrogenBurnerConst.DioFireConst.Port];
             var isInverted = _classHydrogenBurnerStep.HydrogenBurnerConst.DioFireConst.IsInverted;
+            var returnVal = (!isInverted ? val : !val);
 
-
-            return (!isInverted ? val : !val);
+            return returnVal;
         }
 
         public void CheckStatus(ClassDataHydrogenBurner curr)
