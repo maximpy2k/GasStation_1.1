@@ -370,7 +370,7 @@ namespace GasStation.Devices
             for (int i = 0; i < StatesT.Count; i++)
             {
                 {
-                    if ((curr.TimeStep > StatesT[i].Timer) && (curr.TdFire < StatesT[i].ValueBegin) || (curr.TdFire > StatesT[i].ValueEnd))
+                    if ((curr.TimeStep > StatesT[i].Timer) && (CurrTdFire.AverTd < StatesT[i].ValueBegin) || (CurrTdFire.AverTd > StatesT[i].ValueEnd))
                     {
                         FlagStop = true;
 
@@ -393,7 +393,7 @@ namespace GasStation.Devices
 
             for (int i = 0; i < StatesTHeat.Count; i++)
             {
-                if ((curr.TimeStep > StatesTHeat[i].Timer) && (curr.TdBurner < StatesTHeat[i].ValueBegin) || (curr.TdBurner > StatesTHeat[i].ValueEnd))
+                if ((curr.TimeStep > StatesTHeat[i].Timer) && (CurrTdBurner.AverTd < StatesTHeat[i].ValueBegin) || (CurrTdBurner.AverTd > StatesTHeat[i].ValueEnd))
                 {
                     FlagStop = true;
 

@@ -41,7 +41,7 @@ namespace GasStation.Elements.ViewModels
         private int viewPower;
         public int ViewPower
         {
-            get { return SetPower>>1; }
+            get { return SetPower; }
 
             set
             {

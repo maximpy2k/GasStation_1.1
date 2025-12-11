@@ -21,7 +21,7 @@
 		</user>
 	</securety>
 	<dev name="ComPort" num="1" rusName="СОМ-порт" def="Номер COM-порта">
-		<EditFild name="Port" rusName="Порт" value="3" def="Наименование COM-порта" readОnly="true" />
+		<EditFild name="Port" rusName="Порт" value="2" def="Наименование COM-порта" readОnly="true" />
 		<EditFild name="Baudrate" rusName="Baud rate" value="115200" def="Baud rate" readОnly="true" />
 		<EditFild name="Databits" rusName="Data bits" value="8 " def="Data bits" readОnly="true" />
 		<EditFild name="Parity" rusName="Parity" value="None" def="Parity" readОnly="true" />
@@ -78,7 +78,7 @@
 		</dev>
 		<dev name="Controller" num="6" rusName="IDAS 87017" def="Контроллер АЦП">
 			<EditFild name="name" rusName="Имя" value="IDAS 87017" def="Контроллер АЦП" readОnly="true" />
-			<EditFild name="pa" rusName="ПА" value="6" def="Подадрес" readОnly="false" />
+			<EditFild name="pa" rusName="ПА" value="17" def="Подадрес" readОnly="false" />
 			<EditFild name="wdt" rusName="Таймер" value="28" def="Время" readОnly="false" />
 			<EditFild name="countReads" rusName="Колличество чтений" value="20" def="Раз" readОnly="false" />
 			<EditFild name="delayRead" rusName="Задержка чтения" value="85" def="Задержка" readОnly="false" />
@@ -119,17 +119,16 @@
 		</dev>
 	</dev>
 	<dev name="sensor" num="1" rusName="Датчик воздуха" def="Датчик воздуха">
-		<EditFild name="isInverted" rusName="Инвертирование" value="true" def="Инвертирование показаний порта" readОnly="false" />
+		<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 		<EditFild name="contrNum" rusName="№ контр." value="10" def="Порядковый номер контроллера" readОnly="false" />
 		<EditFild name="port" rusName="Порт" value="5" def="In" readОnly="false" />
 	</dev>
 	<dev name="sensor" num="2" rusName="Датчик утечки водорода" def="Датчик утечки водорода">
-		<EditFild name="isInverted" rusName="Инвертирование" value="true" def="Инвертирование показаний порта" readОnly="false" />
+		<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 		<EditFild name="contrNum" rusName="№ контр." value="10" def="Порядковый номер контроллера" readОnly="false" />
 		<EditFild name="port" rusName="Порт" value="6" def="In" readОnly="false" />
 	</dev>
 	<dev name="Errors" num="1" rusName="Состояние установки" def="Перчень сбойных ситуаций">
-
 	</dev>
 	<dev name="rrg" num="1" rusName="РРГ" def="Регулятор расхода газа">
 		<dev name="properties" rusName="Свойства">
@@ -141,7 +140,7 @@
 			<EditFild name="port" rusName="Порт" value="0" def="Порт ЦАП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="Расход [л/с]" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="1800" valueY="5" check="True" />
+				<field valueX="900" valueY="5" check="True" />
 			</table>
 		</dev>
 		<dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь управляющий регулятором расхода газа">
@@ -149,7 +148,7 @@
 			<EditFild name="port" rusName="Порт" value="0" def="Порт АЦП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="10" valueY="1800" check="True" />
+				<field valueX="10" valueY="900" check="True" />
 			</table>
 		</dev>
 	</dev>
@@ -163,7 +162,7 @@
 			<EditFild name="port" rusName="Порт" value="1" def="Порт ЦАП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="Расход [л/с]" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="1800" valueY="5" check="True" />
+				<field valueX="90" valueY="5" check="True" />
 			</table>
 		</dev>
 		<dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь управляющий регулятором расхода газа">
@@ -171,7 +170,7 @@
 			<EditFild name="port" rusName="Порт" value="1" def="Порт АЦП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="10" valueY="1800" check="True" />
+				<field valueX="10" valueY="90" check="True" />
 			</table>
 		</dev>
 	</dev>
@@ -186,7 +185,7 @@
 			</dev>
 			<dev name="dio" num="1" rusName="Цифровой выход" def="Настройка цифрового порта">
 				<EditFild name="contrNum" rusName="№ контр." value="9" def="Порядковый номер контроллера" readОnly="false" />
-				<EditFild name="port" rusName="Порт" value="13" def="Порт" readОnly="false" />
+				<EditFild name="port" rusName="Порт" value="15" def="Порт" readОnly="false" />
 			</dev>
 		</dev>
 		<dev name="cap" num="1" rusName="ЦАП" def="Цифро-аналоговый преобразователь управляющий регулятором расхода газа">
@@ -216,7 +215,7 @@
 			<EditFild name="port" rusName="Порт" value="3" def="Порт ЦАП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="Расход [л/с]" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="90" valueY="5" check="True" />
+				<field valueX="1800" valueY="5" check="True" />
 			</table>
 		</dev>
 		<dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь управляющий регулятором расхода газа">
@@ -224,7 +223,7 @@
 			<EditFild name="port" rusName="Порт" value="3" def="Порт АЦП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="10" valueY="90" check="True" />
+				<field valueX="10" valueY="1800" check="True" />
 			</table>
 		</dev>
 	</dev>
@@ -238,7 +237,7 @@
 			<EditFild name="port" rusName="Порт" value="0" def="Порт ЦАП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет значения в напряжение" rusNameX="Расход [л/с]" rusNameY="U[В]" defX="Устанавливаемая величина" defY="Значение напряжения в вольтах">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="90" valueY="5" check="True" />
+				<field valueX="36" valueY="5" check="True" />
 			</table>
 		</dev>
 		<dev name="acp" num="1" rusName="АЦП" def="Аналогово-цифровой преобразователь управляющий регулятором расхода газа">
@@ -246,7 +245,7 @@
 			<EditFild name="port" rusName="Порт" value="4" def="Порт АЦП" readОnly="false" />
 			<table name="Tab" num="1" rusName="Таблица" def="Пересчет напряжения в расход газа" rusNameX="U[В]" rusNameY="Расход [л/с]" defX="Значение напряжения в вольтах" defY="Расход газа [л/с]">
 				<field valueX="0" valueY="0" check="True" />
-				<field valueX="10" valueY="90" check="True" />
+				<field valueX="10" valueY="36" check="True" />
 			</table>
 		</dev>
 	</dev>
@@ -351,16 +350,16 @@
 	</dev>
 	<dev name="chamber" num="1" rusName="Термокамера" def="Термокамера">
 		<dev name="properties" rusName="Свойства">
-			<EditFild name="crashTemp" rusName="Т аварии" value="1900" def="Аварийная температура" readОnly="false" />
+			<EditFild name="crashTemp" rusName="Т аварии" value="1100" def="Аварийная температура" readОnly="false" />
 		</dev>
 		<dev name="section" num="1" rusName="Термосекция(Газ)" def="Секция термокамеры">
 			<dev name="properties" rusName="Свойства">
 				<EditFild name="contrNum" rusName="№ контр." value="1" def="Контроллер нагревателя" readОnly="false" />
 				<EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" readОnly="true" />
 				<EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры" readОnly="true" />
-				<EditFild name="maxKey" rusName="Макс.код" value="1000" def="Максимальный температура в секции термокамеры" readОnly="true" />
+				<EditFild name="maxKey" rusName="Макс.код" value="4095" def="Максимальный температура в секции термокамеры" readОnly="true" />
 				<EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
-				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
 			</dev>
 			<dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
 				<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -408,18 +407,18 @@
 			</dev>
 			<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
-				<EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Kp" rusName="Кп" value="0.1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Td" rusName="Тд" value="150" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="0" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
 				<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
 				<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
-				<EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="300" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Di" rusName="Ди" value="50" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+				<EditFild name="Kp" rusName="Кп" value="0.9" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Td" rusName="Тд" value="15" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="200" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
 				<EditFild name="MaxImpact" rusName="Макс.Возд." value="100" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
@@ -431,9 +430,9 @@
 				<table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
 					<field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
 					<field valueX="700" valueY="700" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="850" valueY="841" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1100" valueY="1079" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1150" valueY="1131" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="850" valueY="850" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1100" valueY="1100" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1150" valueY="1150" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
 					<field valueX="1200" valueY="1181" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
 				</table>
 			</dev>
@@ -443,9 +442,9 @@
 				<EditFild name="contrNum" rusName="№ контр." value="2" def="Контроллер нагревателя" readОnly="false" />
 				<EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" />
 				<EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры" readОnly="true" />
-				<EditFild name="maxKey" rusName="Макс.код" value="1000" def="Максимальный температура в секции термокамеры" readОnly="true" />
+				<EditFild name="maxKey" rusName="Макс.код" value="4095" def="Максимальный температура в секции термокамеры" readОnly="true" />
 				<EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
-				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
 			</dev>
 			<dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
 				<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -493,19 +492,19 @@
 			</dev>
 			<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
-				<EditFild name="Kp" rusName="Кп" value="0.15" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="15" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="300" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+				<EditFild name="Kp" rusName="Кп" value="0.9" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Td" rusName="Тд" value="150" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="15" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Di" rusName="Ди" value="25" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
 				<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
 				<EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="200" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Di" rusName="Ди" value="30" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
-				<EditFild name="MaxImpact" rusName="Макс.Возд." value="50" def="Максимальное воздействие" readОnly="false" />
+				<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="180" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+				<EditFild name="MaxImpact" rusName="Макс.Возд." value="100" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
 				<table name="CorrectionTemp" num="1" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
@@ -515,11 +514,11 @@
 				</table>
 				<table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
 					<field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="700" valueY="697" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="850" valueY="846.5" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1100" valueY="1090" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1150" valueY="1140" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1200" valueY="1190" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="700" valueY="700" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="850" valueY="850" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1100" valueY="1100" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1150" valueY="1150" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1200" valueY="1200" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
 				</table>
 			</dev>
 		</dev>
@@ -528,9 +527,9 @@
 				<EditFild name="contrNum" rusName="№ контр." value="3" def="Контроллер нагревателя" readОnly="false" />
 				<EditFild name="dataBits" rusName="биты данных" value="12" def="Количество битов данных, которыми устанавливается значение температуры в секции камеры" />
 				<EditFild name="minKey" rusName="Мин.код" value="0" def="Минимальный температура в секции термокамеры" readОnly="true" />
-				<EditFild name="maxKey" rusName="Макс.код" value="1000" def="Максимальный температура в секции термокамеры" readОnly="true" />
+				<EditFild name="maxKey" rusName="Макс.код" value="4095" def="Максимальный температура в секции термокамеры" readОnly="true" />
 				<EditFild name="maxUpSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости нагрева секции термокамеры" readОnly="true" />
-				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="5" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
+				<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения секции термокамеры" readОnly="true" />
 			</dev>
 			<dev name="td" num="1" rusName="Рабочая Терм." def="Термодатчик">
 				<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -578,18 +577,18 @@
 			</dev>
 			<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
-				<EditFild name="Kp" rusName="Кп" value="0.05" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="150" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Kp" rusName="Кп" value="0.9" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Td" rusName="Тд" value="100" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="80" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
 				<EditFild name="Di" rusName="Ди" value="20" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
 				<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="pid" num="2" rusName="ПИД" def="ПИД регулятор">
 				<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры в секции термокамеры" readОnly="true" />
 				<EditFild name="Kp" rusName="Кп" value="1" def="Коэффициент пропорциональной составляющей ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Td" rusName="Тд" value="0" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Ti" rusName="Ти" value="300" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
-				<EditFild name="Di" rusName="Ди" value="75" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
+				<EditFild name="Td" rusName="Тд" value="5" def="Постоянная времени дифференцирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Ti" rusName="Ти" value="200" def="Постоянная времени интегрирования ПИД секции термокамеры" readОnly="true" />
+				<EditFild name="Di" rusName="Ди" value="35" def="Область допустимых значений ошибки управления температуры секции термокамеры" readОnly="true" />
 				<EditFild name="MaxImpact" rusName="Макс.Возд." value="100" def="Максимальное воздействие" readОnly="false" />
 			</dev>
 			<dev name="tables" num="1" rusName="Коррекировочные таблицы" def="Набор корректировочных таблиц для секции термокамеры">
@@ -600,11 +599,11 @@
 				</table>
 				<table name="CorrectionTemp" num="2" rusName="Таблица" def="Коррекировочная таблица температурных значений для секции термокамеры">
 					<field valueX="0" valueY="0" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="700" valueY="695" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="850" valueY="845" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1100" valueY="1091" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1150" valueY="1140" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
-					<field valueX="1200" valueY="1194" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="700" valueY="700" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры конца интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры конца интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="850" valueY="850" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1100" valueY="1100" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1150" valueY="1150" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
+					<field valueX="1200" valueY="1200" check="True" rusNameX="T уст" rusNameY="T наг" defX="Значение температуры начала интервала корректировочного графика внутри секции термокамеры" defY="Значение температуры начала интервала корректировочного графика между витками нагревательного элемента" />
 				</table>
 			</dev>
 		</dev>
@@ -625,10 +624,9 @@
 	</dev>
 	<dev name="burner" num="1" rusName="Горелка" def="Горелка">
 		<dev name="properties" rusName="Свойства">
-			<EditFild name="setupTemp" rusName="Температура горения" value="700" def="" readОnly="false" />
+			<EditFild name="setupTemp" rusName="Температура горения" value="800" def="" readОnly="false" />
 			<EditFild name="maxUpSpeed" rusName="Град. в сек." value="1" def="Ограничение скорости нагрева" readОnly="true" />
 			<EditFild name="maxDownSpeed" rusName="Град. в сек." value="10" def="Ограничение скорости охлаждения" readОnly="true" />
-			
 		</dev>
 		<dev name="td" num="1" rusName="Т горелки" def="Термодатчик">
 			<dev name="properties" num="1" rusName="Параметры" def="Параметры термодатчика">
@@ -649,12 +647,12 @@
 		</dev>
 		<dev name="relay" num="1" rusName="Реле пускателя" def="Реле пускателя">
 			<EditFild name="contrNum" rusName="№ контр." value="9" def="Контроллер пускателя" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="0" def="Порт реле пускателя" readОnly="false" />
+			<EditFild name="port" rusName="Порт" value="12" def="Порт реле пускателя" readОnly="false" />
 			<EditFild name="dest" rusName="Дест" value="Out" def="Режим работы порта" readОnly="true" />
 		</dev>
 		<dev name="heater" num="1" rusName="Управление нагревателем горелки" def="Управление нагревателем горелки">
 			<EditFild name="contrNum" rusName="№ контр." value="9" def="Контроллер нагревателя" readОnly="false" />
-			<EditFild name="port" rusName="Порт" value="12" def="Порт реле нагревателя" readОnly="false" />
+			<EditFild name="port" rusName="Порт" value="0" def="Порт реле нагревателя" readОnly="false" />
 			<EditFild name="dest" rusName="Дест" value="Out" def="Режим работы порта" readОnly="true" />
 		</dev>
 		<dev name="status" rusName="Статусы">
@@ -668,16 +666,16 @@
 				<EditFild name="contrNum" rusName="№ контр." value="10" def="Контроллер ДО" readОnly="false" />
 				<EditFild name="port" rusName="Порт" value="2" def="Порт цифрового порта ввода вывода" readОnly="false" />
 				<EditFild name="dest" rusName="Режим ДИО" value="In" def="Режим работы цифрового порта ввода вывода" readОnly="true" />
-				<EditFild name="isInverted" rusName="Инвертирование" value="true" def="Инвертирование показаний порта" readОnly="false" />
+				<EditFild name="isInverted" rusName="Инвертирование" value="false" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
 		</dev>
 		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
 			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры горелки" readОnly="true" />
-			<EditFild name="Kp" rusName="Кп" value="0.1" def="Коэффициент пропорциональной составляющей ПИД горелки" readОnly="true" />
-			<EditFild name="Td" rusName="Тд" value="40" def="Постоянная времени дифференцирования ПИД горелки" readОnly="true" />
-			<EditFild name="Ti" rusName="Ти" value="0" def="Постоянная времени интегрирования ПИД горелки" readОnly="true" />
-			<EditFild name="Di" rusName="Ди" value="3" def="Область допустимых значений ошибки управления температуры горелки" readОnly="true" />
-			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+			<EditFild name="Kp" rusName="Кп" value="2" def="Коэффициент пропорциональной составляющей ПИД горелки" readОnly="true" />
+			<EditFild name="Td" rusName="Тд" value="90" def="Постоянная времени дифференцирования ПИД горелки" readОnly="true" />
+			<EditFild name="Ti" rusName="Ти" value="20" def="Постоянная времени интегрирования ПИД горелки" readОnly="true" />
+			<EditFild name="Di" rusName="Ди" value="10" def="Область допустимых значений ошибки управления температуры горелки" readОnly="true" />
+			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1.2" def="Максимальное воздействие" readОnly="false" />
 		</dev>
 	</dev>
 	<dev name="loader" num="1" rusName="Загрузчик" def="Загрузчик">
@@ -755,10 +753,10 @@
 		</dev>
 		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
 			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры барботера" readОnly="true" />
-			<EditFild name="Kp" rusName="Кп" value="0.1" def="Коэффициент пропорциональной составляющей ПИД барботера" readОnly="true" />
-			<EditFild name="Td" rusName="Тд" value="40" def="Постоянная времени дифференцирования ПИД барботера" readОnly="true" />
-			<EditFild name="Ti" rusName="Ти" value="0" def="Постоянная времени интегрирования ПИД барботера" readОnly="true" />
-			<EditFild name="Di" rusName="Ди" value="3" def="Область допустимых значений ошибки управления температуры барботера" readОnly="true" />
+			<EditFild name="Kp" rusName="Кп" value="1.05" def="Коэффициент пропорциональной составляющей ПИД барботера" readОnly="true" />
+			<EditFild name="Td" rusName="Тд" value="30" def="Постоянная времени дифференцирования ПИД барботера" readОnly="true" />
+			<EditFild name="Ti" rusName="Ти" value="360" def="Постоянная времени интегрирования ПИД барботера" readОnly="true" />
+			<EditFild name="Di" rusName="Ди" value="150" def="Область допустимых значений ошибки управления температуры барботера" readОnly="true" />
 			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
 		</dev>
 	</dev>
