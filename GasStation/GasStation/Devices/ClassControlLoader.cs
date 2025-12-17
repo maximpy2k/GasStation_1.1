@@ -243,7 +243,10 @@ namespace GasStation.Devices
             var contr = LstContr[_clsLoaderStep.LoaderConst.Load.ContrNum] as ClassController87057;
 
             if (portState!=null)
+            {
+                contr.MasPortsState[_clsLoaderStep.LoaderConst.UnLoad.Port] = !(bool)portState;
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.Load.Port] = (bool)portState;
+            }
 
             lastLoad = portState;
             generateEventLoad = true;
@@ -260,7 +263,10 @@ namespace GasStation.Devices
                 return;
             var contr = LstContr[_clsLoaderStep.LoaderConst.UnLoad.ContrNum] as ClassController87057;
             if (portState != null)
+            {
+                contr.MasPortsState[_clsLoaderStep.LoaderConst.Load.Port] = !(bool)portState;
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.UnLoad.Port] = (bool)portState;
+            }
 
             lastUnload = portState;
             generateEventLoad = true;
