@@ -310,6 +310,7 @@
     <Compile Include="UserControls\Elements\ClassHydrogenBurnerView.cs" />
     <Compile Include="UserControls\Elements\ClassRrgView.cs" />
     <Compile Include="UserControls\Elements\ClassvVacuumetrView.cs" />
+    <Compile Include="ViewModels\Converters\CompareConverter.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="xml\ClassScript.cs" />
     <Compile Include="xml\Script\Constant\XmlBaseConst.cs" />

@@ -9,6 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:ClassConverterStepBackground x:Key="myConverter"/>
+        <converters:CompareConverter x:Key="compareConverter"/>
         <Style x:Key="myItemStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="Background">
                 <Setter.Value>
@@ -35,6 +36,43 @@
                     <MenuItem Header="Копировать" Command="{Binding Path=CmdCopyStep}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                    <!-- Фон -->
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource compareConverter}" 
+                  ConverterParameter="Background">
+                                <Binding Path="DataContext" RelativeSource="{RelativeSource Self}"/>
+                                <Binding Path="ItemsSource" RelativeSource="{RelativeSource AncestorType=ListView}"/>
+                                <Binding Path="DataContext.ClsScript.RunningStepIdx" ElementName="Lst"/>
+                                <Binding Path="IsSelected" RelativeSource="{RelativeSource Self}"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!-- Цвет текста -->
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource compareConverter}" 
+                  ConverterParameter="Foreground">
+                                <Binding Path="DataContext" RelativeSource="{RelativeSource Self}"/>
+                                <Binding Path="ItemsSource" RelativeSource="{RelativeSource AncestorType=ListView}"/>
+                                <Binding Path="DataContext.ClsScript.RunningStepIdx" ElementName="Lst"/>
+                                <Binding Path="IsSelected" RelativeSource="{RelativeSource Self}"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DeepSkyBlue"/>
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </UserControl>
