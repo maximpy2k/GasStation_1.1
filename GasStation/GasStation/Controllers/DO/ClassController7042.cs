@@ -18,8 +18,6 @@ namespace GasStation.Controllers
         {
             _viewModel = view as ViewModelControllerTMPower;            
         }
-        public override void CheckWdt()
-        { }
         
         public override void PostExecute()
         {
@@ -28,12 +26,8 @@ namespace GasStation.Controllers
             else
                 _viewModel.Avalible = ControllerStatus;
 
-            //var cmd1 = $"#{contrConst.Pa:X2}0A{LowByte:X2}";
-            //var cmd2 = $"#{contrConst.Pa:X2}0B{HiByte:X2}";
-            //4090
             var cmd1 = $"@{contrConst.Pa:X2}{HiByte:X2}{LowByte:X2}";
             SendCmd(cmd1);
-            //SendCmd(cmd2);            
         }
 
         public override void SetValue(int val)
@@ -60,8 +54,5 @@ namespace GasStation.Controllers
             else
                 _viewModel.Avalible = ControllerStatus;
         }
-
-        //private byte _lowByte;
-        //private byte _hiByte;
     }
 }

@@ -19,14 +19,14 @@ namespace GasStation.Devices
         /// <summary>
         /// Класс параметров  шага устройства
         /// </summary>
-        private XmlClassLoader _clsLoaderStep=>(XmlClassLoader)_clsDevStep;
+        private XmlClassLoader _clsLoaderStep => (XmlClassLoader)_clsDevStep;
 
 
-        public ClassControlLoader(ClassDataTime classDataTime):base(classDataTime)
+        public ClassControlLoader(ClassDataTime classDataTime) : base(classDataTime)
         {
         }
-        
-        
+
+
         public void DataStep(XmlClassLoader clsLoaderStep, IEnumerable<XmlStateConditionScript> states)
         {
             Init();
@@ -40,8 +40,8 @@ namespace GasStation.Devices
             base.Init();
         }
 
-        bool ErrorLoad ;
-        bool ErrorUnload ;
+        bool ErrorLoad;
+        bool ErrorUnload;
         bool LoadComplete;
         bool UnloadComplete;
         bool RegWork;
@@ -58,108 +58,130 @@ namespace GasStation.Devices
             RegWork = GetPortRegWork();
             _clsLoaderStep.LoaderView.RegWork = RegWork;
 
-            ErrorLoad =  GetPortLoadError();
-            ErrorUnload =  GetPortUnloadError();
-            
+            ErrorLoad = GetPortLoadError();
+            ErrorUnload = GetPortUnloadError();
+
 
             LoadComplete = GetPortLoadComplete();
-            UnloadComplete = GetPortUnloadComplete();
 
+            UnloadComplete = GetPortUnloadComplete();
 
             gateOpen = GetPortGateOpen();
             _clsLoaderStep.LoaderView.IsGateOpen = gateOpen;
 
-            gateClose = GetPortGateClose();            
+            gateClose = GetPortGateClose();
             _clsLoaderStep.LoaderView.IsGateClose = gateClose;
 
-            
+
             CheckStatus();
 
-            if (!ErrorLoad || _clsLoaderStep.LoaderConst.StatusConst.ErrorLoad == null)
-            {
-                var value = (_clsLoaderStep.LoaderConst.MasCapConst == null) ? 0 : _clsLoaderStep.LoaderConst.MasCapConst[0].Table.MaxVal;
-                if(!ErrorUnload|| _clsLoaderStep.LoaderConst.StatusConst.ErrorUnLoad == null)
-                    SetCap(value * _clsLoaderStep.SetupSpeed / 100);
-            }
 
-            if (!LoadComplete && !ErrorLoad)
+            var value = (_clsLoaderStep.LoaderConst.MasCapConst == null) ? 0 : _clsLoaderStep.LoaderConst.MasCapConst[0].Table.MaxVal;
+            SetCap(value * _clsLoaderStep.SetupSpeed / 100);
+
+            SetPortLoad(_clsLoaderStep.DestLoad);
+            SetPortUnload(_clsLoaderStep.DestUnload);
+            if (ErrorLoad)
             {
-                _clsLoaderStep.LoaderView.StatusLoad = null;
+                _clsLoaderStep.LoaderView.StatusLoad = !ErrorLoad;
+
                 SetPortLoad(_clsLoaderStep.DestLoad);
-                lastload = LoadComplete;
-                lastErrorload = ErrorLoad;
-            }
-            else
-            {
-                if (!(bool)_clsLoaderStep.DestUnload)
-                    //_clsLoaderStep.Destination = null;
 
-                if (LoadComplete)
+                if (lastErrorload != ErrorLoad)
                 {
-                    _clsLoaderStep.LoaderView.StatusLoad = LoadComplete;
-                    SetPortLoad(_clsLoaderStep.DestLoad);
-                    if (lastload!=LoadComplete)
-                    {
-                        lastload = LoadComplete;
-                        GenerateEvent(LoadComplete, "Загружен",TypeConditional.StatusText);
-
-                    }
-                    
+                    lastErrorload = ErrorLoad;
+                    GenerateEvent(ErrorLoad, "Авария загрузки", TypeConditional.Alarm);
                 }
-
-
-                if (ErrorLoad)
-                {
-                    _clsLoaderStep.LoaderView.StatusLoad = !ErrorLoad;
-                    
-                    SetPortLoad(_clsLoaderStep.DestLoad);
-
-                    if (lastErrorload != ErrorLoad)
-                    {
-                        lastErrorload = ErrorLoad;
-                        GenerateEvent(ErrorLoad, "Авария загрузки", TypeConditional.Alarm);
-                    }
-                }
-
             }
-
-
-            if (!UnloadComplete && !ErrorUnload)
+            if (ErrorUnload)
             {
+                _clsLoaderStep.LoaderView.StatusUnload = !ErrorUnload;
                 SetPortUnload(_clsLoaderStep.DestUnload);
-                _clsLoaderStep.LoaderView.StatusUnload = null;
-                lastunload = UnloadComplete;
-                lastErrorunload = ErrorUnload;
-            }
-            else
-            {
-                if (!(bool)_clsLoaderStep.DestLoad)
-                    //_clsLoaderStep.Destination = null;
 
-                if (UnloadComplete)
+                if (lastErrorunload != ErrorUnload)
                 {
-                    _clsLoaderStep.LoaderView.StatusUnload = UnloadComplete;
-                    SetPortUnload(_clsLoaderStep.DestUnload);
-
-                    if (lastunload != UnloadComplete)
-                    {
-                        lastunload = UnloadComplete;
-                        GenerateEvent(UnloadComplete,"Выгружен",TypeConditional.StatusText);
-                    }
-                }
-
-                if (ErrorUnload)
-                {
-                    _clsLoaderStep.LoaderView.StatusUnload = !ErrorUnload;
-                    SetPortUnload(_clsLoaderStep.DestUnload);
-
-                    if (lastErrorunload != ErrorUnload)
-                    {
-                        lastErrorunload = ErrorUnload;
-                        GenerateEvent(ErrorUnload, "Авария выгрузки", TypeConditional.Alarm);
-                    }
+                    lastErrorunload = ErrorUnload;
+                    GenerateEvent(ErrorUnload, "Авария выгрузки", TypeConditional.Alarm);
                 }
             }
+
+            
+
+            //if (!LoadComplete && !ErrorLoad)
+            //{
+            //    _clsLoaderStep.LoaderView.StatusLoad = null;
+            //    SetPortLoad(_clsLoaderStep.DestLoad);
+            //    lastload = LoadComplete;
+            //    lastErrorload = ErrorLoad;
+            //}
+            //else
+            //{
+            //    if (!(bool)_clsLoaderStep.DestUnload)
+            //        //_clsLoaderStep.Destination = null;
+
+            //_clsLoaderStep.LoaderView.StatusLoad = LoadComplete;
+            //        SetPortLoad(_clsLoaderStep.DestLoad);
+            //        if (lastload!=LoadComplete)
+            //        {
+            //            lastload = LoadComplete;
+            //            GenerateEvent(LoadComplete, "Загружен",TypeConditional.StatusText);
+
+            //        }
+
+
+
+            //    if (ErrorLoad)
+            //    {
+            //        _clsLoaderStep.LoaderView.StatusLoad = !ErrorLoad;
+
+            //        SetPortLoad(_clsLoaderStep.DestLoad);
+
+            //        if (lastErrorload != ErrorLoad)
+            //        {
+            //            lastErrorload = ErrorLoad;
+            //            GenerateEvent(ErrorLoad, "Авария загрузки", TypeConditional.Alarm);
+            //        }
+            //    }
+
+            //}
+
+
+            //if (!UnloadComplete && !ErrorUnload)
+            //{
+            //    SetPortUnload(_clsLoaderStep.DestUnload);
+            //    _clsLoaderStep.LoaderView.StatusUnload = null;
+            //    lastunload = UnloadComplete;
+            //    lastErrorunload = ErrorUnload;
+            //}
+            //else
+            //{
+            //    if (!(bool)_clsLoaderStep.DestLoad)
+            //        //_clsLoaderStep.Destination = null;
+
+            //    if (UnloadComplete)
+            //    {
+            //        _clsLoaderStep.LoaderView.StatusUnload = UnloadComplete;
+            //        SetPortUnload(_clsLoaderStep.DestUnload);
+
+            //        if (lastunload != UnloadComplete)
+            //        {
+            //            lastunload = UnloadComplete;
+            //            GenerateEvent(UnloadComplete,"Выгружен",TypeConditional.StatusText);
+            //        }
+            //    }
+
+            //    if (ErrorUnload)
+            //    {
+            //        _clsLoaderStep.LoaderView.StatusUnload = !ErrorUnload;
+            //        SetPortUnload(_clsLoaderStep.DestUnload);
+
+            //        if (lastErrorunload != ErrorUnload)
+            //        {
+            //            lastErrorunload = ErrorUnload;
+            //            GenerateEvent(ErrorUnload, "Авария выгрузки", TypeConditional.Alarm);
+            //        }
+            //    }
+            //}
         }
 
         public void SetCap(double u)
@@ -177,28 +199,61 @@ namespace GasStation.Devices
             if (_clsLoaderStep.LoaderConst.StatusConst.LoadComplete == null)
                 return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.LoadComplete.ContrNum] as ClassController87053;
-            return (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.LoadComplete.Port]);
+
+            var retVal = (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.LoadComplete.Port]);
+            if(!retVal)
+                _clsLoaderStep.LoaderView.StatusLoad = null;
+            else
+                _clsLoaderStep.LoaderView.StatusLoad = retVal;
+
+            if (_clsLoaderStep.LoaderView.StatusLoad == true && _clsLoaderStep.LoaderView.StatusLoad != lastload)
+            {
+                GenerateEvent((bool)_clsLoaderStep.LoaderView.StatusLoad, "Загружен", TypeConditional.StatusText);
+            }
+            lastload = _clsLoaderStep.LoaderView.StatusLoad;
+            
+            return (retVal);
+
         }
         public bool GetPortUnloadComplete()
         {
             if (_clsLoaderStep.LoaderConst.StatusConst.UnLoadComplete == null)
                 return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.UnLoadComplete.ContrNum] as ClassController87053;
-            return (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.UnLoadComplete.Port]);
+
+            var retVal = (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.UnLoadComplete.Port]);
+            
+            if(!retVal)
+                _clsLoaderStep.LoaderView.StatusUnload = null;
+            else
+                _clsLoaderStep.LoaderView.StatusUnload = retVal;
+            
+            
+            if (_clsLoaderStep.LoaderView.StatusUnload==true&& _clsLoaderStep.LoaderView.StatusUnload!= lastunload)
+            {
+                GenerateEvent((bool)_clsLoaderStep.LoaderView.StatusUnload, "Выгружен", TypeConditional.StatusText);
+            }
+            lastunload = _clsLoaderStep.LoaderView.StatusUnload;
+            return (retVal);
         }
         public bool GetPortLoadError()
         {
             if (_clsLoaderStep.LoaderConst.StatusConst.ErrorLoad == null)
                 return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.ErrorLoad.ContrNum] as ClassController87053;
-            return (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.ErrorLoad.Port]);
+            var retVal = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.ErrorLoad.Port];
+
+            return (retVal);
         }
         public bool GetPortUnloadError()
         {
             if (_clsLoaderStep.LoaderConst.StatusConst.ErrorUnLoad == null)
-                return  false;
+                return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.ErrorUnLoad.ContrNum] as ClassController87053;
-            return (contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.ErrorUnLoad.Port]);
+
+            var retVal = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.ErrorUnLoad.Port];
+            _clsLoaderStep.LoaderView.IsErrorUpLoad = retVal;
+            return (retVal);
         }
         public bool GetPortGateOpen()
         {
@@ -206,7 +261,7 @@ namespace GasStation.Devices
                 return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.DumperOpen.ContrNum] as ClassController87053;
             var val = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.DumperOpen.Port];
-                
+
             return val;
         }
         public bool GetPortGateClose()
@@ -215,7 +270,7 @@ namespace GasStation.Devices
                 return false;
             var contr = LstContr[_clsLoaderStep.LoaderConst.StatusConst.DumperClosed.ContrNum] as ClassController87053;
             var val = contr.DioValues[_clsLoaderStep.LoaderConst.StatusConst.DumperClosed.Port];
-              
+
             return val;
         }
 
@@ -242,9 +297,8 @@ namespace GasStation.Devices
                 return;
             var contr = LstContr[_clsLoaderStep.LoaderConst.Load.ContrNum] as ClassController87057;
 
-            if (portState!=null)
+            if (portState != null)
             {
-                contr.MasPortsState[_clsLoaderStep.LoaderConst.UnLoad.Port] = !(bool)portState;
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.Load.Port] = (bool)portState;
             }
 
@@ -254,7 +308,7 @@ namespace GasStation.Devices
 
         public void SetPortUnload(bool? portState)
         {
-            if(lastUnload != portState&& generateEventLoad)
+            if (lastUnload != portState && generateEventLoad)
             {
                 GenerateEvent((bool)portState, "Направление загрузчика, Выгрузка", TypeConditional.Text);
                 generateEventLoad = false;
@@ -264,7 +318,6 @@ namespace GasStation.Devices
             var contr = LstContr[_clsLoaderStep.LoaderConst.UnLoad.ContrNum] as ClassController87057;
             if (portState != null)
             {
-                contr.MasPortsState[_clsLoaderStep.LoaderConst.Load.Port] = !(bool)portState;
                 contr.MasPortsState[_clsLoaderStep.LoaderConst.UnLoad.Port] = (bool)portState;
             }
 
@@ -273,7 +326,7 @@ namespace GasStation.Devices
 
 
         }
-        private bool? lastLoad=false;
+        private bool? lastLoad = false;
         private bool? lastUnload = false;
         private bool generateEventLoad = true;
         public void CheckStatus()
@@ -372,19 +425,19 @@ namespace GasStation.Devices
 
         }
 
-        public void GenerateEvent(bool state,string text, TypeConditional typeError)
+        public void GenerateEvent(bool state, string text, TypeConditional typeError)
         {
-                ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
-                conJumpArgs.NumDev = _clsLoaderStep.Num;
-                conJumpArgs.NameDev = "Загрузчик";
-                conJumpArgs.CurrValue = Convert.ToInt32(state);
-                
-                conJumpArgs.TextError = text;
+            ConJumpArgs conJumpArgs = new ConJumpArgs(_classDataTime.TimeStep);
+            conJumpArgs.NumDev = _clsLoaderStep.Num;
+            conJumpArgs.NameDev = "Загрузчик";
+            conJumpArgs.CurrValue = Convert.ToInt32(state);
+
+            conJumpArgs.TextError = text;
 
 
-                conJumpArgs.Conditional = 1;
-                conJumpArgs.TypeConditional = typeError;
-                AlarmError(this, conJumpArgs);
+            conJumpArgs.Conditional = 1;
+            conJumpArgs.TypeConditional = typeError;
+            AlarmError(this, conJumpArgs);
         }
     }
 }

@@ -400,7 +400,7 @@ namespace GasStation.Devices
                     ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
                     conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
                     conJumpArgs.NameDev = "Горелка";
-                    conJumpArgs.CurrValue = curr.TdBurner;
+                    conJumpArgs.CurrValue = CurrTdBurner.AverTd;
                     conJumpArgs.TextError = "Значение температуры горелки за границей допустимого диапазона";
                     conJumpArgs.Conditional = StatesTHeat[i].NumStep;
                     conJumpArgs.TypeConditional = TypeConditional.Error;
