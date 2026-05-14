@@ -207,6 +207,7 @@ namespace GasStation.xml
             {
                 _сurrentStepIdx = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentStepName"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RunningStepIdx"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentStepIdx"));
             }
         }
@@ -217,7 +218,6 @@ namespace GasStation.xml
         {
             get
             {
-                Console.WriteLine($"CurrStep= {CurrentStepIdx}");
                 if (CurrentStepIdx >= Steps.Count)
                     return "";
 
@@ -228,6 +228,25 @@ namespace GasStation.xml
                 {
                 }
                 return Steps[CurrentStepIdx].StepParams.NameStep;
+            }
+        }
+
+        public int RunningStepIdx
+        {
+            get
+            {
+
+                Console.WriteLine($"CurrStep= {CurrentStepIdx}");
+                if (CurrentStepIdx >= Steps.Count)
+                    return 0;
+
+                if (CurrentStepIdx < 0)
+                {
+                }
+                if (Steps.Count < CurrentStepIdx)
+                {
+                }
+                return Steps[CurrentStepIdx].StepParams.NumStep-1;
             }
         }
 

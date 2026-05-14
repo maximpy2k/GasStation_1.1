@@ -83,6 +83,8 @@ namespace GasStation.Mathem.Hydrogen
             {
                 case Regims.DefaultSpeed:
                     return GetMaximumSpeed(classDataTime);
+                case Regims.MaximumSpeed:
+                    return _hydrogenStep.SetupValue;
                 case Regims.TimeInterval:
                     return TimeInterval(classDataTime);
             }

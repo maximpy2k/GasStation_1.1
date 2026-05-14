@@ -48,13 +48,13 @@ namespace GasStation.xml.Script.XmlScript
             atrState.Value = false.ToString();
 
             var atrUsePid = xmlDocument.CreateAttribute("usePid");
-            atrUsePid.Value = "True";
+            atrUsePid.Value = "False";
 
             var atrPriv = xmlDocument.CreateAttribute("usePriv");
             atrPriv.Value = "False";
 
             var atrTypeReg = xmlDocument.CreateAttribute("typeReg");
-            atrTypeReg.Value = "MaximumSpeed";// typeReg.ToString();
+            atrTypeReg.Value = "DefaultSpeed";// typeReg.ToString();
 
             var atrSetupVal = xmlDocument.CreateAttribute("setupValue");
             atrSetupVal.Value = (35).ToString();

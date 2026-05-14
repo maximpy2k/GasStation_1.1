@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GasStation.ModalWindows.View.WindowsParams"
         xmlns:conv="clr-namespace:GasStation.ViewModels.Converters"
         mc:Ignorable="d"
-        Title="Настройки горелки" Height="155.114" Width="300">
+        Title="Настройки горелки" Height="170.114" Width="300">
     <Window.Resources>
         <conv:ClassConverterRegime x:Key="ConvRegime"/>
     </Window.Resources>
@@ -21,6 +21,9 @@
         <CheckBox Content="Нагрев"
                   IsEnabled="{Binding EnabledChangedScript}"
                   IsChecked="{Binding  Path=Heat}"/>
+        <CheckBox Content="Использовать ПИД"
+                  IsEnabled="{Binding EnabledChangedScript}"
+                  IsChecked="{Binding  Path=UsePid}"/>
         <CheckBox Content="Разрешение пользователю изменять свойства"  IsChecked="{Binding Path=UsePriv}" IsEnabled="{Binding Path=EnabledChangedScript}"/>
     </StackPanel>
 </Window>

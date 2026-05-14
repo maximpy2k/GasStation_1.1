@@ -32,20 +32,6 @@ namespace ChartApplication.Points
         /// Подпись графика
         /// </summary>
         public string InfoSeries;
-        ///// <summary>
-        ///// Минимальное значение X
-        ///// </summary>
-        //public double MinimumX
-        //{
-        //    get { return ListPoints.Select(dat => dat.X).Min(); }
-        //}
-        ///// <summary>
-        ///// Максимальное значение X
-        ///// </summary>
-        //public double MaximumX
-        //{
-        //    get { return ListPoints.Select(dat=>dat.X).Max(); }
-        //}
         
             
         public BlockingCollection<PointTime> ListPoints;
@@ -78,7 +64,6 @@ namespace ChartApplication.Points
             }
             RefrashIntervals(ListPoints);
             GenerateEventPlotPoints();
-            //PlotPoints = new BlockingCollection<PointTime>();
         }
 
         int intervals
@@ -88,9 +73,6 @@ namespace ChartApplication.Points
         int begLastInterval = 0;
         int EndLastInterval = 1;
 
-        //int pointsInGraph = 0;
-
-                
         private void RefrashIntervals( BlockingCollection<PointTime> lstPoints)
         {
             pointsInInterval = lstPoints.Count >= intervals ? lstPoints.Count / intervals : 1;
@@ -99,9 +81,6 @@ namespace ChartApplication.Points
             PlotPoints = new BlockingCollection<PointTime>();
             var arrayPoints = lstPoints.ToArray();
 
-            var beg1 = DateTime.Now;
-
-            Console.WriteLine((DateTime.Now - beg1).TotalSeconds);
             for (;;)
             {
                 if (arrayPoints.Length < EndLastInterval)
@@ -120,14 +99,28 @@ namespace ChartApplication.Points
                 }
                 PointTime mn = new PointTime(min.X, min.Y);
                 PointTime mx = new PointTime(max.X, max.Y);
-                PlotPoints.Add(mn);
-                PlotPoints.Add(mx);
+
+
+                if (min.X == max.X)
+                    PlotPoints.Add(mn);
+                else
+                {
+                    if (min.X > max.X)
+                    {
+                        PlotPoints.Add(mx);
+                        PlotPoints.Add(mn);
+                    }
+                    else
+                    {
+                        PlotPoints.Add(mn);
+                        PlotPoints.Add(mx);
+                    }
+                }
+
 
                 begLastInterval += pointsInInterval;
                 EndLastInterval += pointsInInterval;
             }
-            Console.WriteLine((DateTime.Now - beg1).TotalSeconds);
-            Console.WriteLine();
         }
         /// <summary>
         /// Конструктор класса
@@ -137,11 +130,8 @@ namespace ChartApplication.Points
         /// <param name="width">Ширина графика</param>
         public PointsCut(BlockingCollection<PointTime> lstPoints, int width/*, EventHandler plotPoints*/)
         {
-            //EventPlotPoints = plotPoints;
-
             Width = width;
             ListPoints = lstPoints;
-            //ListPoints.CollectionChanged = LstPoints_CollectionChanged;
 
             if (ListPoints.Count <= 0)
                 return;
@@ -153,15 +143,9 @@ namespace ChartApplication.Points
         
         public void Add(PointTime p)
         {
-            ListPoints.Add(p);            
-
+            ListPoints.Add(p);
             if (PlotPoints.Count > 8 * Width)
             {
-                //PlotPoints=new BlockingCollection<Point>();
-                //pointsInInterval = ListPoints.LstPoints.Count >= intervals ? ListPoints.LstPoints.Count / intervals : 1;
-                //begLastInterval = 0;
-                //EndLastInterval = pointsInInterval;
-
                 RefrashIntervals(ListPoints);
                 GenerateEventPlotPoints();
                 return;
@@ -187,8 +171,22 @@ namespace ChartApplication.Points
 
                 PointTime mn = new PointTime(min.X , min.Y);
                 PointTime mx = new PointTime(max.X, max.Y);
-                PlotPoints.Add(mn);
-                PlotPoints.Add(mx);
+                
+                if(min.X==max.X)
+                    PlotPoints.Add(mn);
+                else
+                {
+                    if(min.X>max.X)
+                    {
+                        PlotPoints.Add(mx);
+                        PlotPoints.Add(mn);
+                    }
+                    else
+                    {
+                        PlotPoints.Add(mn);
+                        PlotPoints.Add(mx);
+                    }
+                }
 
                 begLastInterval += pointsInInterval;
                 EndLastInterval += pointsInInterval;

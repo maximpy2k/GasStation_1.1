@@ -82,16 +82,15 @@ namespace GasStation.Mathem.Hydrogen
             double setTemp = setupTemp;
             var data = new ClassDataHydrogenBurner(classDataTime, _hydrogenConst);
             data.DataPid = null;
-            data.SetPower = data.ClassPidOut.DeltaValue;// EvalfPower(data.ClassPidOut.DeltaValue);
+            var impact = tdOut < setupTemp ? 100 : -100;
+            data.ClassPidOut.DeltaValue = impact;
             return data;
         }
         public ClassDataHydrogenBurner NextStep_InnerPidRegulation(ClassDataTime classDataTime, double tdOut, double setupTemp)
         {
             var data = new ClassDataHydrogenBurner(classDataTime, _hydrogenConst);
             var setTemp = setupTemp;
-
             data.ClassPidOut = ClassPidRegulatorOut.NextStep(tdOut, setTemp);
-            data.SetPower = data.ClassPidOut.DeltaValue;
             return data;
         }
         public ClassDataHydrogenBurner NextStep(ClassDataTime classDataTime, double tdOut, double setupTemp)
@@ -105,7 +104,7 @@ namespace GasStation.Mathem.Hydrogen
                 TdOut = tdOut;
             }
 
-            if (_hydrogenStep.UsePid)
+            if (_hydrogenStep.UsePid&&_hydrogenConst.Pid!=null)
             {
                 return NextStep_InnerPidRegulation(classDataTime, tdOut, setupTemp);
             }

@@ -38,7 +38,7 @@ namespace GasStation.Elements.Data
 
         public override string ToString()
         {
-            var s = $"{CurrDate.ToUniversalTime(),-20}{TimeStep,-25:0.00}{Cap,-30:0.00}{Acp,-30:0.00}{SetupValue,-30:0.00}{CurrSetRaise,-30:0.00}{ReadRaise,-30:0.00}{CurrPress,-30:0.00}";
+            var s = $"{CurrDate.ToString(),-20}{TimeStep,-25:0.00}{Cap,-30:0.00}{Acp,-30:0.00}{SetupValue,-30:0.00}{CurrSetRaise,-30:0.00}{ReadRaise,-30:0.00}{CurrPress,-30:0.00}";
             return s;
         }
 

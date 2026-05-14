@@ -131,10 +131,7 @@ namespace GasStation.Devices
             var relay = false;
             if (curr.UseHydrogen)
             {
-
-                if (_classHydrogenBurnerStep.UsePid)
-                    relay = SerRelayValuePid(curr.ClassPidOut);
-                else relay = SerRelayValue();
+                relay = SerRelayValuePid(curr.ClassPidOut);
             }
             curr.StateRelay = relay;
 
@@ -205,6 +202,7 @@ namespace GasStation.Devices
 
             if (_classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire != null)
                 _classHydrogenBurnerStep.HydrogenBurnerView.SeriesTdFire.Add(new PointTime(curr.CurrDate, CurrTdFire.AverTd));
+
             _classHydrogenBurnerStep.HydrogenBurnerView.SeriesSetTemp.Add(new PointTime(curr.CurrDate, LastSetTempOut));
             _classHydrogenBurnerStep.HydrogenBurnerView.IsFire = curr.StateFire;
             _classHydrogenBurnerStep.HydrogenBurnerView.IsWater = curr.StateWater;
@@ -245,7 +243,6 @@ namespace GasStation.Devices
         {
             if (pid.DeltaValue < 0)
                 return false;
-
             return true;
         }
         private bool SerRelayValue()
@@ -400,7 +397,7 @@ namespace GasStation.Devices
                     ConJumpArgs conJumpArgs = new ConJumpArgs(curr.TimeStep);
                     conJumpArgs.NumDev = _classHydrogenBurnerStep.Num;
                     conJumpArgs.NameDev = "Горелка";
-                    conJumpArgs.CurrValue = curr.TdBurner;
+                    conJumpArgs.CurrValue = CurrTdBurner.AverTd;
                     conJumpArgs.TextError = "Значение температуры горелки за границей допустимого диапазона";
                     conJumpArgs.Conditional = StatesTHeat[i].NumStep;
                     conJumpArgs.TypeConditional = TypeConditional.Error;

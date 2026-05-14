@@ -179,8 +179,8 @@ namespace GasStation.xml.Constant.XmlConst.Elements
                 var xmlNode = XmlNode.SelectSingleNode("dev[@name='pid']");
                 if (xmlNode == null)
                     return null;
-                var pid = new XmlClassPidConst(xmlNode);
 
+                var pid = new XmlClassPidConst(xmlNode);
                 return pid;
             }
         }

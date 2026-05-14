@@ -50,8 +50,6 @@ namespace GasStation.Elements.Data
         public ClassDataPid DataPid { get; set; }
 
         public bool UsePid => DataPid != null ? true : false;
-        public double SetPower { get; set; }
-
 
         public double TdFire;
         /// <summary>
@@ -89,9 +87,9 @@ namespace GasStation.Elements.Data
             }
         }
         public override string HeaderStr =>
-            $"{"Дата",-20}{"Время",-10}{"Температура",-10}{"Температура пламени",-10}{"Нагрев",-16}{"Датчик пламени",-16}{"Водяное охлаждение",-16}{"Реле нагрева",-16}";
+            $"{"Дата",-20}{"Время",-20}{"Температура заданная",-20}{"Температура сичтанная",20}{"Нагрев",-20}{"Реле нагрева",-20}{"Датчик пламени",-20}{"Водяное охлаждение",-20}";
 
         public override string ToString() =>
-                    $"{CurrDate.ToString(),-20}{TimeStep,-10:0.00}{TdBurner,-10:0.00}{TdFire,-10:0.00}{StateHeat,-10}{StateFire,-10}{StateWater,-10}{StateRelay,-10}";
+                    $"{CurrDate.ToString(),-20}{TimeStep,-20:0.00}{SetupTemp,-20:0.00}{classPidOut.CurrValue,-20:0.00}{UseHydrogen,-20}{StateRelay,-20}{StateFire,-20}{StateWater,-20}";
     }
 }
