@@ -53,8 +53,10 @@ namespace GasStation.xml.Constant.XmlConst.Elements
         {
             get
             {
-                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxUpSpeed']");
-                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
+                var xmlConst = XmlNode.SelectSingleNode("dev/EditFild[@name='maxUpSpeed']");
+                if (xmlConst == null)
+                    return 100;
+                return Convert.ToDouble(xmlConst.Attributes["value"].Value);
             }
         }
 
@@ -62,8 +64,10 @@ namespace GasStation.xml.Constant.XmlConst.Elements
         {
             get
             {
-                var xmlConstFlaps = XmlNode.SelectSingleNode("dev/EditFild[@name='maxDownSpeed']");
-                return Convert.ToDouble(xmlConstFlaps.Attributes["value"].Value);
+                var xmlConst = XmlNode.SelectSingleNode("dev/EditFild[@name='maxDownSpeed']");
+                if (xmlConst == null)
+                    return 100;
+                return Convert.ToDouble(xmlConst.Attributes["value"].Value);
             }
         }
 

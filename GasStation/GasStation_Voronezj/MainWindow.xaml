@@ -18,7 +18,7 @@
         Left="{Binding Source={x:Static properties:Settings.Default}, Path=WindowLeft, Mode=TwoWay}"
         Top="{Binding Source={x:Static properties:Settings.Default}, Path=WindowTop, Mode=TwoWay}"
         mc:Ignorable="d"
-        Title="Оксид 3 ПО (Версия 16.7 от 24.11.2025)" 
+        Title="Оксид 3 ПО (Версия 16.8 от 21.05.2026)" 
         Height="1040.231" 
         Width="1373.5" 
         Background="AliceBlue">
@@ -147,7 +147,7 @@
                             <newelem:UserControl_Voronezj
                                                             DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript.CurrStep}" Margin="-77,32,4.25,0" Background="#FFAFBEAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" HorizontalAlignment="Center" Height="235" Margin="948,-575,0,0" VerticalAlignment="Center" Width="450"/>
+                            <userControls:UserControl_StepParams DataContext="{Binding Source={StaticResource viewMod1},Path=ClsScript}" HorizontalAlignment="Center" Height="245" Margin="948,-575,0,0" VerticalAlignment="Center" Width="450"/>
 
                         </Grid>
                     </ScrollViewer>

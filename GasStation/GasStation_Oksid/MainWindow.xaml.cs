@@ -146,8 +146,15 @@ namespace GasStation_Pirogen
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
             Properties.Settings.Default.Save();
-            var result = MessageBox.Show("Закрыть программу?", null, MessageBoxButton.YesNo, MessageBoxImage.Question);
             viewmodel = (MainWindowViewModel)FindResource("viewMod1");
+            var text = "Закрыть программу?";
+            var startProcess=viewmodel.ClsScript.EnableStartTechProcess;
+            if(startProcess)
+            {
+                text = "    Внимание, выполняется техпроцесс!\r\n Уверены, что хотите закрыть программу?";
+            }
+            var result = MessageBox.Show(text, null, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
 
 
             if (result == MessageBoxResult.No)

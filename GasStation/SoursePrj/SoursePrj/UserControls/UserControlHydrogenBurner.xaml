@@ -306,7 +306,7 @@
             </GroupBox.Background>
         </GroupBox>
         <TextBox x:Name="textBox_Copy1" IsReadOnly="True" Margin="13.613,0,0,13.355" TextWrapping="Wrap" FontWeight="Bold" Background="{x:Null}" BorderBrush="Black" FontSize="18" HorizontalAlignment="Left" Width="49" Height="27" VerticalAlignment="Bottom"
-                 Text="{Binding Path=HydrogenBurnerConst.SetupTemp, Mode=OneWay}"/>
+                 Text="{Binding Path=SetupValue, Mode=OneWay}"/>
         <CheckBox x:Name="checkBox" Content="CheckBox" Height="23" Margin="75,0,22,18" Style="{DynamicResource CheckBoxHeating}" VerticalAlignment="Bottom"
                   IsChecked="{Binding Path=Heat}"/>
         <CheckBox x:Name="checkBox1" Content="CheckBox" Margin="77.2,60,18,60" Style="{DynamicResource CheckBoxFireSensor}" IsEnabled="False"

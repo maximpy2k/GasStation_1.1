@@ -218,6 +218,12 @@ namespace GasStation.Devices
             #region Расчет температуры по внешнему термодатчику
             var uTdOut = GetAcp(_classHydrogenBurnerStep.HydrogenBurnerConst.TdBurner);
             CurrTdBurner.Add(uTdOut);
+
+            if (_classHydrogenBurnerStep.HydrogenBurnerConst.TdFire != null)
+            {
+                var uTdFire = GetAcp(_classHydrogenBurnerStep.HydrogenBurnerConst.TdFire);
+                CurrTdFire.Add(uTdOut);
+            }
             #endregion
 
         }

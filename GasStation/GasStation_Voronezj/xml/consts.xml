@@ -751,6 +751,14 @@
 				<EditFild name="isInverted" rusName="Инвертирование" value="true" def="Инвертирование показаний порта" readОnly="false" />
 			</dev>
 		</dev>
+		<dev name="pid" num="1" rusName="ПИД" def="ПИД регулятор">
+			<EditFild name="Kpz" rusName="Кпз" value="0.0" def="Коэффициент пропорциональности заданию температуры горелки" readОnly="true" />
+			<EditFild name="Kp" rusName="Кп" value="0.5" def="Коэффициент пропорциональной составляющей ПИД горелки" readОnly="true" />
+			<EditFild name="Td" rusName="Тд" value="110" def="Постоянная времени дифференцирования ПИД горелки" readОnly="true" />
+			<EditFild name="Ti" rusName="Ти" value="20" def="Постоянная времени интегрирования ПИД горелки" readОnly="true" />
+			<EditFild name="Di" rusName="Ди" value="10" def="Область допустимых значений ошибки управления температуры горелки" readОnly="true" />
+			<EditFild name="MaxImpact" rusName="Макс.Возд." value="1" def="Максимальное воздействие" readОnly="false" />
+		</dev>
 	</dev>
 	<dev name="loader" num="1" rusName="Загрузчик" def="Загрузчик">
 		<dev name="cap" num="1" rusName="Скорость загрузки" def="Скорость загрузки">
