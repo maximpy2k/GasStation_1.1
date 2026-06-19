@@ -206,8 +206,8 @@ namespace GasStation.Devices
             _classHydrogenBurnerStep.HydrogenBurnerView.SeriesSetTemp.Add(new PointTime(curr.CurrDate, LastSetTempOut));
             _classHydrogenBurnerStep.HydrogenBurnerView.IsFire = curr.StateFire;
             _classHydrogenBurnerStep.HydrogenBurnerView.IsWater = curr.StateWater;
-            _classHydrogenBurnerStep.HydrogenBurnerView.TdFire = CurrTdFire.AverTd;
             _classHydrogenBurnerStep.HydrogenBurnerView.Relay = curr.StateRelay;
+            _classHydrogenBurnerStep.HydrogenBurnerView.TdFire = CurrTdFire.AverTd;
             _classHydrogenBurnerStep.HydrogenBurnerView.TdHeaterHydrogenBurner = CurrTdBurner.AverTd;
             _classHydrogenBurnerStep.Heat = curr.UseHydrogen;
             #endregion
@@ -222,7 +222,7 @@ namespace GasStation.Devices
             if (_classHydrogenBurnerStep.HydrogenBurnerConst.TdFire != null)
             {
                 var uTdFire = GetAcp(_classHydrogenBurnerStep.HydrogenBurnerConst.TdFire);
-                CurrTdFire.Add(uTdOut);
+                CurrTdFire.Add(uTdFire);
             }
             #endregion
 

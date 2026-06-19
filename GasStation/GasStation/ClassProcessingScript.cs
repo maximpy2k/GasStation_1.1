@@ -28,7 +28,7 @@ namespace GasStation
         /// <summary>
         /// Параметы Rs485
         /// </summary>
-        private readonly ClassSerialParams _serialParams;
+        public ClassSerialParams SerialParams;
     
         /// <summary>
         /// Класс скрипта
@@ -72,7 +72,7 @@ namespace GasStation
             _script.RefreshData();
             _script.CurrentStepIdx = 0;
 
-            _serialParams = serialParams;
+            SerialParams = serialParams;
             _script.Consts.ChannelConsts.FindStartupLogDir();
             InitControllers(clsScript.ViewData.ViewControllers);
 
@@ -110,13 +110,13 @@ namespace GasStation
         /// <returns></returns>
         private bool CheckDevices()
         {
-            if (_serialParams.SP.IsOpen)
+            if (SerialParams.SP.IsOpen)
                 return false;
 
             try
             {
-                _serialParams.SP.Open();
-                _serialParams.SP.Close();
+                SerialParams.SP.Open();
+                SerialParams.SP.Close();
             }
             catch (Exception e)
             {
@@ -161,12 +161,12 @@ namespace GasStation
                 var log = new ClassDataMainLog($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}  ", _script.ViewData.MessageOut.Remove(_script.ViewData.MessageOut.Length-($"{Environment.NewLine}").Length, ($"{Environment.NewLine}").Length));
                 log.AppendToFile($"{_script.Consts.ChannelConsts.LogPathFull}\\MainLog.txt");
             }
-            _serialParams.Connect();
-            if (_serialParams.SP.IsOpen==false)
+            SerialParams.Connect();
+            if (SerialParams.SP.IsOpen==false)
             {
                 ConJumpArgs ComArgs = new ConJumpArgs(0.0);
                 ComArgs.NumDev = 0;
-                ComArgs.NameDev = $"{_serialParams.ComPort}";
+                ComArgs.NameDev = $"{SerialParams.ComPort}";
                 ComArgs.CurrValue = 0;
                 ComArgs.TextError = "Невозможно открыть";
                 ComArgs.Conditional = 0;
@@ -217,7 +217,7 @@ namespace GasStation
                 if (_script.CurrentStepIdx == _script.Steps.Select(dat => dat.StepParams.NumStep).Max())
                     _script.CurrentStepIdx = _script.Steps.Select(dat => dat.StepParams.NumStep).Min()-1;
             }
-            _serialParams.Disconnect();
+            SerialParams.Disconnect();
 
 
             if (fatalError)
@@ -261,29 +261,29 @@ namespace GasStation
                 switch (_script.Consts.ConstControllers[i].NameController)
                 {
                     case "IDAS 7018":
-                        controller = new ClassController7018(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP,viewControllers[i]);
+                        controller = new ClassController7018(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP,viewControllers[i]);
                         break;
                     case "TM 7042":
                     case "TM 7042P":
-                        controller = new ClassController7042(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP,viewControllers[i]);
+                        controller = new ClassController7042(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP,viewControllers[i]);
                         break;
                     case "TM 7041":
-                        controller = new ClassController7041(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP,viewControllers[i]);
+                        controller = new ClassController7041(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP,viewControllers[i]);
                         break;
                     case "IDAS 87017":
-                        controller = new ClassController87017(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP, viewControllers[i]);
+                        controller = new ClassController87017(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP, viewControllers[i]);
                         break;
                     case "IDAS 87024":
-                        controller = new ClassController87024(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP, viewControllers[i]);
+                        controller = new ClassController87024(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP, viewControllers[i]);
                         break;                    
                     case "IDAS 87057":
-                        controller = new ClassController87057(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP, viewControllers[i]);
+                        controller = new ClassController87057(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP, viewControllers[i]);
                         break;
                     case "IDAS 87053":
-                        controller = new ClassController87053(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP, viewControllers[i]);
+                        controller = new ClassController87053(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP, viewControllers[i]);
                         break;
                     case "TM SHIM":
-                        controller = new ClassControllerShim(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], _serialParams.SP, viewControllers[i]);
+                        controller = new ClassControllerShim(_script.Consts.ChannelConsts.LogPathFull, _script.Consts.ConstControllers[i], SerialParams.SP, viewControllers[i]);
                         break;
                     default:
                         MessageBox.Show("Нет выбранных контроллеров");

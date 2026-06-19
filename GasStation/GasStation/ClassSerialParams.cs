@@ -19,6 +19,17 @@ namespace GasStation
 
         //private SerialPort sP;
 
+        public bool ConnectStatus
+        {
+            get
+            {
+                if (SP != null)
+                    return SP.IsOpen;
+                else
+                    return false;
+            }
+        }
+
         public SerialPort SP;
 
         public String ComPort

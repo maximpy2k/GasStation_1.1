@@ -720,8 +720,8 @@
                 </local:UserControl_Pipe_N2.RenderTransform>
             </local:UserControl_Pipe_N2>
 
-            <local:UserControl_Flap HorizontalAlignment="Left" Height="26" Margin="516,215,0,0" VerticalAlignment="Top" Width="26"
-                DataContext="{Binding Flaps[8]}"/>
+            <local:UserControl_Flap_Inverted HorizontalAlignment="Left" Height="26" Margin="516,215,0,0" VerticalAlignment="Top" Width="26"
+                DataContext="{Binding Flaps[6]}"/>
             <Rectangle Margin="550,252,0,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Top" Stroke="Black" StrokeThickness="0.3" RadiusX="0.5" RadiusY="0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>

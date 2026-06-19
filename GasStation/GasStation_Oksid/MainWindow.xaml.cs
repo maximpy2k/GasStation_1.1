@@ -148,8 +148,9 @@ namespace GasStation_Pirogen
             Properties.Settings.Default.Save();
             viewmodel = (MainWindowViewModel)FindResource("viewMod1");
             var text = "Закрыть программу?";
+            var connectStatus = viewmodel.ClassProcessingScript == null ? false : viewmodel.ClassProcessingScript.SerialParams.ConnectStatus;
             var startProcess=viewmodel.ClsScript.EnableStartTechProcess;
-            if(startProcess)
+            if(!startProcess&&connectStatus)
             {
                 text = "    Внимание, выполняется техпроцесс!\r\n Уверены, что хотите закрыть программу?";
             }

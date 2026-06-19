@@ -8,6 +8,7 @@ using GasStation.ViewModels.Elements;
 using GasStation.xml.Script.EnumConst;
 using GasStation.xml.Script.Security;
 using GasStation.ModalWindows.Commands;
+using System.Windows;
 
 namespace GasStation.xml.Script
 {
@@ -108,6 +109,21 @@ namespace GasStation.xml.Script
                 PropertyIsChange("SetupTemp");
             }
         }
+
+        private Visibility visibleOutPid = Visibility.Collapsed;
+        public Visibility VisibleOutPid
+        {
+            get
+            {
+                visibleOutPid=UsePid ? Visibility.Visible : Visibility.Collapsed;
+                return visibleOutPid;
+            }
+            set
+            {
+                visibleOutPid = value;
+                PropertyIsChange("VisibleOutPid");
+            }
+        }
         /// <summary>
         /// Использовать заданную температуру
         /// </summary>
@@ -169,7 +185,7 @@ namespace GasStation.xml.Script
             {
                 if (!ThermoSectionConst.SecuretyConst.CurrUser.Privs.Contains(EnumPriv.MegaBoss))
                 {
-                    MessageBox.Show(@"У вас нет привилегии MegaBoss");
+                    System.Windows.MessageBox.Show(@"У вас нет привилегии MegaBoss");
                     return;
                 }
 

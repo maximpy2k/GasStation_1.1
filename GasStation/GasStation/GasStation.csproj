@@ -273,6 +273,7 @@
     <Compile Include="ViewModels\Commands\Device commands\CommandParams\CommandStepParamsChamber.cs" />
     <Compile Include="ViewModels\Commands\Device commands\CommandPumpView.cs" />
     <Compile Include="ViewModels\Commands\CommandSaveConst.cs" />
+    <Compile Include="ViewModels\Converters\ClassConverterBoolVisible.cs" />
     <Compile Include="ViewModels\Converters\ClassConverterColor.cs" />
     <Compile Include="ViewModels\Converters\ClassConverterStepBackground.cs" />
     <Compile Include="ViewModels\Converters\ClassConverterVisibilityToBool.cs" />
